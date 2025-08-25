@@ -1,0 +1,60 @@
+
+    .login-card {
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      height: 400px;
+      padding: 30px;
+      position: relative;
+      /* justify-content: center !important; */
+      align-items: center;
+      margin-top: 150px;
+      margin-left: 700px;
+    }
+
+    
+
+    .login-header {
+      font-family: 'Georgia', cursive;
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #6c2e1f;
+    }
+
+    .form-control {
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn-custom {
+      width: 100%;
+      border-radius: 25px;
+      background: linear-gradient(to right, #e05a2a, #e6844d);
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(to right, #cf4818, #db7232);
+    }
+
+  .background-wrapper {
+  background-image: url('./../../../assets/images/Shidori.png');
+  /* https://hungerbay.com/assets/images/b6.jpg */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* width: 1200px; */
+  height: 690px;
+  display: flex;
+  /* margin-top: 80px; */
+  /* border-radius: 20px; */
+}
+
+
+

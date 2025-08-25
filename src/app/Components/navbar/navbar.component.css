@@ -1,0 +1,45 @@
+.nav-link{
+font-weight: bold;
+color: black;
+font-size: 17px;
+margin-left: 15px;
+}
+
+.nav-link:hover{
+    color:red !important;
+}
+.dropdown:hover{
+    color: red;
+}
+.dropdown{
+    font-weight: bold;
+font-size: 17px;
+margin-left: 20px;
+margin-top: 9px;
+cursor:pointer
+}
+.logo{
+    margin-left: 10px;
+    width: 600px;
+}
+.shidori_logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+}
+.fw-bold{
+    margin-left: 50px;
+    font-weight: bold;
+    font-size:px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+.navbar{
+    position: sticky;
+    top:0px;
+    z-index: 999;
+    height: 80px;
+    /* background:rgb(249, 247, 247); */
+    background-color:  #ff8d41;
+}

@@ -1,0 +1,10 @@
+.card{
+    width: 550px;
+    background-color: #ff8d41;
+    /* justify-content: center !important; */
+}
+button{
+    /* justify-content: center !important; */
+    /* align-items: center !important; */
+    margin-left: 41%;
+}

@@ -1,0 +1,17 @@
+.container{
+    width: 500px;
+}
+.button{
+ margin-left: 165px;
+}
+.card{
+    background-color:  #ff8d41;
+
+}
+h4{
+  margin-left: 84px;
+  font-weight: bold;
+}
+label{
+    font-weight: bold;
+}

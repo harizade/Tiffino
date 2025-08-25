@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+
+
+ <div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12 ">
+          <h2>Help & Support</h2>
+          <h5>Let's take a step ahead and help you better.</h5>
+        </div>
+      
+        <div class="row mt-4 bg_button rounded-3">
+          <div class="col-md-4">
+            <h6 class="mt-2 ml-5 pl-5 fw-bold fs-4">How Can We Help You </h6>
+           <div class="button-list">
+            <button class="button"  (click)="showSection('Care_Number')"> Help Care Number</button>
+            <button class="button"  (click)="showSection('Create_Account')">How To Create an Account</button>
+            <button class="button"  (click)="showSection('Order_Food')">How to Place an Order</button>
+            <button class="button"  (click)="showSection('Subscription_Plan')">What are Different Subscription Plans ?</button>
+            <button class="button"  (click)="showSection('Edit_Profile')">How Can I Edit Profile ?</button>
+          </div>
+        </div>
+    <div class="col-md-8 ">
+     <div class="bg_nav" *ngIf="activeSection === 'Care_Number'">
+        If you need any help, call the number below and our team will assist you soon.
+        <br><br>
+        📞 Shidori Kitchen Help Care Number:<a href="080-67466789"> 080-67466789</a>
+      
+     </div> 
+
+     
+
+     <div class="bg_nav" *ngIf="activeSection === 'Create_Account'">
+      💼 Visit our Login Page For Create Account: <a routerLink="/login">Click Here</a> <br>
+      *Create New Account (First-Time Users) <br>
+     *Click Sign Up / Register. <br>
+
+     *Enter:
+    Full Name,
+    Email Address,
+    Mobile Number,
+    Password,
+    Confirm Password<br>
+    *Click Register to create your account
+     </div>
+
+     <div class="bg_nav" *ngIf="activeSection === 'Order_Food'">
+# Visit the Website
+<br>
+# Create an Account (if new user) Click Register.
+<br>
+# Fill in details: name, email, phone number,password.Submit the form to create an account.
+<br>
+# Login (if existing user)
+<br>
+# View categories: Choice of regional or state-based cuisines 
+<br>
+# Select a category to see available items.
+<br>
+# Check item details (price, description, image).
+<br>
+
+# Click Add to Cart.
+
+<br>
+# View & Edit Cart
+<br>
+
+# Review selected items, quantities, and total price.
+<br>
+# Update quantity or remove items if needed.
+<br>
+# Confirm delivery address.
+<br>
+
+
+# Click Place Order button.
+     </div>
+
+     <div class="bg_nav" *ngIf="activeSection === 'Subscription_Plan'">
+      <pre>
+       # One-Time Orders: Users can order a meal just once for immediate delivery without a 
+            subscription. Ideal for sampling a new cuisine. 
+       # Flexible Subscription Plans 
+       # Single Meal Per Day: Choose between lunch or dinner for a daily 
+            delivery. 
+       # Two Meals Per Day: Lunch and dinner delivered daily, perfect for those wanting consistent, 
+            all-day meal service. 
+       # Breakfast, Lunch, and Dinner: Full-day meal service for a complete experience. 
+       # Pause/Resume Subscriptions: Users can pause their subscription while on vacation and 
+            resume anytime to ensure flexibility and cost savings. 
+       # Weekly, Bi-Weekly, Monthly Plans: Different payment plans and service durations are 
+            available to fit various budgets and commitment levels. 
+       # Customized Payment Plans: Weekly, bi-weekly, monthly, or pay-as-you-go, with easy renewal 
+            options.
+         </pre>
+     </div>
+
+     <div class="bg_nav" *ngIf="activeSection === 'Edit_Profile'">
+      ✏️ Visit our Profile Page For Edit Profile: <a href="#">Click Here</a>
+      
+
+    </div>
+   </div>
+  </div>
+ </div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
