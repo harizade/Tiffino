@@ -1,14 +1,13 @@
 
-/* Sidebar */
 .sidebar {
-  width: 250px;
-  position: fixed;
+  width: 280px;
+  /* position: fixed; */
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #ff8d41; /* Orange */
+  background-image: linear-gradient(to bottom right, red, yellow);
+
   padding-top: 20px;
-  /* box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3); */
 }
 
 .sidebar a {
@@ -25,39 +24,40 @@
 .sidebar a:hover,
 .sidebar a.active {
   background: #fff;
-  color: #ff8d41 !important; /* Highlight Orange */
+  color: #ff8d41 !important; 
 }
 
-/* Content */
 .content {
-  margin-left: 250px;
+  /* margin-left: 250px;
   padding: 20px;
   min-height: 100vh;
-  margin-top: -20px;
-  background-color: #f8f9fa; /* Light gray */
+  margin-top: -20px; */
+  width: calc(100% - 280px);
+  background-color: #dcdcdc; 
 }
 
-/* Navbar */
 .navbar {
-  border-radius: 12px;
-  background: #ff8d41; /* Orange */
+  border-radius: 10px;
+  background:linear-gradient(90deg, #FF512F, #FF7043);
+  color: #f8f9fa;
+  font-size: 50px;
 }
 
 .navbar-brand {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 1px;
   color: white;
 }
 
-/* Main content card */
 .main {
-  margin-top: 20px;
-  background: #fff;
+  margin-top: 10px;
   border-radius: 15px;
-  /* color: #333; */
+  height: 88vh;
+  overflow-y: auto;
+  box-shadow:  0 0 20px rgba(0, 0, 0, 0.1);
+  background-color: #f5f3f3;
 }
 
-/* Button styling */
 .btn-outline-light {
   border: 1px solid #fff;
   transition: 0.3s;

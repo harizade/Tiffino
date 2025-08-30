@@ -1,43 +1,6 @@
-<!-- <div class="d-flex"> 
-  <div class="sidebar text-white p-3">
-    <h4 class="text-center">Admin</h4><br>
-    <a routerLink="/dashboard" class="text-white d-block my-2">Dashboard</a>
-    <a routerLink="/admin/add_cloud_kitchen" class="text-white d-block my-2">Add cloud Kitchen</a>
-    <a routerLink="/admin/add-manager" class="text-white d-block my-2">Add Manager</a>
-    <a routerLink="/admin/reviews" class="text-white d-block my-2">Reviews &Rating</a>
-    <a routerLink="/admin/orders" class="text-white d-block my-2">Orders</a>
-    <a routerLink="/admin/subscription" class="text-white d-block my-2">Subscription</a>
-    <a routerLink="/settings" class="text-white d-block my-2">Settings</a>
-  </div>
 
-   <div class="content flex-grow-1 py-4">
-     <nav class="navbar navbar-light shadow-sm mb-3">
-      <span class="navbar-brand">Admin Dashboard </span>
-      <button class="btn text-dark"> <i class="bi bi-box-arrow-right"></i></button>
-     </nav> 
-       <div class="main">
-         <router-outlet></router-outlet>
-        </div>  
-    </div>      
-</div>    -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <div class="d-flex">
-  <div class="sidebar text-white p-3">
+ <div class="d-flex overflow-auto vh-100">
+  <div class="sidebar text-white p-3 ">
     <h4 class="text-center mb-4 fw-bold">Admin</h4>
     <a routerLink="/admin/add_cloud_kitchen" routerLinkActive="active">Add Cloud Kitchen</a>
     <a routerLink="/admin/add-manager" routerLinkActive="active">Add Manager</a>
@@ -47,19 +10,21 @@
     <a routerLink="/admin/add_meals" routerLinkActive="active"> Add Meals </a>
     
     <a routerLink="/admin/reviews" routerLinkActive="active">Reviews & Rating</a>
-    <!-- <a routerLink="/admin/orders" routerLinkActive="active">Orders</a> -->
-    <!-- <a routerLink="/settings" routerLinkActive="active">Settings</a> -->
+    <a routerLink="/admin/subscriber" routerLinkActive="active">Subscriber</a>
+    <a routerLink="/admin/offer" routerLinkActive="active">Offers</a>
+    <a routerLink="/admin/view_subscription" routerLinkActive="active">View Subscription</a>
+    <a routerLink="/admin/setting" routerLinkActive="active">Settings</a>
   </div>
 
-  <div class="content flex-grow-1 py-4">
-    <nav class="navbar navbar shadow-sm mb-3 px-3">
-      <span class="navbar-brand mx-auto fw-bold text-white">Admin Dashboard</span>
+  <div class="content ps-2">
+    <nav class="navbar navbar shadow-lg mb-1 px-3">
+      <span class="navbar-brand mx-auto fw-bold">Admin Dashboard</span>
       <button class="btn btn-outline-light rounded-circle">
         <i class="bi bi-box-arrow-right"></i>
       </button>
     </nav>
 
-    <div class="main card shadow-sm p-4  text-light rounded-3">
+    <div class="main p-4 text-light rounded-3 me-2">
       <router-outlet></router-outlet>
     </div>
   </div>

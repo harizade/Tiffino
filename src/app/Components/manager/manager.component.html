@@ -1,1 +1,28 @@
-<p>manager works!</p>
+ <div class="d-flex">
+  <div class="sidebar text-white p-3">
+    <h4 class="text-center mb-4 fw-bold">Manager</h4>
+    <a routerLink="/manager/cloud_kitchen_data" routerLinkActive="active">Cloud_Kitchen Data</a>
+
+    <a routerLink="/manager/orders" routerLinkActive="active">Orders</a>
+
+    <a routerLink="/order" routerLinkActive="active">Add Cuisine & Meals</a>
+    
+    <a routerLink="/order" routerLinkActive="active">Assign Order</a>
+  </div>
+
+  <div class="content flex-grow-1 py-4">
+    <nav class="navbar navbar shadow-sm mb-3 px-3">
+      <span class="navbar-brand mx-auto fw-bold text-dark">Manager Dashboard</span>
+      <button class="btn btn-outline-light rounded-circle">
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </nav>
+
+    <div class="main card shadow-sm p-4  text-light rounded-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div> 
+
+
+

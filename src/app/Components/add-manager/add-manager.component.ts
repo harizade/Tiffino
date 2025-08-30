@@ -1,15 +1,123 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-add-manager',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule,MatFormFieldModule ],
   templateUrl: './add-manager.component.html',
-  styleUrl: './add-manager.component.css'
+  styleUrl: './add-manager.component.css',
 })
 export class AddManagerComponent {
+  addManagerForm: FormGroup;
+  data: any;
+  constructor(private api: ApiService) {
+    this.addManagerForm = new FormGroup({
+      managerName: new FormControl('',[Validators.required]),
+      managerEmail: new FormControl('', [Validators.email, Validators.required]),
+      dob: new FormControl(''),
+      phoneNo: new FormControl(''),
+      currentAddress: new FormControl(''),
+      permeantAddress: new FormControl(''),
+      city: new FormControl(''),
+      cloudKitchenId: new FormControl(''),
+      adharCard: new FormControl(null),
+      panCard: new FormControl(null),
+      photo: new FormControl(null),
+    });
+  }
 
+  ngOnInit(){
+    this.getCloudKitchen()
+  }
+  onFileSelect(event: any, controlName: string) {
+    if (event.target.files.length > 0) {
+      this.addManagerForm.get(controlName)?.setValue(event.target.files[0]);
+    }
+  }
+
+  saveManager() {
+    const formData = new FormData();
+
+    // Append text fields
+    formData.append(
+      'managerName',
+      this.addManagerForm.get('managerName')?.value
+    );
+    formData.append(
+      'managerEmail',
+      this.addManagerForm.get('managerEmail')?.value
+    );
+    formData.append('dob', this.addManagerForm.get('dob')?.value);
+    formData.append('phoneNo', this.addManagerForm.get('phoneNo')?.value);
+    formData.append(
+      'currentAddress',
+      this.addManagerForm.get('currentAddress')?.value
+    );
+    formData.append(
+      'permeantAddress',
+      this.addManagerForm.get('permeantAddress')?.value
+    );
+    formData.append('city', this.addManagerForm.get('city')?.value);
+    formData.append(
+      'cloudKitchenId',
+      this.addManagerForm.get('cloudKitchenId')?.value
+    );
+
+    // Append files
+    formData.append('adharCard', this.addManagerForm.get('adharCard')?.value);
+    formData.append('panCard', this.addManagerForm.get('panCard')?.value);
+    formData.append('photo', this.addManagerForm.get('photo')?.value);
+
+    this.api.addManager(formData).subscribe({
+      next: (res) => {
+        console.log('Response from server:', res)
+        alert(res);       
+    // if (res.includes('already exist')) {
+    //   alert('Manager already exists!');
+    // } else if (res.includes('successfully')) {
+    //   alert('Manager saved successfully!');
+    // } else {
+    //   alert('Unexpected response: ' + res);
+    // }
+      if(res.includes('Manager Inserted Successfully!!')){
+         this.addManagerForm.reset();
+      }
+      },
+      error: (err) => {
+        console.error('API error:', err);
+        alert('An error occurred while saving the manager.');
+      }
+  
+    });
+
+    const fileInputs =
+      document.querySelectorAll<HTMLInputElement>('input[type="file"]');
+    fileInputs.forEach((input) => (input.value = ''));
+
+    
+  }
+
+  // Showing data For CloudKitchen
+  getCloudKitchen(){
+    this.api.getCloudeKitchen_WithManager().subscribe({
+      next: (res: any) => {
+        this.data = res.data || res; 
+        console.log('Cloud Kitchen Data:', this.data);
+      },
+      error: (err) => {
+        console.error('API error:', err);
+      },
+    });
+  }
 }

@@ -1,39 +1,40 @@
 <div class="container mt-4 d-flex justify-content-center">
   <div class="card shadow p-4">
-    <h3 class="text-center mb-3">Add Subscription Plans</h3>
-    <form>
+    <h3 class="text-center mb-3 fw-bold">Add Subscription Plans</h3>
+    <form [formGroup]="addSubscriptionForm">
 
       <!-- Name -->
       <div class="mb-3">
         <label for="name" class="form-label"> Name</label>
-        <input type="text" id="name" class="form-control" name="name" required>
+        <input type="text" id="name" class="form-control custom-border" formControlName="name" required>
       </div>
 
       <!-- Description -->
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" name="description" rows="3"></textarea>
+        <textarea class="form-control custom-border" formControlName="description" rows="3"></textarea>
       </div>
 
       <!-- Price -->
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" id="price" class="form-control"  name="price" required>
+        <input type="number" id="price" class="form-control custom-border"  formControlName="price" required>
       </div>
 
       <!-- Duration Dropdown -->
     <div class="mb-3">
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Duration</option>
-        <option value="1">One Day</option>
-        <option value="2">Weekly</option>
-        <option value="3">Bi-Weekly</option>
-        <option value="3">Monthly</option>
+      <select class="form-select custom-border" aria-label="Default select example" formControlName="durationType" placeholder="Duration Type">
+        <!-- <option value="0" selected>Duration</option> -->
+        <option >ONE_DAY</option>
+        <option >WEEKLY</option>
+        <option >QUARTERLY</option>
+        <option >YEARLY</option>
+        <option >MONTHLY</option>
       </select>
     </div>
 
       <!-- Submit -->
-      <button type="submit" class="btn btn-dark">Submit</button>
+      <button type="submit" class="button border-0 w-100 text-white p-1 mt-3 mb-2" (click)="saveSubscription()">Submit</button>
     </form>
   </div>
 </div>
