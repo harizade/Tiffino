@@ -12,10 +12,12 @@
     font-style: italic;
 }
 .searchbar{
-  position: absolute;
   width: 40%;
   border-radius: 40px;
-  top: 2rpm;
+}
+.all{
+  position: relative;
+  top: 5rem;
 }
 
 .category-item img {
