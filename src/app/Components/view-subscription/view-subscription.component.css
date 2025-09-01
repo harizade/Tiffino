@@ -5,7 +5,7 @@
       /* text-align: center; */
       /* width: 23%; */
     }
-    .pricing-card:hover {
+    .pricing-card-hover:hover {
       transform: translateY(-5px);
       border:2px solid #ff6600 ;
     }
@@ -18,3 +18,7 @@
     .subscribe-btn:hover {
       background-color: #e65c00;
     }
+.mt-8 {
+  margin-top: 7.5rem;
+  margin-left: 10px;
+}

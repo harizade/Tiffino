@@ -24,6 +24,7 @@ import { authGuard } from './gaurds/auth.guard';
 import { ViewSubscriptionComponent } from './Components/view-subscription/view-subscription.component';
 
 export const routes: Routes = [
+    
     {"path":"navbar",component:NavbarComponent},
     {"path":"",component:HomeComponent},
     {"path":"footer",component:FooterComponent},
@@ -31,6 +32,8 @@ export const routes: Routes = [
     {"path":"login",component:LoginComponent},
     {"path":"create_account",component:CreateAccountComponent},
     {"path":"admin_login",component:AdminLoginComponent},
+    {"path":'view_subscription',component:ViewSubscriptionComponent},
+
     {
       "path":"manager",
       component:ManagerComponent,

@@ -50,29 +50,14 @@ export class AddManagerComponent {
     const formData = new FormData();
 
     // Append text fields
-    formData.append(
-      'managerName',
-      this.addManagerForm.get('managerName')?.value
-    );
-    formData.append(
-      'managerEmail',
-      this.addManagerForm.get('managerEmail')?.value
-    );
+    formData.append('managerName',this.addManagerForm.get('managerName')?.value);
+    formData.append('managerEmail',this.addManagerForm.get('managerEmail')?.value);
     formData.append('dob', this.addManagerForm.get('dob')?.value);
     formData.append('phoneNo', this.addManagerForm.get('phoneNo')?.value);
-    formData.append(
-      'currentAddress',
-      this.addManagerForm.get('currentAddress')?.value
-    );
-    formData.append(
-      'permeantAddress',
-      this.addManagerForm.get('permeantAddress')?.value
-    );
+    formData.append('currentAddress',this.addManagerForm.get('currentAddress')?.value);
+    formData.append('permeantAddress',this.addManagerForm.get('permeantAddress')?.value);
     formData.append('city', this.addManagerForm.get('city')?.value);
-    formData.append(
-      'cloudKitchenId',
-      this.addManagerForm.get('cloudKitchenId')?.value
-    );
+    formData.append('cloudKitchenId',this.addManagerForm.get('cloudKitchenId')?.value);
 
     // Append files
     formData.append('adharCard', this.addManagerForm.get('adharCard')?.value);
@@ -83,13 +68,6 @@ export class AddManagerComponent {
       next: (res) => {
         console.log('Response from server:', res)
         alert(res);       
-    // if (res.includes('already exist')) {
-    //   alert('Manager already exists!');
-    // } else if (res.includes('successfully')) {
-    //   alert('Manager saved successfully!');
-    // } else {
-    //   alert('Unexpected response: ' + res);
-    // }
       if(res.includes('Manager Inserted Successfully!!')){
          this.addManagerForm.reset();
       }

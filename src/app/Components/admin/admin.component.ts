@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AddManagerComponent } from '../add-manager/add-manager.component';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-admin',
@@ -11,4 +12,10 @@ import { AddManagerComponent } from '../add-manager/add-manager.component';
 })
 export class AdminComponent {
 
+  constructor(private api:ApiService,private router: Router){
+
+  }
+  logout(){
+    this.api.adminLOgout();  
+  }
 }

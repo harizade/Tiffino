@@ -1,4 +1,5 @@
 .card{
+  margin-top: -10px;
     width: 550px;
     background-image: linear-gradient(to bottom right, rgb(246, 246, 213),rgb(248, 225, 225));
 
