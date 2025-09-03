@@ -8,16 +8,7 @@ margin-left: 15px;
 .nav-link:hover{
     color:red !important;
 }
-/* .dropdown:hover{
-    color: red;
-} */
-/* .dropdown{
-    font-weight: bold;
-font-size: 17px;
-margin-left: 20px;
-margin-top: 9px;
-cursor:pointer
-} */
+
 .logo{
     margin-left: 10px;
     width: 600px;
@@ -40,7 +31,6 @@ cursor:pointer
     top:0px;
     z-index: 999;
     height: 80px;
-    /* background:rgb(249, 247, 247); */
     background-color:  #ff8d41;
 }
 
@@ -48,9 +38,9 @@ cursor:pointer
     margin-right: 10px;
 }
 
-.login-btn{
-    margin-bottom: 10px;
-}
+/* .login-btn{
+    margin-bottom: px;
+} */
 
 .dropdown-item{
     color: black;

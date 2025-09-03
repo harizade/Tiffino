@@ -8,7 +8,7 @@
        
        </div>
       
-      <div class="collapse navbar-collapse  ml-5" style="margin-left: 150px;">
+      <div class="collapse navbar-collapse  ml-5" style="margin-left: 250px;">
         <ul class="navbar-nav me-auto mb-2 -3">
         
           <li class="nav-item">
@@ -46,22 +46,24 @@
   <i *ngIf="isLoggedIn" class="bi bi-person-circle h1"
      role="button"
      id="profileDropdown"
-     data-bs-toggle="dropdown">
+     data-bs-toggle="dropdown"
+     aria-expanded="false"
+     style="cursor:pointer"
+     >
   </i>
+
   <!-- Dropdown Menu -->
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
     <li><a class="dropdown-item" routerLink="/profile"><i class="bi bi-person"></i>My Profile</a></li>
     <li><a class="dropdown-item" routerLink="/orders"><i class="bi bi-bag"></i>My Orders</a></li>
     <li><a class="dropdown-item" routerLink="/settings"><i class="bi bi-gear"></i>Settings</a></li>
-    <li><a class="dropdown-item text-danger" (click)="logout()"><i class="bi bi-box-arrow-right"></i>
- Logout</a></li>
+    <li><a class="dropdown-item text-danger" (click)="logout()" style="cursor:pointer"><i class="bi bi-box-arrow-right"></i>
+        Logout</a></li>
   </ul>
 </div>
+     <button *ngIf="!isLoggedIn" class="btn btn-outline-light login-btn w-100"routerLink="/login" type="submit">Sign In</button>
+      </div>
         
-        <button *ngIf="!isLoggedIn" class="btn btn-outline-light login-btn w-100"routerLink="/login" type="submit">Sign In</button>
-         </div>
-        
-
       </div>
     </div>
   </nav>
