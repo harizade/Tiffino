@@ -1,0 +1,26 @@
+
+<div class="position-fixed top-0 start-0 end-0 z-3">
+  <app-navbar></app-navbar>
+</div>
+
+<div class="container">
+<div class="row w-100 gx-4">
+    <div class="col-3 mb-3" *ngFor="let row of data">
+  <div class="card  p-4 text-center position-relative">
+        <h4 class="fw-bold">{{row.durationType}}</h4>
+        <h5 class="fw-bold">{{row.subName}}</h5>
+        <h5 class="text-muted">Price ₹ {{row.price}}/-</h5>
+        <p>{{row.description}}</p>
+        <ul class="list-unstyled text-start">
+            <li>✅ Free delivery</li>
+            <li>✅ Weekly menu rotation</li>
+            <li>✅ Priority support</li>
+            <li>✅ Customizable menu</li>
+        </ul>
+        <button class="btn subscribe-btn w-100 mt-3">Subscribe Now</button>
+
+
+    </div>
+    </div>
+</div>
+</div>

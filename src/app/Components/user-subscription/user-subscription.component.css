@@ -1,0 +1,24 @@
+.pricing-card {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .pricing-card-hover:hover {
+      transform: translateY(-5px);
+      border:2px solid #ff6600 ;
+    }
+    .subscribe-btn {
+      background-color: #ff6600;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+    .subscribe-btn:hover {
+      background-color: #e65c00;
+    }
+  
+    .container{
+        position: absolute;
+        display: flex;
+        margin-top: 100px;
+    }

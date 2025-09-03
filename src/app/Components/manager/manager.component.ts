@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-manager',
@@ -10,5 +11,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './manager.component.css'
 })
 export class ManagerComponent {
-
+ constructor(private api:ApiService,private router: Router){
+ 
+   }
+   logout(){
+     this.api.adminLOgout();  
+   }
 }

@@ -20,8 +20,11 @@ import { CloudKitchenDataComponent } from './Components/cloud-kitchen-data/cloud
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { SettingComponent } from './Components/setting/setting.component';
 import { OfferComponent } from './Components/offer/offer.component';
-import { authGuard } from './gaurds/auth.guard';
+import { authGuard, loginGuard, managerGuard } from './gaurds/auth.guard';
 import { ViewSubscriptionComponent } from './Components/view-subscription/view-subscription.component';
+import { ManagerLoginComponent } from './Components/manager-login/manager-login.component';
+import { DeliveryPartnerDashbordComponent } from './Components/delivery-partner-dashbord/delivery-partner-dashbord.component';
+import { UserSubscriptionComponent } from './Components/user-subscription/user-subscription.component';
 
 export const routes: Routes = [
     
@@ -29,18 +32,22 @@ export const routes: Routes = [
     {"path":"",component:HomeComponent},
     {"path":"footer",component:FooterComponent},
     {"path":"helps",component:HelpsComponent},
-    {"path":"login",component:LoginComponent},
+    {"path":"login",component:LoginComponent, canActivate:[loginGuard]},
     {"path":"create_account",component:CreateAccountComponent},
-    {"path":"admin_login",component:AdminLoginComponent},
+    // {"path":"admin_login",component:AdminLoginComponent},
     {"path":'view_subscription',component:ViewSubscriptionComponent},
+    // { path:'manager/manager_login',component:ManagerLoginComponent},
+
+    {"path":"delivery_partner_dashbord",component:DeliveryPartnerDashbordComponent},
+    {"path":"user_subscription",component:UserSubscriptionComponent},
 
     {
       "path":"manager",
+      canActivate:[managerGuard],
       component:ManagerComponent,
       children:[
       { path:'orders',component:OrdersComponent},
-      { path:'cloud_kitchen_data',component:CloudKitchenDataComponent}
-        
+      { path:'cloud_kitchen_data',component:CloudKitchenDataComponent},       
       ]
     },
    {

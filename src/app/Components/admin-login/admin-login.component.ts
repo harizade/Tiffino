@@ -27,7 +27,9 @@ export class AdminLoginComponent {
     this.api.adminLogin(this.adminLoginForm.value).subscribe((res:any)=>{
       this.router.navigate(["/admin"])
       localStorage.setItem('token',res.jwtToken);
+      if(res.jwtToken != null){
       localStorage.setItem('isLoggedIn', 'true');
+      }
     })
   }
 }

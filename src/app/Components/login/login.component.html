@@ -5,11 +5,11 @@
     <div class="login-card">
     <div class="login-header">Login</div>
 
-    <form>
-      <input type="email" class="form-control" placeholder="UserEmail">
-      <input type="password" class="form-control" placeholder="Your password">
+    <form [formGroup]="allLoginForms" >
+      <input type="email" class="form-control" placeholder="UserEmail" formControlName="emailOrId">
+      <input type="password" class="form-control" placeholder="Your password" formControlName="password">
       <a href="">Forgot Password ?</a>
-      <button type="submit" class="btn btn-custom">LOG IN</button>
+      <button type="submit" class="btn btn-custom" (click)="login()">LOG IN</button>
       <br><br>
       <span routerLink="/create_account">New User Create Account</span>
     </form>

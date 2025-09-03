@@ -18,7 +18,7 @@
             <a class="nav-link active " href="/helps">Help</a>
           </li>
             <li class="nav-item" >
-            <a class="nav-link active " href="view_subscription">Subscription</a>
+            <a class="nav-link active " href="/user_subscription">Subscription</a>
 
             </li>
           
@@ -32,14 +32,33 @@
           <li class="nav-item">
             <a class="nav-link active" href="#">Cart</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" href="#">Sign In</a>
-          </li>
+          </li> -->
           
-          
+
         </ul>
-        <div>
-        <button class="btn btn-outline-light w-100"routerLink="/login" type="submit">Sign In</button>
+       <div>
+
+
+    <div class="dropdown">
+  <!-- Profile Icon -->
+  <i *ngIf="isLoggedIn" class="bi bi-person-circle h1"
+     role="button"
+     id="profileDropdown"
+     data-bs-toggle="dropdown">
+  </i>
+  <!-- Dropdown Menu -->
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+    <li><a class="dropdown-item" routerLink="/profile"><i class="bi bi-person"></i>My Profile</a></li>
+    <li><a class="dropdown-item" routerLink="/orders"><i class="bi bi-bag"></i>My Orders</a></li>
+    <li><a class="dropdown-item" routerLink="/settings"><i class="bi bi-gear"></i>Settings</a></li>
+    <li><a class="dropdown-item text-danger" (click)="logout()"><i class="bi bi-box-arrow-right"></i>
+ Logout</a></li>
+  </ul>
+</div>
+        
+        <button *ngIf="!isLoggedIn" class="btn btn-outline-light login-btn w-100"routerLink="/login" type="submit">Sign In</button>
          </div>
         
 
