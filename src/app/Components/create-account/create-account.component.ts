@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-account',
   standalone: true,
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateAccountComponent {
   userRegisterForm:FormGroup;
-  constructor(private api:ApiService){
+  constructor(private api:ApiService ,private router:Router){
     this.userRegisterForm=new FormGroup({
       'name':new FormControl(''),
       'email':new FormControl(''),
@@ -22,16 +22,22 @@ export class CreateAccountComponent {
     });
   }
    userRegister(){
-     this.api.userRegister(this.userRegisterForm.value).subscribe(res=>{
-      console.log(res);
+     this.api.userRegister(this.userRegisterForm.value).subscribe({
+      // console.log(res);
+      next: (res) => {
+        console.log('User Registered successfully:', res);
+        alert('User Registered successfully!');
+        this.userRegisterForm.reset();
+      this.router.navigate(["/login"])
+
+   },
+      error: (err) => {
+        console.error('Registration failed:', err);
+        alert('Registration failed. Please try again.');
+      } 
      })
 
-  //      next: (res) => {
-  //       console.log('User Registered successfully:', res);
-  //       alert('User Registered successfully!');
-  //       this.userRegisterForm.reset();
-  //  }
-    
+       
    }
   }
 

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -13,11 +13,25 @@ import { ApiService } from '../api.service';
 export class NavbarComponent {
   isLoggedIn = localStorage.getItem('isLoggedIn');
 
-  constructor(private api:ApiService){
+  constructor(private api: ApiService, private router: Router) {
     
   }
-  logout(){
-     this.api.adminLOgout(); 
-     window.location.reload(); 
-   }
+  logout() {
+  this.api.userLOgout().subscribe({
+    next: (res) => {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('token');
+      this.router.navigate(['/']).then(() => {
+        window.location.reload(); 
+      });
+    },
+    error: (err) => {
+      console.error('Logout failed', err);
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('token');
+      this.router.navigate(['/']);
+    }
+  });
+}
+
 }

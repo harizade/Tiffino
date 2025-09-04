@@ -6,13 +6,14 @@
     <div class="login-header">Create Account</div>
 
     <form [formGroup]="userRegisterForm">
-      <input type="name" class="form-control" placeholder="User_Name" formControlName="name">
+      <input type="name" class="form-control" placeholder="User name" formControlName="name">
       <input type="number" class="form-control" placeholder="Mobile" formControlName="phoneNo" >
       <input type="email" class="form-control" placeholder="Email" formControlName="email" >
       <input type="password" class="form-control" placeholder="password" formControlName="password" >
       <!-- <input type="password" class="form-control" placeholder="Re-Enter your password" formControlName="confirm_password" > -->
       <button type="submit" class="btn btn-custom" (click)="userRegister()">Submit</button>
-      <br><br><br>
+      <br><br>
+      <span >Already have an account? <a routerLink="/login">Login</a></span>
     </form>
   </div> 
 </div>

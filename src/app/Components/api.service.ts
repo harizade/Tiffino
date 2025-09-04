@@ -47,6 +47,33 @@ export class ApiService {
       });
   }
 
+
+   userLOgout() {
+  return this.http.post(this.apiUrl + 'auth/logout', {}, { 
+    responseType: 'text',
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } // if required
+  });
+}
+
+  forgotPassword(data: any, email: string) {
+    return this.http.post(this.apiUrl + 'user/forgot-password', data, {
+      params: { email: email },
+      responseType: 'text'
+    });
+  }
+
+  resetPassword(data: any) {
+    return this.http.post(this.apiUrl + 'user/reset-password',
+      { } ,
+      {
+      params:{ email: data.email, otp: data.otp ,newPassword: data.newPassword},
+      responseType: 'text'});
+  }
+
+
+
+
+
   addCloudKitchen(data: any) {
     return this.http.post(this.apiUrl + 'superAdmin/saveCloudKitchen', data, {responseType: 'text'});
   }

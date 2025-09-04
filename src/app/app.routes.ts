@@ -25,6 +25,7 @@ import { ViewSubscriptionComponent } from './Components/view-subscription/view-s
 import { ManagerLoginComponent } from './Components/manager-login/manager-login.component';
 import { DeliveryPartnerDashbordComponent } from './Components/delivery-partner-dashbord/delivery-partner-dashbord.component';
 import { UserSubscriptionComponent } from './Components/user-subscription/user-subscription.component';
+import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     
@@ -40,6 +41,7 @@ export const routes: Routes = [
 
     {"path":"delivery_partner_dashbord",component:DeliveryPartnerDashbordComponent},
     {"path":"user_subscription",component:UserSubscriptionComponent},
+    {"path":"forgot_password",component:ForgotPasswordComponent},
 
     {
       "path":"manager",
