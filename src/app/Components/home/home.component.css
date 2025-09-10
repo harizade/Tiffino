@@ -143,11 +143,17 @@
       font-weight: 600;
       color: #212529;
       cursor: pointer;
+      
+    ;
     }
 
     .locality-btn:hover {
       background-color: #e9ecef;
       color: red;
+    }
+    .locality{
+      margin-bottom: 10px;
+      height: 450px;
     }
     
    .pricing-card {

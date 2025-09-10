@@ -15,3 +15,15 @@ h4{
     margin-left: 500px;
     font-weight: bold;
 }
+.card-body{
+border-bottom: 1px solid black;    
+}
+.card-title{
+   font-weight: bold; 
+}
+
+.text{
+    margin-top: 15px;
+    margin-left: 30px;
+    font-weight: bold;
+}

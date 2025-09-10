@@ -70,8 +70,14 @@ export class ApiService {
       responseType: 'text'});
   }
 
+  addMenu(){
+    return this.http.get(this.apiUrl + 'manager/getAllCuisinesAndMeals');
+  }
 
 
+ addOrRemoveMeal(mealId: number):Observable<any> {
+  return this.http.post(this.apiUrl + 'manager/addOrRemoveMeals/' + mealId, {}, { responseType: 'text' } );
+}
 
 
   addCloudKitchen(data: any) {
@@ -120,5 +126,13 @@ export class ApiService {
 
   userSubscription() {
     return this.http.get(this.apiUrl + 'user/getAllSubscriptionPlan');
+  }
+
+  cloudeKitchenData(){
+    return this.http.get(this.apiUrl + 'manager/getDataOfCloudKitchen');
+  }
+
+  allAvailableMeals(){
+    return this.http.get(this.apiUrl + 'user/getAllAvailableMealsGroupedByCuisine');
   }
 }

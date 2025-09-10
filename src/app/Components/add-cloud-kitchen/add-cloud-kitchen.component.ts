@@ -19,6 +19,8 @@ export class AddCloudKitchenComponent {
       state:new FormControl(''),
       city:new FormControl(''),
       division:new FormControl(''),
+      address:new FormControl(''),
+      pinCode:new FormControl('')
     })
 
   }

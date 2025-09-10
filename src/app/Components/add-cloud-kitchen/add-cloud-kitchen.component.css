@@ -3,13 +3,9 @@
 }
 
 .card{
-  /* background: #f3f3f2; */
   background-image: linear-gradient(to bottom right, rgb(246, 246, 213),rgb(248, 225, 225));
-
-
   border: 1px solid orange;
-
-
+  margin-top: -40px;
 }
 h4{
   margin-left: 84px;

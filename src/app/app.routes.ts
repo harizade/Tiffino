@@ -26,6 +26,7 @@ import { ManagerLoginComponent } from './Components/manager-login/manager-login.
 import { DeliveryPartnerDashbordComponent } from './Components/delivery-partner-dashbord/delivery-partner-dashbord.component';
 import { UserSubscriptionComponent } from './Components/user-subscription/user-subscription.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
+import { MenuComponent } from './Components/menu/menu.component';
 
 export const routes: Routes = [
     
@@ -49,7 +50,8 @@ export const routes: Routes = [
       component:ManagerComponent,
       children:[
       { path:'orders',component:OrdersComponent},
-      { path:'cloud_kitchen_data',component:CloudKitchenDataComponent},       
+      { path:'cloud_kitchen_data',component:CloudKitchenDataComponent}, 
+      { path:'menu',component:MenuComponent}      
       ]
     },
    {
