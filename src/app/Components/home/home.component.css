@@ -30,7 +30,19 @@
     .category-item {
       text-align: center;
       font-weight: 500;
+     
     }
+
+
+    .d-flex.w-100.overflow-auto {
+  scrollbar-width: none; /* Firefox */
+}
+
+.d-flex.w-100.overflow-auto::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+
 
 .heading{
     font-weight: bold;
@@ -127,7 +139,7 @@
       transform: translateY(-10px);
     }
     .card-button{
-      margin-left: 60px;
+      margin-left: 95px;
       margin-top: -40px;    
     }
 
@@ -175,6 +187,9 @@
     .subscribe-btn:hover {
       background-color: #e65c00;
     }
-
+ .price-banner{
+  margin-left: 20px;
+  margin-top: 10px;
+ }
 
 

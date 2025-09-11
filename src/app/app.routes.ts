@@ -43,6 +43,8 @@ export const routes: Routes = [
     {"path":"delivery_partner_dashbord",component:DeliveryPartnerDashbordComponent},
     {"path":"user_subscription",component:UserSubscriptionComponent},
     {"path":"forgot_password",component:ForgotPasswordComponent},
+    {"path":'subscription',component:SubscriptionComponent},
+
 
     {
       "path":"manager",
@@ -63,7 +65,6 @@ export const routes: Routes = [
       { path:'add-manager',component:AddManagerComponent},
       { path :'reviews',component:ReviewsComponent},
       { path:'add_cloud_kitchen',component:AddCloudKitchenComponent},
-      { path:'subscription',component:SubscriptionComponent},
       { path:'delivery_partner',component:DeliveryPartnerComponent},
       { path:'add_cuisine',component:AddCuisineComponent},
       { path:'add_meals',component:AddMealsComponent},

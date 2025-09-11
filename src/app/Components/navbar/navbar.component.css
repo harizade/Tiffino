@@ -31,7 +31,9 @@ margin-left: 15px;
     top:0px;
     z-index: 999;
     height: 80px;
-    background-color:  #ff8d41;
+    /* background-color:  #ff8d41; */
+    background-color:  #fe9a21;
+    
 }
 
 .bi{
@@ -45,4 +47,10 @@ margin-left: 15px;
 .dropdown-item{
     color: black;
     background-color: white;
+}
+
+.weblogo{
+    height: 80px;
+    width: 100px;
+    margin-left: 50px;
 }

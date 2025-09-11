@@ -124,9 +124,9 @@ export class ApiService {
     return this.http.post(this.apiUrl + 'user/register', data, {responseType: 'text'});
   }
 
-  userSubscription() {
-    return this.http.get(this.apiUrl + 'user/getAllSubscriptionPlan');
-  }
+  // userSubscription() {
+  //   return this.http.get(this.apiUrl + 'user/getAllSubscriptionPlan');
+  // }
 
   cloudeKitchenData(){
     return this.http.get(this.apiUrl + 'manager/getDataOfCloudKitchen');

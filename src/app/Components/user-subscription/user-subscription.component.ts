@@ -12,11 +12,5 @@ import { ApiService } from '../api.service';
   styleUrl: './user-subscription.component.css'
 })
 export class UserSubscriptionComponent {
-data:any;
-constructor(private api:ApiService){
-  this.api.userSubscription().subscribe(res=>{
-    this.data =res;
-    console.log(res);
-})
-}
+
 }

@@ -61,6 +61,28 @@
           <div>Rajasthan</div>
         </div>
 
+        
+        <!-- Rajasthani -->
+        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Dosa_at_Sri_Ganesha_Restauran%2C_Bangkok_%2844570742744%29.jpg/960px-Dosa_at_Sri_Ganesha_Restauran%2C_Bangkok_%2844570742744%29.jpg"
+            alt="Desserts">
+          <div>Rajasthan</div>
+        </div>
+       
+
+         <!-- Pure Veg -->
+        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
+          <img src="https://sukhis.com/app/uploads/2022/04/image1-6-1024x684.jpg" alt="Pure Veg">
+          <div>West Bengal</div>
+        </div>
+
+        <!-- Maharastrian -->
+        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
+          <img src="https://deih43ym53wif.cloudfront.net/idly-food-india-shutterstock_101041240_7bd8a6703f.jpeg"
+            alt="Paratha">
+          <div>Maharashtra</div>
+        </div>
 
 
       </div>
@@ -205,12 +227,13 @@
           <div class="position-relative">
             <img [src]="row.photos" class="w-100 restaurant-img"
               alt="Ganesh Bhuvan">
-            <div class="discount-banner">{{row.price}}</div>
+            <div class="price-banner"> Price   ₹ {{row.price}} /-</div>
           </div>
           <div class="p-3">
-            <h6 class="mb-1">{{row.mealName}} -{{row.cuisine}}</h6>
+            {{row.cuisine}}
+            <h6 class="mb-1">{{row.mealName}} </h6>
             <div class="small mb-1 rating"><i class="bi bi-star-fill"></i> 3.7 • 45–55 mins</div>
-            <div class="text-muted small">KarveNagar Pune-52
+            <div class="text-muted small" *ngFor="let kitchen of row.kitchens">{{kitchen.cloudKitchenName}} 
               <button class="btn btn-outline-success card-button">Add</button>
             </div>
           </div>
