@@ -1,0 +1,19 @@
+.meal{
+    height:100vhm ;
+    width: 400px;
+}
+.card-button{
+    display: flex;
+    margin-left: 310px;
+    margin-bottom: 15px;
+}
+p{
+    margin-left: 10px;
+}
+.cross{
+background-color: white;
+border-radius: 50%;
+height: 32px;
+width: 32px;
+}
+
