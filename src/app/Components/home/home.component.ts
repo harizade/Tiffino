@@ -19,8 +19,8 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('container', { static: false }) containerRef!: ElementRef;
   @ViewChild('marquee', { static: true }) marqueeRef!: ElementRef;
   position = 0;
-  speed = 1;          // pixels per frame
-  pauseTime = 5000;   // 5 seconds
+  speed = 0.5;          // pixels per frame
+  pauseTime = 5000;  
   isPaused = false;
   animationFrameId: number | null = null;
   data: any;
@@ -40,35 +40,42 @@ export class HomeComponent implements AfterViewInit {
     );
   }
 
- ngAfterViewInit() {
-    this.position = this.containerRef.nativeElement.offsetWidth; // start from right edge
-    this.animate();
-  }
+ngAfterViewInit() {
+  // Start at 0 so first 6 items are visible
+  this.position = 0;
+  this.animate();
+}
 
-  animate() {
-    if (this.isPaused || this.animationFrameId !== null) return;
+animate() {
+  if (this.isPaused || this.animationFrameId !== null) return;
 
-    this.animationFrameId = requestAnimationFrame(() => {
+  this.animationFrameId = requestAnimationFrame(() => {
+    this.animationFrameId = null;
+
+    this.position -= this.speed;
+    this.marqueeRef.nativeElement.style.transform = `translateX(${this.position}px)`;
+
+    const marqueeWidth = this.marqueeRef.nativeElement.scrollWidth;
+    const containerWidth = this.containerRef.nativeElement.offsetWidth;
+
+    // 👉 Pause when last item is exactly at the right edge
+    if (this.position <= -(marqueeWidth - containerWidth)) {
+      this.isPaused = true;
+      cancelAnimationFrame(this.animationFrameId!);
       this.animationFrameId = null;
 
-      this.position -= this.speed;
-      this.marqueeRef.nativeElement.style.transform = `translateX(${this.position}px)`;
+      setTimeout(() => {
+        // Reset back to start (all items visible again from left)
+        this.position = 0;
+        this.isPaused = false;
+        this.animate();
+      }, this.pauseTime);
+    } else {
+      this.animate(); // keep scrolling
+    }
+  });
+}
 
-      const marqueeWidth = this.marqueeRef.nativeElement.scrollWidth;
-      const containerWidth = this.containerRef.nativeElement.offsetWidth;
-
-      // Stop when last content is fully visible
-      if (this.position <= containerWidth - marqueeWidth) {
-        this.isPaused = true;
-        setTimeout(() => {
-          this.isPaused = false;
-          this.animate(); // resume from same position
-        }, this.pauseTime);
-      } else {
-        this.animate(); // continue scrolling
-      }
-    });
-  }
 
   openPopup(row:any){
     this.popup.open(MealImageComponent, { data: row})

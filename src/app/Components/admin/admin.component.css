@@ -58,6 +58,13 @@
   background-color: #f5f3f3;
 }
 
+/* .main1{
+  background-image: url('./../../../assets/images/logo_img.png');
+ height: 620px;
+ object-fit: contain;
+ background-size: 100% 100%;
+} */
+
 .btn-outline-light {
   border: 1px solid #fff;
   transition: 0.3s;

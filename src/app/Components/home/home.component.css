@@ -201,15 +201,10 @@
 
 .marquee-content {
   display: flex;
-  gap: 0;
   white-space: nowrap;
   will-change: transform;
-  transition: transform linear;
 }
 
-.marquee {
-  transition: transform 0.016s linear; /* ~60fps */
-}
 /* .category-item img {
   width: 100%;
   border-radius: 8px;

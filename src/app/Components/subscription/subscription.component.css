@@ -12,4 +12,19 @@ button{
 .custom-border{
   border: 1px solid orange;
 }
+.mat-mdc-form-field-flex{
+    border: 1px solid orange !important;
 
+}
+::ng-deep .allergies-field .mat-form-field-outline {
+  stroke: orange !important; 
+}
+::ng-deep .mdc-notched-outline {
+  /* background-color: white !important; */
+  /* color: black !important;  */
+  border: 1px solid orange !important;
+
+}
+::ng-deep .form-select{
+background: transparent !important;
+}

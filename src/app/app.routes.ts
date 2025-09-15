@@ -27,6 +27,7 @@ import { DeliveryPartnerDashbordComponent } from './Components/delivery-partner-
 import { UserSubscriptionComponent } from './Components/user-subscription/user-subscription.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { MenuComponent } from './Components/menu/menu.component';
+import { CartComponent } from './Components/cart/cart.component';
 
 export const routes: Routes = [
     
@@ -44,6 +45,7 @@ export const routes: Routes = [
     {"path":"user_subscription",component:UserSubscriptionComponent},
     {"path":"forgot_password",component:ForgotPasswordComponent},
     {"path":'subscription',component:SubscriptionComponent},
+    {"path":'cart',component:CartComponent},
 
 
     {
