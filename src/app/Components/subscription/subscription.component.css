@@ -28,3 +28,7 @@ button{
 ::ng-deep .form-select{
 background: transparent !important;
 }
+::ng-dep input{
+background: transparent !important;
+
+}

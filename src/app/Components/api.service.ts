@@ -128,11 +128,19 @@ export class ApiService {
   //   return this.http.get(this.apiUrl + 'user/getAllSubscriptionPlan');
   // }
 
+  userSubscription(data:any){
+    return this.http.post(this.apiUrl + 'user/assignSubscriptionToUser',data)
+  }
+
   cloudeKitchenData(){
     return this.http.get(this.apiUrl + 'manager/getDataOfCloudKitchen');
   }
 
   allAvailableMeals(){
     return this.http.get(this.apiUrl + 'user/getAllAvailableMealsGroupedByCuisine');
+  }
+
+  userGiftCard(){
+    return this.http.get(this.apiUrl + 'user/getAllGiftCardsOfUser')
   }
 }

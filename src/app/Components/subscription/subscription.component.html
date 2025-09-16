@@ -5,58 +5,69 @@
 <div class="container mt-4 d-flex justify-content-center">
     <div class="card shadow p-4">
         <h3 class="text-center mb-3 fw-bold">Get Subscription Plans</h3>
+        <form action="" [formGroup]="subscriptionForm" (ngSubmit)="addSubscription()">
   <div class="mb-3">
                 <label for="duration"class="form-label">Subscription Type</label>
-                <select class="form-select custom-border"aria-label="Default select example"placeholder="Duration Type">
+                <select class="form-select custom-border"aria-label="Default select example"
+                placeholder="durationType" formControlName="durationType">
                     <option value>Select Subscription Type</option>
-                    <option>ONE_DAY</option>
+                    <option>DAILY</option>
                     <option>WEEKLY</option>
                     <option>QUARTERLY</option>
                     <option>MONTHLY</option>
                 </select>
             </div>
 
-           <div class="mb-">
-             <label for="duration"class="form-label">Meals</label>
+           <div class="">
+             <label for="duration"class="form-label">Meals Time</label>
               <mat-form-field appearance="outline" class="w-100">
-              <mat-select  multiple class="" placeholder="Select meal">
-               <mat-option >####</mat-option>
-               <mat-option >####</mat-option>
-               <mat-option >####</mat-option>
-               <mat-option >####</mat-option>
+              <mat-select  multiple class="" formControlName="mealTime" placeholder="Select meal Time">
+               <mat-option [value]="'BREAKFAST'"> BREAKFAST </mat-option>
+               <mat-option [value]="'LUNCH'">LUNCH</mat-option>
+               <mat-option [value]="'DINNER'">DINNER</mat-option>
+               <mat-option [value]="'FULL-DAY'">FULL-DAY</mat-option>
               </mat-select>
               </mat-form-field>
             </div>
 
 
 
-            <div class="mb-">
+            <div class="">
               <label for="duration"class="form-label">Allergies</label>
                 <mat-form-field appearance="outline" class="w-100">
-                 <mat-select formControlName="toppings" multiple class="" placeholder="Select Allergies">
-                 <mat-option >####</mat-option>
-                 <mat-option >####</mat-option>
-                 <mat-option >####</mat-option>
-                 <mat-option >####</mat-option>
+                 <mat-select formControlName="allergies" multiple class="" placeholder="Select Allergies">
+                 <mat-option [value]="'Peanut'">Peanut</mat-option>
+                 <mat-option [value]="'Gluten'">Gluten</mat-option>
+                 <mat-option [value]="'Wheat'">Wheat</mat-option>
+                 <mat-option [value]="'Eggs'">Eggs</mat-option>
+                 <mat-option [value]="'Milk'">Milk</mat-option>
+                 <mat-option [value]="'Tree nuts'">Tree nuts</mat-option>
+                 <mat-option [value]="'Soybeans'">Soybeans</mat-option>
                  </mat-select>
                 </mat-form-field>
             </div>
 
+            <div class="mb-1">
+              <label class="form-label">Dietary File</label>
+             <input type="file" class="form-control custom-border form-select" 
+              (change)="onFileSelect($event, 'dietaryFile')" />
 
-            <div class="mb-3">
-              <label for="duration"class="form-label">Dietary Preference</label>
-                <mat-form-field appearance="outline" class="w-100">
-                <mat-select  multiple class="" placeholder="Dietary Preference">
-                 <mat-option >####</mat-option>
-                 <mat-option >####</mat-option>
-                 <mat-option >####</mat-option>
-                 <mat-option >####</mat-option>
-                 </mat-select>
-               </mat-form-field>
             </div>
 
-        <button type="submit" class="button border-0 w-100 text-white p-1 mt-1 mb-2">Submit</button>
+            <div class="mb-1">
+              <label class="form-label">Calories PerMeal</label>
+              <input type="text" class="form-control custom-border form-select" formControlName="caloriesPerMeal" required />
+            </div>
+
+            <div class="mb-1">
+              <label class="form-label">GiftCard CodeInput</label>
+              <input type="text" class="form-control custom-border form-select" formControlName="giftCardCodeInput" required />
+            </div>
+
             
+
+        <button type="submit" class="button border-0 w-100 text-white p-1 mt-1 mb-2">Submit</button>
+            </form>
         </div>
         </div>
 
