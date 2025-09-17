@@ -41,33 +41,36 @@ export class SubscriptionComponent {
   addSubscription() {
   const formData = new FormData();
 
-  // durationType
   formData.append('durationType', this.subscriptionForm.get('durationType')?.value);
 
-  // mealTimes (multiple)
   const mealTimes: string[] = this.subscriptionForm.get('mealTime')?.value || [];
   mealTimes.forEach(time => formData.append('mealTimes', time));
 
-  // allergies (multiple)
   const allergies: string[] = this.subscriptionForm.get('allergies')?.value || [];
   allergies.forEach(allergy => formData.append('allergies', allergy));
 
-  // dietaryFile
   const file = this.subscriptionForm.get('dietaryFile')?.value;
   if (file) {
     formData.append('dietaryFile', file);
   }
 
-  // other fields
   formData.append('caloriesPerMeal', this.subscriptionForm.get('caloriesPerMeal')?.value);
   formData.append('giftCardCodeInput', this.subscriptionForm.get('giftCardCodeInput')?.value);
 
-  // API call
-  this.api.userSubscription(formData).subscribe(res => {
-    console.log(res);
+  this.api.userSubscription(formData).subscribe({
+    next: (res) => {
+        console.log(res);
+        console.log('Subscribed successfully:', res);
+        alert('You Subscribed successfully!');
+        this.subscriptionForm.reset();
+
+      },
+      error: (err) => {
+        console.error('Error Subscribed:', err);
+        alert('Error Getting Subscription!');
+      }
   });
 
-  // Reset file input
   const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
   fileInputs.forEach((input) => (input.value = ''));
 }

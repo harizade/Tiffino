@@ -141,6 +141,14 @@ export class ApiService {
   }
 
   userGiftCard(){
-    return this.http.get(this.apiUrl + 'user/getAllGiftCardsOfUser')
+    return this.http.get(this.apiUrl + 'user/getAllGiftCardsOfUser');
+  }
+
+  addToCart(data: any) {
+    return this.http.post(this.apiUrl + 'user/addCart',data)
+  }
+
+  viewCart(){
+    return this.http.get(this.apiUrl + 'user/viewCart')
   }
 }

@@ -1,3 +1,54 @@
 <div class="position-fixed top-0 start-0 end-0 z-3">
   <app-navbar></app-navbar>
 </div>
+
+<div class="main">
+ 
+           <table class="table table-bordered align-middle shadow-sm">
+  <thead class="table-light text-center">
+    <tr>
+      <th>#</th>
+      <th>Cloud Kitchen</th>
+      <th>Meal Photo</th>
+      <th>Meal Name</th>
+      <th>Unit Price (₹)</th>
+      <th>Quantity</th>
+      <th>Total (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let meal of meals; let i = index" class="text-center">
+      <td>{{ i + 1 }}</td>
+      <td>{{ data.cloudKitchenName }}</td>
+      <td>
+        <img [src]="meal.mealPhotos" class="img-thumbnail" alt="" style="width: 70px; height: 70px; object-fit: cover;">
+      </td>
+      <td class="fw-semibold">{{ meal.mealName || '-' }}</td>
+      <td>{{ meal.unitPrice || '-' }}</td>
+
+      <!-- Quantity Controls -->
+      <td>
+        <div class="d-flex justify-content-center align-items-center">
+          <button class="btn btn-sm btn-outline-danger me-2" (click)="decreaseQuantity(meal)">-</button>
+          <span class="fw-bold px-2">{{ meal.quantity }}</span>
+          <button class="btn btn-sm btn-outline-success ms-2" (click)="increaseQuantity(meal)">+</button>
+        </div>
+      </td>
+
+      <td class="fw-bold text-success">{{ (meal.unitPrice || 0) * meal.quantity }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Cart Footer -->
+<div class=" justify-content-between align-items-center mt-3 p-3 border-top ">
+  <h5 class="mb-0 total">Total Amount: 
+    <span class="text-primary fw-bold">₹ {{ getGrandTotal() }}</span>
+  </h5>
+</div>
+ 
+        <button class="btn subscribe-btn w-25 mt-5">Place Order </button>
+
+ </div>
+
+

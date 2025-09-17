@@ -19,7 +19,7 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('container', { static: false }) containerRef!: ElementRef;
   @ViewChild('marquee', { static: true }) marqueeRef!: ElementRef;
   position = 0;
-  speed = 0.5;          // pixels per frame
+  speed = 0.5;          
   pauseTime = 5000;  
   isPaused = false;
   animationFrameId: number | null = null;
@@ -58,20 +58,18 @@ animate() {
     const marqueeWidth = this.marqueeRef.nativeElement.scrollWidth;
     const containerWidth = this.containerRef.nativeElement.offsetWidth;
 
-    // 👉 Pause when last item is exactly at the right edge
     if (this.position <= -(marqueeWidth - containerWidth)) {
       this.isPaused = true;
       cancelAnimationFrame(this.animationFrameId!);
       this.animationFrameId = null;
 
       setTimeout(() => {
-        // Reset back to start (all items visible again from left)
         this.position = 0;
         this.isPaused = false;
         this.animate();
       }, this.pauseTime);
     } else {
-      this.animate(); // keep scrolling
+      this.animate(); 
     }
   });
 }
@@ -80,4 +78,88 @@ animate() {
   openPopup(row:any){
     this.popup.open(MealImageComponent, { data: row})
   }
+
+
+//  cart: any = { cloudKitchenId: null, meals: [] };
+
+// addToCart(meal: any, kitchen: any) {
+//   if (!this.cart.cloudKitchenId) {
+//     this.cart.cloudKitchenId = kitchen.cloudKitchenId;
+//   }
+
+//   if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
+//     alert('You can only add items from one cloud kitchen!');
+//     return;
+//   }
+
+//   const existingMeal = this.cart.meals.find((m: any) => m.mealId === meal.mealId);
+
+//   if (existingMeal) {
+//     existingMeal.quantity += 1; 
+//   } else {
+//     this.cart.meals.push({ mealId: meal.mealId, quantity: 1 });
+//   }
+
+//   console.log('Cart updated:', this.cart);
+// }
+
+// checkoutCart() {
+//   if (!this.cart.cloudKitchenId || this.cart.meals.length === 0) {
+//     alert('Your cart is empty!');
+//     return;
+//   }
+
+//   console.log('Final payload:', this.cart);
+
+//   this.api.addToCart(this.cart).subscribe({
+//     next: (res) => {
+//       console.log('Add to Cart success', res);
+//       alert('Cart submitted successfully!');
+//       this.cart = { cloudKitchenId: null, meals: [] };
+//     },
+//     error: (err) => {
+//       console.error('Error:', err);
+//       alert('Something went wrong while adding to cart');
+//     }
+//   });
+// }
+
+
+cart: any = { cloudKitchenId: null, meals: [] };
+
+addToCart(meal: any, kitchen: any) {
+  // First meal → set cloudKitchenId
+  if (!this.cart.cloudKitchenId) {
+    this.cart.cloudKitchenId = kitchen.cloudKitchenId;
+  }
+
+  // Prevent mixing kitchens
+  if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
+    alert('You can only add items from one cloud kitchen!');
+    return;
+  }
+
+  // Check if meal already exists
+  const existingMeal = this.cart.meals.find((m: any) => m.mealId === meal.mealId);
+
+  if (existingMeal) {
+    existingMeal.quantity += 1; // user clicked again → increase qty
+  } else {
+    this.cart.meals.push({ mealId: meal.mealId, quantity: 1 });
+  }
+
+  console.log('Cart updated:', this.cart);
+
+  // ✅ Send updated cart to backend immediately
+  this.api.addToCart(this.cart).subscribe({
+    // next: (res) => {
+    //   console.log('Cart synced with backend', res);
+    // },
+    // error: (err) => {
+    //   console.error('Error syncing cart:', err);
+    //   alert('Something went wrong while adding to cart');
+    // }
+  });
+}
+
 }
