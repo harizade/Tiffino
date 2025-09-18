@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
+  getMeals() {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:9090/';
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -145,10 +148,24 @@ export class ApiService {
   }
 
   addToCart(data: any) {
-    return this.http.post(this.apiUrl + 'user/addCart',data)
+    return this.http.post(this.apiUrl + 'user/addCart',data, {responseType: 'text'});
   }
 
   viewCart(){
     return this.http.get(this.apiUrl + 'user/viewCart')
   }
+
+removeCard(id: number) {
+ return this.http.delete(
+  `${this.apiUrl}user/removeMeal/${id}`,
+  { responseType: 'text' }
+);
+
+}
+
+  incDec(data:any){
+    return this.http.post(this.apiUrl + 'user/updateCartQuantities',data, {responseType:'text'})
+  }
+
+
 }

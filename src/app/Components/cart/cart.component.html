@@ -14,6 +14,7 @@
       <th>Unit Price (₹)</th>
       <th>Quantity</th>
       <th>Total (₹)</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -29,13 +30,20 @@
       <!-- Quantity Controls -->
       <td>
         <div class="d-flex justify-content-center align-items-center">
-          <button class="btn btn-sm btn-outline-danger me-2" (click)="decreaseQuantity(meal)">-</button>
+          <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity-1}]})">-</button>
           <span class="fw-bold px-2">{{ meal.quantity }}</span>
-          <button class="btn btn-sm btn-outline-success ms-2" (click)="increaseQuantity(meal)">+</button>
+          <button class="" (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity+1}]})">+</button>
         </div>
       </td>
 
       <td class="fw-bold text-success">{{ (meal.unitPrice || 0) * meal.quantity }}</td>
+      <td>
+         
+         <div class="text-danger" style="cursor: pointer;">
+        
+        <i class="bi bi-trash text-danger h4" (click)="removeItem(meal.mealId)"></i>
+         </div>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -47,7 +55,7 @@
   </h5>
 </div>
  
-        <button class="btn subscribe-btn w-25 mt-5">Place Order </button>
+        <button class="btn order-btn w-25 mt-5" routerLink="/place_order">Place Order </button>
 
  </div>
 

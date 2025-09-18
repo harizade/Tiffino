@@ -297,8 +297,8 @@
       <div class="text-muted small" *ngFor="let kitchen of row.kitchens">
         {{kitchen.cloudKitchenName}}
         <button class="btn btn-outline-success card-button"
-                (click)="addToCart(row, kitchen)">
-          Add
+                (click)="addToCart(row, kitchen)" [routerLink]="checkIsItemInCart(row.mealId) ? '/cart' : '/'">
+          {{checkIsItemInCart(row.mealId) ? 'Go to Cart' : 'Add'}}
         </button>
       </div>
     </div>

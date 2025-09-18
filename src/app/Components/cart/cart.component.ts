@@ -15,8 +15,7 @@ import { ApiService } from '../api.service';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-//  data: any;       
-// meals: any[] = [];
+
 
 meals: any[] = [];
 data: any = { cloudKitchenName: '' };
@@ -30,47 +29,34 @@ constructor(private api: ApiService) {
 }
 
 
-
-
-ngOnInit() {
-  this.loadCart();
-}
-
-increaseQuantity(meal: any) {
-  meal.quantity += 1;
-  this.saveCart();
-}
-
-decreaseQuantity(meal: any) {
-  if (meal.quantity > 1) {
-    meal.quantity -= 1;
-  } else {
-    this.meals = this.meals.filter((m: any) => m !== meal);
-  }
-  this.saveCart();
-}
-
 getGrandTotal() {
   return this.meals.reduce((sum: number, m: any) => sum + (m.unitPrice * m.quantity), 0);
 }
 
-// ✅ Save cart to sessionStorage
-saveCart() {
-  const cartData = {
-    cloudKitchenName: this.data.cloudKitchenName,
-    meals: this.meals
-  };
-  sessionStorage.setItem('cart', JSON.stringify(cartData));
+removeItem(id: number) {
+  this.api.removeCard(id).subscribe({
+    next: (res) => {
+      alert(res);
+      // this.data = this.data.filter((item: any) => item.mealId !== id);
+       this.loadMeals();
+    },
+    error: (err) => {
+      console.error('Error removing meal:', err);
+      alert('Failed to remove meal!');
+    }
+  });
+}
+loadMeals() {
+  this.api.viewCart().subscribe((res: any) => {
+    this.data = res;
+    this.meals = res.meals;
+  });
 }
 
-// ✅ Load cart from sessionStorage
-loadCart() {
-  const stored = sessionStorage.getItem('cart');
-  if (stored) {
-    const cart = JSON.parse(stored);
-    this.data.cloudKitchenName = cart.cloudKitchenName;
-    this.meals = cart.meals || [];
-  }
+changeQuantity(meal: any){
+  this.api.incDec(meal).subscribe((res: any)=>{
+    this.loadMeals();
+  })
 }
 
 

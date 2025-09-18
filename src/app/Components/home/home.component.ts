@@ -24,12 +24,13 @@ export class HomeComponent implements AfterViewInit {
   isPaused = false;
   animationFrameId: number | null = null;
   data: any;
-
+  meals: any;
   constructor(private api: ApiService, private popup: MatDialog) {
     this.api.allAvailableMeals().subscribe((res) => {
       this.data = this.flattenMeals(res);
       console.log(this.data);
     });
+    this.getchCartItems();
   }
   flattenMeals(data: any) {
     return data.flatMap((cuisineObj: any) =>
@@ -152,14 +153,24 @@ addToCart(meal: any, kitchen: any) {
 
   // ✅ Send updated cart to backend immediately
   this.api.addToCart(this.cart).subscribe({
-    // next: (res) => {
-    //   console.log('Cart synced with backend', res);
-    // },
+    next: (res) => {
+    this.getchCartItems()
+    },
     // error: (err) => {
     //   console.error('Error syncing cart:', err);
     //   alert('Something went wrong while adding to cart');
     // }
   });
 }
+getchCartItems(){
+   this.api.viewCart().subscribe((res: any) => {
+    this.meals = res.meals;
+  });
+}
 
+checkIsItemInCart(mealId: number){
+  const con= this.meals?.find((meal: any)=> meal.mealId == mealId);
+//  console.log(con)
+ return con;
+}
 }
