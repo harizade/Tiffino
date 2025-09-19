@@ -1,0 +1,28 @@
+<div class="position-fixed top-0 start-0 end-0 z-3">
+  <app-navbar></app-navbar>
+</div>
+
+<!-- <div class="main">
+    <div class="heading">
+
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+        <h3 class="text-center p-3 border-bottom border-dark">My Orders</h3>
+        </div>
+    </div>
+    <div class="row border-bottom border-dark" *ngFor="let row of data">
+        <!-- <div class="col-md-12"> -->
+           <div class="col-md-3 d-flex">
+               {{row.orderStatus}}
+           </div>
+           <div class="col-md-3 d-flex">
+                {{row.mealName}}<br>
+                {{row.totalCost}}
+           </div>
+        </div>
+    </div>
+<!-- </div> -->

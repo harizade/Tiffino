@@ -35,11 +35,11 @@
 
 
     .d-flex.w-100.overflow-auto {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
 }
 
 .d-flex.w-100.overflow-auto::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none; 
 }
 
 
@@ -138,9 +138,19 @@
     .restaurant-card1:hover {
       transform: translateY(-10px);
     }
+
+    .restaurant-card1{
+      min-width: 312px;
+      flex: 0 0 auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #fff;
+      padding-bottom: 0px !important;
+    }
     .card-button{
-      margin-left: 95px;
-      margin-top: -40px;    
+      margin-left: 160px;
+      margin-top: -10px;    
     }
 
 
@@ -204,33 +214,6 @@
   white-space: nowrap;
   will-change: transform;
 }
-
-/* .category-item img {
-  width: 100%;
-  border-radius: 8px;
-} */
-
-
-/* @keyframes marquee {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-} */
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .category-item img {

@@ -226,59 +226,6 @@
 
     <div class="row g-4">
 
-      <!-- Card Start -->
-      <!-- <div class="col-md-3 col-sm-6" *ngFor="let row of data">
-        <div class="restaurant-card1">
-          <div class="position-relative">
-            <img [src]="row.photos" class="w-100 restaurant-img"
-              alt="Ganesh Bhuvan" (click)="openPopup(row)">
-            <div class="price-banner"> Price   ₹ {{row.price}} /-</div>
-          </div>
-          <div class="p-3">
-            {{row.cuisine}}
-            <h6 class="mb-1">{{row.mealName}} </h6>
-            <div class="small mb-1 rating"><i class="bi bi-star-fill"></i> 3.7 • 45–55 mins</div>
-            <div class="text-muted small" *ngFor="let kitchen of row.kitchens">{{kitchen.cloudKitchenName}} 
-              <button class="btn btn-outline-success card-button" (click)="addToCart(row, kitchen)">Add</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-        </div> -->
-
-
-
-        <!-- <div class="col-md-3 col-sm-6" *ngFor="let row of data">
-  <div class="restaurant-card1">
-    <div class="position-relative">
-      <img [src]="row.photos" class="w-100 restaurant-img"
-           alt="{{row.mealName}}" (click)="openPopup(row)">
-      <div class="price-banner">Price ₹ {{row.price}} /-</div>
-    </div>
-    <div class="p-3">
-      {{row.cuisine}}
-      <h6 class="mb-1">{{row.mealName}}</h6>
-      <div class="small mb-1 rating">
-        <i class="bi bi-star-fill"></i> 3.7 • 45–55 mins
-      </div>
-
-      <div class="text-muted small" *ngFor="let kitchen of row.kitchens">
-        {{kitchen.cloudKitchenName}}
-        <button class="btn btn-outline-success card-button"
-                (click)="addToCart(row, kitchen)">
-          Add
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="mt-3 text-center">
-  <button class="btn btn-primary" (click)="checkoutCart()">Checkout</button>
-</div> -->
-
-
 
 <div class="col-md-3 col-sm-6" *ngFor="let row of data">
   <div class="restaurant-card1">
@@ -298,7 +245,7 @@
         {{kitchen.cloudKitchenName}}
         <button class="btn btn-outline-success card-button"
                 (click)="addToCart(row, kitchen)" [routerLink]="checkIsItemInCart(row.mealId) ? '/cart' : '/'">
-          {{checkIsItemInCart(row.mealId) ? 'Go to Cart' : 'Add'}}
+          {{checkIsItemInCart(row.mealId) ? 'Go to Cart' : 'Add to Cart'}}
         </button>
       </div>
     </div>

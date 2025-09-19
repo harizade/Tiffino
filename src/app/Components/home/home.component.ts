@@ -79,87 +79,34 @@ animate() {
   openPopup(row:any){
     this.popup.open(MealImageComponent, { data: row})
   }
-
-
-//  cart: any = { cloudKitchenId: null, meals: [] };
-
-// addToCart(meal: any, kitchen: any) {
-//   if (!this.cart.cloudKitchenId) {
-//     this.cart.cloudKitchenId = kitchen.cloudKitchenId;
-//   }
-
-//   if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
-//     alert('You can only add items from one cloud kitchen!');
-//     return;
-//   }
-
-//   const existingMeal = this.cart.meals.find((m: any) => m.mealId === meal.mealId);
-
-//   if (existingMeal) {
-//     existingMeal.quantity += 1; 
-//   } else {
-//     this.cart.meals.push({ mealId: meal.mealId, quantity: 1 });
-//   }
-
-//   console.log('Cart updated:', this.cart);
-// }
-
-// checkoutCart() {
-//   if (!this.cart.cloudKitchenId || this.cart.meals.length === 0) {
-//     alert('Your cart is empty!');
-//     return;
-//   }
-
-//   console.log('Final payload:', this.cart);
-
-//   this.api.addToCart(this.cart).subscribe({
-//     next: (res) => {
-//       console.log('Add to Cart success', res);
-//       alert('Cart submitted successfully!');
-//       this.cart = { cloudKitchenId: null, meals: [] };
-//     },
-//     error: (err) => {
-//       console.error('Error:', err);
-//       alert('Something went wrong while adding to cart');
-//     }
-//   });
-// }
-
-
+  
 cart: any = { cloudKitchenId: null, meals: [] };
 
 addToCart(meal: any, kitchen: any) {
-  // First meal → set cloudKitchenId
   if (!this.cart.cloudKitchenId) {
     this.cart.cloudKitchenId = kitchen.cloudKitchenId;
   }
 
-  // Prevent mixing kitchens
   if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
     alert('You can only add items from one cloud kitchen!');
     return;
   }
 
-  // Check if meal already exists
   const existingMeal = this.cart.meals.find((m: any) => m.mealId === meal.mealId);
 
   if (existingMeal) {
-    existingMeal.quantity += 1; // user clicked again → increase qty
+    existingMeal.quantity += 1; 
   } else {
     this.cart.meals.push({ mealId: meal.mealId, quantity: 1 });
   }
 
   console.log('Cart updated:', this.cart);
 
-  // ✅ Send updated cart to backend immediately
   this.api.addToCart(this.cart).subscribe({
     next: (res) => {
     this.getchCartItems()
     },
-    // error: (err) => {
-    //   console.error('Error syncing cart:', err);
-    //   alert('Something went wrong while adding to cart');
-    // }
+   
   });
 }
 getchCartItems(){
@@ -170,7 +117,6 @@ getchCartItems(){
 
 checkIsItemInCart(mealId: number){
   const con= this.meals?.find((meal: any)=> meal.mealId == mealId);
-//  console.log(con)
  return con;
 }
 }

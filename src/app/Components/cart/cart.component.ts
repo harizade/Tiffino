@@ -34,16 +34,8 @@ getGrandTotal() {
 }
 
 removeItem(id: number) {
-  this.api.removeCard(id).subscribe({
-    next: (res) => {
-      alert(res);
-      // this.data = this.data.filter((item: any) => item.mealId !== id);
-       this.loadMeals();
-    },
-    error: (err) => {
-      console.error('Error removing meal:', err);
-      alert('Failed to remove meal!');
-    }
+  this.api.removeCard(id).subscribe(res=>{
+    this.loadMeals()
   });
 }
 loadMeals() {

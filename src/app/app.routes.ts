@@ -30,6 +30,7 @@ import { MenuComponent } from './Components/menu/menu.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { GiftCardComponent } from './Components/gift-card/gift-card.component';
 import { PlaceOrderComponent } from './Components/place-order/place-order.component';
+import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
 
 export const routes: Routes = [
     
@@ -50,6 +51,7 @@ export const routes: Routes = [
     {"path":'cart',component:CartComponent},
     {"path":'gift_card',component:GiftCardComponent},
     {"path":'place_order',component:PlaceOrderComponent},
+    {"path":'myOrders',component:MyOrdersComponent},
 
 
     {

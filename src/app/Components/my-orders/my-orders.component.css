@@ -1,0 +1,9 @@
+.container{
+    margin-top: 150px;
+}
+.row{
+    height: 70px;
+    background-color: aqua;
+    width: 70%;
+   margin-left: 15%;
+}

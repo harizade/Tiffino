@@ -167,5 +167,15 @@ removeCard(id: number) {
     return this.http.post(this.apiUrl + 'user/updateCartQuantities',data, {responseType:'text'})
   }
 
+  placeOrder(data:any){
+    return this.http.post(this.apiUrl + 'user/orders',data ,{responseType:'text'})
+  }
+  
+  getAllOrder(){
+    return this.http.get(this.apiUrl + 'manager/getAllOrders')
+  }
 
+  getAllOrderUser(){
+    return this.http.get(this.apiUrl + 'user/getAllOrders')
+  }
 }
