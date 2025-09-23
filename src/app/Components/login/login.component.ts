@@ -42,7 +42,9 @@ export class LoginComponent {
             this.router.navigate(['/manager']);
           }else if (role === 'USER') {
             this.router.navigate(['/'])
-          } else {
+          }else if (role === 'DELIVERY_PERSON') {
+            this.router.navigate(['/delivery_partner_dashbord'])
+          }else {
             this.router.navigate(['/']);
           }
           localStorage.setItem('isLoggedIn', 'true');
@@ -50,7 +52,7 @@ export class LoginComponent {
           alert('Invalid Credentials');
         }
       },
-
+      
       error: (err) => {
         alert('Something went wrong');
       },

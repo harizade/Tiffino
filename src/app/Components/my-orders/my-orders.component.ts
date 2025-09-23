@@ -12,12 +12,25 @@ import { ApiService } from '../api.service';
   styleUrl: './my-orders.component.css'
 })
 export class MyOrdersComponent {
- data:any;
+//  data:any;
 
- constructor(private api:ApiService){
-  this.api.getAllOrderUser().subscribe(res=>{
-    console.log(res);
-    this.data = res;
-  })
- }
+//  constructor(private api:ApiService){
+//   this.api.getAllOrderUser().subscribe(res=>{
+//     console.log(res);
+//     this.data = res;
+//   })
+//  }
+
+
+
+ orders: any[] = [];
+
+  constructor(private api: ApiService) {}
+
+  ngOnInit(): void {
+    this.api.getAllOrderUser().subscribe((res: any) => {
+      this.orders = res;
+    });
+  }
+
 }

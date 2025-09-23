@@ -52,11 +52,11 @@ export class ApiService {
 
 
    userLOgout() {
-  return this.http.post(this.apiUrl + 'auth/logout', {}, { 
+    return this.http.post(this.apiUrl + 'auth/logout', {}, { 
     responseType: 'text',
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } // if required
   });
-}
+  }
 
   forgotPassword(data: any, email: string) {
     return this.http.post(this.apiUrl + 'user/forgot-password', data, {
@@ -78,9 +78,9 @@ export class ApiService {
   }
 
 
- addOrRemoveMeal(mealId: number):Observable<any> {
+  addOrRemoveMeal(mealId: number):Observable<any> {
   return this.http.post(this.apiUrl + 'manager/addOrRemoveMeals/' + mealId, {}, { responseType: 'text' } );
-}
+  }
 
 
   addCloudKitchen(data: any) {
@@ -127,10 +127,6 @@ export class ApiService {
     return this.http.post(this.apiUrl + 'user/register', data, {responseType: 'text'});
   }
 
-  // userSubscription() {
-  //   return this.http.get(this.apiUrl + 'user/getAllSubscriptionPlan');
-  // }
-
   userSubscription(data:any){
     return this.http.post(this.apiUrl + 'user/assignSubscriptionToUser',data)
   }
@@ -155,13 +151,9 @@ export class ApiService {
     return this.http.get(this.apiUrl + 'user/viewCart')
   }
 
-removeCard(id: number) {
- return this.http.delete(
-  `${this.apiUrl}user/removeMeal/${id}`,
-  { responseType: 'text' }
-);
-
-}
+  removeCard(id: number) {
+    return this.http.delete(`${this.apiUrl}user/removeMeal/${id}`,{ responseType: 'text' });
+  }
 
   incDec(data:any){
     return this.http.post(this.apiUrl + 'user/updateCartQuantities',data, {responseType:'text'})
@@ -170,12 +162,45 @@ removeCard(id: number) {
   placeOrder(data:any){
     return this.http.post(this.apiUrl + 'user/orders',data ,{responseType:'text'})
   }
-  
-  getAllOrder(){
-    return this.http.get(this.apiUrl + 'manager/getAllOrders')
-  }
 
   getAllOrderUser(){
     return this.http.get(this.apiUrl + 'user/getAllOrders')
   }
+
+  addDeliveryPerson(data:any){
+    return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateDeliveryPerson',data,{responseType: 'text'})
+  }
+
+  getCloudKitchenDeliveryPerson() {
+  return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData', { withCredentials: true });
+  }
+ 
+  getAllOrder() {
+    return this.http.get<any[]>(`${this.apiUrl}manager/getAllOrders`);
+  }
+
+  getAllDeliveryPersons() {
+    return this.http.get<any[]>(`${this.apiUrl}manager/listOfDeliveryPersonIsAvailable`);
+  }
+
+  assignOrderToDeliveryPerson(orderId: number, deliveryPersonId: number) {
+    return this.http.post(`${this.apiUrl}manager/assignOrderToDeliveryPerson`, null, {
+      params: { orderId: orderId, deliveryPersonId: deliveryPersonId },
+      responseType: 'text'
+    });
+  }
+
+ pikUpOrder(deliveryId: string) {
+  return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/pickup`, {});
 }
+
+deliverOrder(deliveryId: string) {
+  return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {});
+}
+
+  // deliverOrder(data:any){
+  //   return this.http.post(this.apiUrl + 'delivery-person/{orderId}/deliver',data)
+  // }
+}
+
+

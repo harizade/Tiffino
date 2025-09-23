@@ -31,6 +31,7 @@ import { CartComponent } from './Components/cart/cart.component';
 import { GiftCardComponent } from './Components/gift-card/gift-card.component';
 import { PlaceOrderComponent } from './Components/place-order/place-order.component';
 import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
+import { AssignOrderToDeliveryPersonComponent } from './Components/assign-order-to-delivery-person/assign-order-to-delivery-person.component';
 
 export const routes: Routes = [
     
@@ -40,7 +41,6 @@ export const routes: Routes = [
     {"path":"helps",component:HelpsComponent},
     {"path":"login",component:LoginComponent, canActivate:[loginGuard]},
     {"path":"create_account",component:CreateAccountComponent},
-    // {"path":"admin_login",component:AdminLoginComponent},
     {"path":'view_subscription',component:ViewSubscriptionComponent},
     // { path:'manager/manager_login',component:ManagerLoginComponent},
 
@@ -61,7 +61,8 @@ export const routes: Routes = [
       children:[
       { path:'orders',component:OrdersComponent},
       { path:'cloud_kitchen_data',component:CloudKitchenDataComponent}, 
-      { path:'menu',component:MenuComponent}      
+      { path:'menu',component:MenuComponent},
+      // { path:'assignOrderToDeliveryPerson',component:AssignOrderToDeliveryPersonComponent}   
       ]
     },
    {
@@ -69,7 +70,6 @@ export const routes: Routes = [
     component: AdminComponent, 
     canActivate: [authGuard],
     children: [
-      // { path:''}
       { path:'add-manager',component:AddManagerComponent},
       { path :'reviews',component:ReviewsComponent},
       { path:'add_cloud_kitchen',component:AddCloudKitchenComponent},

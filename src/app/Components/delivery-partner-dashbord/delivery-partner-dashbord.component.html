@@ -1,28 +1,84 @@
- <div class="d-flex">
-  <div class="sidebar text-white p-3">
-    <h4 class="text-center mb-4 fw-bold">Delivery Partner</h4>
-    <!-- <a routerLink="/manager/cloud_kitchen_data" routerLinkActive="active">Cloud_Kitchen Data</a> -->
-
-    <a routerLink="#" routerLinkActive="active">Pickup</a>
-
-    <a routerLink="#" routerLinkActive="active">Delivered</a>
-    
-    <!-- <a routerLink="/order" routerLinkActive="active">Assign Order</a> -->
-  </div>
-
-  <div class="content flex-grow-1 py-4">
+  <!-- <div class="container">
+    <div class="content flex-grow-1 py-4">
     <nav class="navbar navbar shadow-sm mb-3 px-3">
       <span class="navbar-brand mx-auto fw-bold text-dark">Delivery Partner Dashboard</span>
       <button class="btn btn-outline-dark rounded-circle">
-        <i class="bi bi-box-arrow-right"></i>
+        <i class="bi bi-box-arrow-right" (click)="logout()"></i>
       </button>
     </nav>
 
     <div class="main card shadow-sm p-4  text-light rounded-3">
-      <router-outlet></router-outlet>
+      <div class="row">
+       <button type="button" class="button btn btn-warning w-25">PikUp</button>
+       <button type="button" class="button btn btn-success w-25" (click)="deliverOrder()">Deliverd</button>       
+      </div>
     </div>
   </div>
-</div> 
+  </div>
+
+   -->
 
 
 
+   <div class="container">
+  <div class="content flex-grow-1 py-4">
+    <nav class="navbar navbar shadow-sm mb-3 px-3">
+      <span class="navbar-brand mx-auto fw-bold text-dark">Delivery Partner Dashboard</span>
+      <button class="btn btn-outline-dark rounded-circle">
+        <i class="bi bi-box-arrow-right" (click)="logout()"></i>
+      </button>
+    </nav>
+
+    <div class="main card shadow-sm p-4 text-light rounded-3">
+      <div class="row">
+        <!-- Pickup button triggers modal -->
+        <button type="button" class="btn btn-warning w-25" data-bs-toggle="modal" data-bs-target="#pickupModal">
+          PickUp
+        </button>
+
+        <!-- Delivered button -->
+        <button type="button" class="btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#deliverModal">
+          Delivered
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Pickup -->
+<div class="modal fade" id="pickupModal" tabindex="-1" aria-labelledby="pickupModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pickupModalLabel">Enter Order ID</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]="deliveryId" class="form-control" placeholder="Order ID">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="pickupOrder()" data-bs-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deliverModal" tabindex="-1" aria-labelledby="pickupModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pickupModalLabel">Enter Order ID</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]="deliveryId" class="form-control" placeholder="Order ID">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="deliverOrder()" data-bs-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
