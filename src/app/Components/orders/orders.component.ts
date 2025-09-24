@@ -39,7 +39,7 @@ assignOrder(orderId: number, deliveryPersonId: number) {
   this.api.assignOrderToDeliveryPerson(orderId, deliveryPersonId).subscribe({
     next: (res) => {
       alert(`Order ${orderId} assigned successfully!`);
-      this.selectedOrderId = null; // hide list after assign
+      this.selectedOrderId = null; 
     },
     error: (err) => {
       console.error(err);

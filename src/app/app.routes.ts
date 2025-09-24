@@ -32,6 +32,7 @@ import { GiftCardComponent } from './Components/gift-card/gift-card.component';
 import { PlaceOrderComponent } from './Components/place-order/place-order.component';
 import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
 import { AssignOrderToDeliveryPersonComponent } from './Components/assign-order-to-delivery-person/assign-order-to-delivery-person.component';
+import { TrackOrderComponent } from './Components/track-order/track-order.component';
 
 export const routes: Routes = [
     
@@ -42,8 +43,6 @@ export const routes: Routes = [
     {"path":"login",component:LoginComponent, canActivate:[loginGuard]},
     {"path":"create_account",component:CreateAccountComponent},
     {"path":'view_subscription',component:ViewSubscriptionComponent},
-    // { path:'manager/manager_login',component:ManagerLoginComponent},
-
     {"path":"delivery_partner_dashbord",component:DeliveryPartnerDashbordComponent},
     {"path":"user_subscription",component:UserSubscriptionComponent},
     {"path":"forgot_password",component:ForgotPasswordComponent},
@@ -52,7 +51,7 @@ export const routes: Routes = [
     {"path":'gift_card',component:GiftCardComponent},
     {"path":'place_order',component:PlaceOrderComponent},
     {"path":'myOrders',component:MyOrdersComponent},
-
+    {"path":'trackOrder/:orderId',component:TrackOrderComponent},
 
     {
       "path":"manager",

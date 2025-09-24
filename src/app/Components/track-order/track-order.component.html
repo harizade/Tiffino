@@ -1,0 +1,86 @@
+<div class="position-fixed top-0 start-0 end-0 z-3">
+  <app-navbar></app-navbar>
+</div>
+
+<div class="container " *ngIf="orderData; else loading">
+  <div class="card border-0 rounded-4 shadow-lg p-4">
+    <button class="cross position-absolute top-0 end-0 m-2" routerLink="/myOrders"><span>✖</span></button>
+
+
+    <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+      <h4 class="mb-0">🚚 Tracking Order </h4>
+      <span class="badge 
+        {{ orderData.orderStatus === 'DELIVERED' ? 'bg-success' : 
+           orderData.orderStatus === 'PENDING' ? 'bg-warning text-dark' : 'bg-info text-dark' }}">
+        {{ orderData.orderStatus }}
+      </span>
+    </div>
+    <hr>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <p class="mb-1"><strong>Delivery Status:</strong></p>
+        <span class="badge bg-secondary fs-6">{{ orderData.deliveryStatus }}</span>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p class="mb-1"><strong>Delivery Person:</strong> {{ orderData.deliveryPersonName }}</p>
+        <p class="mb-0"><strong>Phone:</strong> {{ orderData.deliveryPersonPhone }}</p>
+      </div>
+    </div>
+
+<div class="position-relative my-5">
+  <div class="progress w-100" style="height:6px;">
+    <div 
+      class="progress-bar bg-success" 
+      role="progressbar"
+      [style.width]="
+        orderData.deliveredAt ? '100%' :
+        orderData.pickedUpAt ? '66%' :
+        orderData.assignedAt ? '33%' : '0%'
+      ">
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mt-2">
+    <small class="fw-bold {{ orderData.assignedAt ? 'text-success' : 'text-muted' }}">
+      📦 Assigned
+    </small>
+    <small class="fw-bold {{ orderData.pickedUpAt ? 'text-success' : 'text-muted' }}">
+      🚚 Picked Up
+    </small>
+    <small class="fw-bold {{ orderData.deliveredAt ? 'text-success' : 'text-muted' }}">
+      ✅ Delivered
+    </small>
+  </div>
+</div>
+
+
+    <div class="mt-4">
+      <h6 class="fw-bold">📅 Timeline</h6>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Assigned At:</strong> {{ orderData.assignedAt || 'Not Yet Assigned' }}
+        </li>
+        <li class="list-group-item">
+          <strong>Picked Up At:</strong> {{ orderData.pickedUpAt || 'Not Yet Picked Up' }}
+        </li>
+        <li class="list-group-item">
+          <strong>Delivered At:</strong> {{ orderData.deliveredAt || 'Not Yet Delivered' }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="text-center my-5">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-2">Loading order status...</p>
+  </div>
+</ng-template>
+
+
+
+
+

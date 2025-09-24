@@ -54,7 +54,7 @@ export class ApiService {
    userLOgout() {
     return this.http.post(this.apiUrl + 'auth/logout', {}, { 
     responseType: 'text',
-    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } // if required
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } 
   });
   }
 
@@ -198,7 +198,16 @@ export class ApiService {
    return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {} ,{responseType:'text'});
   }
 
- 
+  // trackOrder(id:any){
+  //   return this.http.get(this.apiUrl + 'user/trackOrder/${}')
+  // }
+
+  trackOrder(id: number) {
+  return this.http.get(`${this.apiUrl}user/trackOrder/${id}`);
+}
+
+
+
 }
 
 
