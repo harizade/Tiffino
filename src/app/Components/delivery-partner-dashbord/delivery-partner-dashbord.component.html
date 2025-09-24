@@ -1,26 +1,4 @@
-  <!-- <div class="container">
-    <div class="content flex-grow-1 py-4">
-    <nav class="navbar navbar shadow-sm mb-3 px-3">
-      <span class="navbar-brand mx-auto fw-bold text-dark">Delivery Partner Dashboard</span>
-      <button class="btn btn-outline-dark rounded-circle">
-        <i class="bi bi-box-arrow-right" (click)="logout()"></i>
-      </button>
-    </nav>
-
-    <div class="main card shadow-sm p-4  text-light rounded-3">
-      <div class="row">
-       <button type="button" class="button btn btn-warning w-25">PikUp</button>
-       <button type="button" class="button btn btn-success w-25" (click)="deliverOrder()">Deliverd</button>       
-      </div>
-    </div>
-  </div>
-  </div>
-
-   -->
-
-
-
-   <div class="container">
+<div class="container">
   <div class="content flex-grow-1 py-4">
     <nav class="navbar navbar shadow-sm mb-3 px-3">
       <span class="navbar-brand mx-auto fw-bold text-dark">Delivery Partner Dashboard</span>
@@ -31,13 +9,13 @@
 
     <div class="main card shadow-sm p-4 text-light rounded-3">
       <div class="row">
-        <!-- Pickup button triggers modal -->
-        <button type="button" class="btn btn-warning w-25" data-bs-toggle="modal" data-bs-target="#pickupModal">
+        <!-- Pickup button -->
+        <button type="button" class="button btn btn-warning w-25" data-bs-toggle="modal" data-bs-target="#pickupModal">
           PickUp
         </button>
 
         <!-- Delivered button -->
-        <button type="button" class="btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#deliverModal">
+        <button type="button" class="button btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#deliverModal">
           Delivered
         </button>
       </div>
@@ -64,7 +42,7 @@
   </div>
 </div>
 
-
+<!-- Modal for Pickup -->
 <div class="modal fade" id="deliverModal" tabindex="-1" aria-labelledby="pickupModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -82,3 +60,4 @@
     </div>
   </div>
 </div>
+

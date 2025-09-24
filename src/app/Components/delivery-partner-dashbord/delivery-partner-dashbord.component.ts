@@ -13,30 +13,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './delivery-partner-dashbord.component.css'
 })
 export class DeliveryPartnerDashbordComponent {
-// data:any;
-//   constructor(private api:ApiService){
-//     this.api.pikUpOrder(this.data).subscribe(res=>{
-
-//     })
-//   }
-
-//    logout(){
-//      this.api.adminLOgout();  
-//    }
-
-//    deliverOrder(){
-    
-//    }
-
-
 
  deliveryId: string = '';
 
   constructor(private api:ApiService) {
-    // this. pickupOrder()
   }
 
-  // API for pickup
   pickupOrder() {
     if (!this.deliveryId) {
       alert('Please enter an order ID!');
@@ -55,7 +37,6 @@ export class DeliveryPartnerDashbordComponent {
       });
   }
 
-  // Example delivered button
   deliverOrder() {
     if (!this.deliveryId) {
       alert('Please enter order ID first!');

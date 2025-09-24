@@ -190,17 +190,15 @@ export class ApiService {
     });
   }
 
- pikUpOrder(deliveryId: string) {
-  return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/pickup`, {});
-}
+  pikUpOrder(deliveryId: string) {
+   return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/pickup`, {} ,{responseType:'text'});
+  }
 
-deliverOrder(deliveryId: string) {
-  return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {});
-}
+  deliverOrder(deliveryId: string) {
+   return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {} ,{responseType:'text'});
+  }
 
-  // deliverOrder(data:any){
-  //   return this.http.post(this.apiUrl + 'delivery-person/{orderId}/deliver',data)
-  // }
+ 
 }
 
 
