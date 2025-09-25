@@ -198,13 +198,13 @@ export class ApiService {
    return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {} ,{responseType:'text'});
   }
 
-  // trackOrder(id:any){
-  //   return this.http.get(this.apiUrl + 'user/trackOrder/${}')
-  // }
-
   trackOrder(id: number) {
   return this.http.get(`${this.apiUrl}user/trackOrder/${id}`);
 }
+
+  ratting_Reviews(review:any){
+    return this.http.post(this.apiUrl + 'user/createReview',review,{responseType:'text'})
+  }
 
 
 

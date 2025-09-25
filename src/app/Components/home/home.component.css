@@ -71,6 +71,7 @@
 
     .cards {
     border-bottom: 1px solid rgb(216, 211, 211);
+    margin-top: -80px;
     }  
     
     .restaurant-card {

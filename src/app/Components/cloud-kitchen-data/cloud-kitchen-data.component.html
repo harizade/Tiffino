@@ -11,7 +11,6 @@
         <div class="card-body d-flex justify-content-center ">
           <h5 class="card-title">CloudKitchen Info</h5>
            </div>
-          
            <p class="text">Cloud Kitchen ID : {{data.cloudKitchenId}}</p>
            <p class="text">Manager ID :  {{data.managerId}}</p>
            <p class="text">State :  {{data.state}}</p>    
@@ -19,19 +18,21 @@
            <p class="text">Division :  {{data.division}}</p>
            <p class="text">Address :  {{data.address}}</p>
            <p class="text">Pincode :  {{data.pinCode}}</p>
-
-   
       </div>
-   
     </div>
     <div class="col-md-6">
       <div class="card shadow-sm mt-3">
         <div class="card-body d-flex justify-content-center ">
           <h5 class="card-title">CloudKitchen Reviews</h5>
         </div>
+               <div *ngFor="let review of data.reviews">
+               <p class="card shadow-sm p-1">" {{review.comment}} "</p>
+               </div>
       </div>
     </div>
   </div>
+
+
 
 
      

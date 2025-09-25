@@ -33,15 +33,14 @@
               <h6 class="mb-1 fw-bold text-dark">{{ meal.mealName }}</h6>
               <small class="text-muted mb-2">Qty: {{ meal.mealQuantity }}</small>
               <small class="text-muted mb-2">Price: ₹ {{ meal.mealPrice }} /-</small>
-
-              <!-- Rate & Review -->
-              <a href="#" class="text-primary fw-semibold text-decoration-none small">
-                ⭐ Rate & Review
-              </a>
+             
             </div>
           </div>
         </div>
       </div>
+      <div class="text-primary fw-semibold text-decoration-none small ratting" (click)="openPopUp(order.orderId)" style="cursor: pointer;">
+                ⭐ Rate & Review
+              </div>
 
       <!-- div2 (Order Summary, centered vertically) -->
       <div class="div2 ms-4 text-center d-flex flex-column justify-content-center bg-light p-3 rounded-3 shadow-sm" 
@@ -78,12 +77,6 @@
   [routerLink]="['/trackOrder', order.orderId]">
   🚚 Track Order
 </button>
-
-        
-<!--       
-      <button class="btn btn-primary btn-sm rounded-pill shadow-sm ms-2">
-        🔄 Reorder
-      </button> -->
     </div>
   </div>
 </div>
