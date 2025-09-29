@@ -58,20 +58,28 @@ export class ApiService {
   });
   }
 
-  forgotPassword(data: any, email: string) {
-    return this.http.post(this.apiUrl + 'user/forgot-password', data, {
-      params: { email: email },
-      responseType: 'text'
+  forgotPassword(data: any, emailOrId: string) {
+    return this.http.post(this.apiUrl + 'auth/forgotPassword', data, {
+      params: { emailOrId: emailOrId },
+      responseType: 'text',
+      withCredentials: true
     });
   }
 
-  resetPassword(data: any) {
-    return this.http.post(this.apiUrl + 'user/reset-password',
-      { } ,
-      {
-      params:{ email: data.email, otp: data.otp ,newPassword: data.newPassword},
-      responseType: 'text'});
-  }
+ resetPassword(data: any) {
+  return this.http.post(this.apiUrl + 'auth/changePassword', null, {
+    params: {
+       emailOrId: data.emailOrId,
+      otp: data.otp,
+      newPassword: data.newPassword,
+      confirmNewPassword: data.confirmNewPassword
+    },
+    responseType: 'text',
+    withCredentials: true
+  });
+}
+
+
 
   addMenu(){
     return this.http.get(this.apiUrl + 'manager/getAllCuisinesAndMeals');
@@ -101,9 +109,14 @@ export class ApiService {
       this.apiUrl + 'superAdmin/saveOrUpdateSubscriptionPlan',data,{ responseType: 'text' });
   }
 
+  // getAllSubscriptionPlans() {
+  //   return this.http.get(this.apiUrl + 'superAdmin/getAllSubscribedUser', {responseType: 'text'});
+  // }
+
   getAllSubscriptionPlans() {
-    return this.http.get(this.apiUrl + 'superAdmin/getAllSubscription');
-  }
+  return this.http.get<any[]>(this.apiUrl + 'superAdmin/getAllSubscribedUser');
+}
+
 
   deleteSubscriptionPlan(id: any) {
     return this.http.delete(
@@ -200,12 +213,20 @@ export class ApiService {
 
   trackOrder(id: number) {
   return this.http.get(`${this.apiUrl}user/trackOrder/${id}`);
-}
+ }
 
   ratting_Reviews(review:any){
     return this.http.post(this.apiUrl + 'user/createReview',review,{responseType:'text'})
   }
+ 
 
+  viewInvoice(id: number, options?: any) {
+    return this.http.get(this.apiUrl + 'user/viewInvoice/' + id, {...options,responseType: 'blob'});
+ }
+
+
+
+ 
 
 
 }

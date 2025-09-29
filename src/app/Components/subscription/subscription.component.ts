@@ -6,6 +6,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { ApiService } from '../api.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-subscription',
@@ -51,34 +53,64 @@ export class SubscriptionComponent {
 
   const file = this.subscriptionForm.get('dietaryFile')?.value;
   if (file) {
-    formData.append('dietaryFile', file);
+    formData.append('dietaryFilePath', file);
   }
 
   formData.append('caloriesPerMeal', this.subscriptionForm.get('caloriesPerMeal')?.value);
-  formData.append('giftCardCodeInput', this.subscriptionForm.get('giftCardCodeInput')?.value);
+   const giftCard = this.subscriptionForm.get('giftCardCodeInput')?.value;
+  if (giftCard) {
+    formData.append('giftCardCodeInput', giftCard); 
+  }
 
-  this.api.userSubscription(formData).subscribe({
-    next: (res) => {
-        console.log(res);
-        console.log('Subscribed successfully:', res);
-        alert('You Subscribed successfully!');
-        this.subscriptionForm.reset();
 
-      },
-      error: (err) => {
-        console.error('Error Subscribed:', err);
-        alert('Error Getting Subscription!');
+
+this.api.userSubscription(formData).subscribe({
+  next: (res: any) => {
+    console.log('Subscribed successfully:', res);
+
+    Swal.fire({
+      title: `<span style="color:#28a745; font-weight:700;">${res.message}</span>`,
+      html: `
+        <div style="text-align:left; font-size:15px; line-height:1.6;">
+          <p><b>Plan Type:</b> <span style="color:#28a745;">${res.subscription.planType}</span></p>
+          <p><b>Original Price:</b> <del>₹${res.subscription.originalPrice}</del></p>
+          <p><b>Discount Applied:</b> <span style="color:#28a745; font-weight:600;">${res.subscription.appliedDiscountPercent}% OFF</span></p>
+          <p><b>Final Price:</b> 
+            <span style="color:#155724; font-size:18px; font-weight:700;">₹${res.subscription.finalPrice}</span>
+          </p>
+          <hr style="margin:10px 0; border-top:1px solid #ccc;">
+          <p><b>Start Date:</b> ${new Date(res.subscription.startDate).toLocaleDateString()}</p>
+          <p><b>Expiry Date:</b> ${new Date(res.subscription.expiryDate).toLocaleDateString()}</p>
+        </div>
+      `,
+      icon: 'success',
+      iconColor: '#28a745',
+      background: '#f6fff8',
+      showConfirmButton: true,
+      confirmButtonText: '🎉 Awesome!',
+      confirmButtonColor: '#28a745',
+      customClass: {
+        popup: 'animated fadeInDown'
       }
-  });
+    });
+
+    this.subscriptionForm.reset();
+    const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
+    fileInputs.forEach((input) => (input.value = ''));
+  },
+  error: (err) => {
+    console.error('Error Subscribed:', err);
+    Swal.fire('Error', 'Error Getting Subscription!', 'error');
+  }
+});
+
 
   const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
   fileInputs.forEach((input) => (input.value = ''));
 }
 
-
-
-
   }
 
 
+  
 

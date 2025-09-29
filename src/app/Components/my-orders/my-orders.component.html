@@ -9,7 +9,7 @@
     <!-- Order Header -->
     <div class="bg-light p-3 border-bottom">
       <h6 class="mb-0 text-secondary">
-        🛒 Order  • <small class="text-muted">{{ order.orderDate }}</small>
+        🛒 Order {{order.orderId}} • <small class="text-muted">{{ order.orderDate }}</small>
       </h6>
     </div>
 
@@ -22,7 +22,7 @@
              class="d-flex align-items-center py-3"
              [ngClass]="{ 'border-bottom': !last }">
 
-          <!-- Left: Image + Details + Review -->
+          <!-- Left: Image -->
           <div class="d-flex align-items-center w-100">
             <img [src]="meal.mealPhotos"
                  alt="{{ meal.mealName }}"
@@ -69,7 +69,7 @@
 
     <!-- Footer -->
     <div class="bg-light border-top p-3 text-end">
-      <button class="btn btn-outline-primary btn-sm rounded-pill shadow-sm">
+      <button class="btn btn-outline-primary btn-sm rounded-pill shadow-sm" (click)="viewInvoice(order)">
         📄 View Invoice
       </button>
       <button 

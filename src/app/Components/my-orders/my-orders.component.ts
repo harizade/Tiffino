@@ -7,6 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { routes } from '../../app.routes';
 import { MatDialog } from '@angular/material/dialog';
 import { RattingReviewsComponent } from '../PopUp/ratting-reviews/ratting-reviews.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-orders',
@@ -24,8 +25,33 @@ last: any;
     this.api.getAllOrderUser().subscribe((res: any) => {
       this.orders = res;
     });
+   
   }
 
+viewInvoice(order: any) {
+  this.api.viewInvoice(order.orderId, { responseType: 'blob' }).subscribe({
+    next: (res: any) => {
+      const file = new Blob([res], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+
+      const link = document.createElement('a');
+      link.href = fileURL;
+      link.download = `invoice.pdf`;
+      link.click();
+
+      URL.revokeObjectURL(fileURL);
+    },
+    error: (err) => {
+      const msg = err.error?.message || 'Invoice can only be downloaded after delivery!';
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invoice not available',
+        text: msg,
+        confirmButtonText: 'OK'
+      });
+    }
+  });
+}
 
  ngOnInit() {
   const id = this.route.snapshot.paramMap.get('orderId');

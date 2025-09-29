@@ -10,60 +10,20 @@ import { Router, RouterModule } from '@angular/router';
   imports: [ReactiveFormsModule, CommonModule, FormsModule, RouterModule],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css'
-})
-// export class ForgotPasswordComponent {
-//    forgotPasswordForm: FormGroup;
+})   
 
-//    constructor(private api:ApiService){
-//     this.forgotPasswordForm = new FormGroup({
-//       email:new FormControl(''),
-//     });
-//    }
-
-//    sendOtp(){
-//     const formData = new FormData();
-//     formData.append('email', this.forgotPasswordForm.get('email')?.value);
-
-//     this.api.forgotPassword(this.forgotPasswordForm.value).subscribe({
-//       next: (res) => {
-//         console.log('OTP sent successfully:', res);
-//         alert('OTP sent successfully! Please check your email.');
-//         this.forgotPasswordForm.reset();
-//       },
-//       error: (err) => {
-//         console.error('Error sending OTP:', err);
-//         alert('Error sending OTP! Please try again.');
-//       },
-    
-//    })
-// }
-// }
-
-
-
-
-// import { Component } from '@angular/core';
-// import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-// import { ApiService } from '../api.service';
-// import { CommonModule } from '@angular/common';
-
-// @Component({
-//   selector: 'app-forgot-password',
-//   imports:[CommonModule],
-//   templateUrl: './forgot-password.component.html',
-//   styleUrls: ['./forgot-password.component.css']
-// })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
   resetPasswordForm: FormGroup;
   isOtpReceived: boolean = false;
   constructor(private api: ApiService, private router: Router) {
     this.forgotPasswordForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      emailOrId: new FormControl(''),
     });
     this.resetPasswordForm = new FormGroup({
        otp: new FormControl('', [Validators.required]),
        newPassword: new FormControl('', [Validators.required]),
+       confirmNewPassword: new FormControl('',[Validators.required])
     });
   }
 
@@ -73,10 +33,10 @@ export class ForgotPasswordComponent {
       return;
     }
 
-    const emailValue = this.forgotPasswordForm.get('email')?.value;
-    const emailData = { email: emailValue };
+    const emailOrIdValue = this.forgotPasswordForm.get('emailOrId')?.value;
+    const emailOrIdData = { emailOrId: emailOrIdValue };
 
-    this.api.forgotPassword(emailData, emailValue).subscribe({
+    this.api.forgotPassword(emailOrIdData, emailOrIdValue).subscribe({
       next: (res) => {
         console.log('OTP sent successfully:', res);
         alert('OTP sent successfully! Please check your email.');
@@ -99,21 +59,40 @@ export class ForgotPasswordComponent {
 
   const formValue = this.resetPasswordForm.value;
 
+  // this.api.resetPassword({
+  //   otp: formValue.otp,
+  //   newPassword: formValue.newPassword,
+  //   confirmNewPassword: formValue.confirmNewPassword
+  // }).subscribe({
+  //   next: (res) => {
+  //     console.log('Password reset successfully:', res);
+  //     alert('Password reset successfully! You can now log in with your new password.');
+  //     this.resetPasswordForm.reset();
+  //     this.router.navigate(['/login']);
+  //   },
+  //   error: (err) => {
+  //     console.error('Error resetting password:', err);
+  //     alert('Error resetting password! Please try again.');
+  //   },
+  // });
+
   this.api.resetPassword({
-    email: this.forgotPasswordForm.get('email')?.value,
-    otp: formValue.otp,
-    newPassword: formValue.newPassword
-  }).subscribe({
-    next: (res) => {
-      console.log('Password reset successfully:', res);
-      alert('Password reset successfully! You can now log in with your new password.');
-      this.resetPasswordForm.reset();
-      this.router.navigate(['/login']);
-    },
-    error: (err) => {
-      console.error('Error resetting password:', err);
-      alert('Error resetting password! Please try again.');
-    },
-  });
+    emailOrId: this.forgotPasswordForm.get('emailOrId')?.value,
+  otp: formValue.otp,
+  newPassword: formValue.newPassword,
+  confirmNewPassword: formValue.confirmNewPassword
+}).subscribe({
+  next: (res) => {
+    console.log('Password reset successfully:', res);
+    alert(res);  // will show "Password has Changed!!!"
+    this.resetPasswordForm.reset();
+    this.router.navigate(['/login']);
+  },
+  error: (err) => {
+    console.error('Error resetting password:', err);
+    alert('Error resetting password! Please try again.');
+  },
+});
+
 }
 }

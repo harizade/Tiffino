@@ -1,1 +1,18 @@
-<p>subscriber works!</p>
+<!-- <div class=" text-dark align-item-center w-75 main">
+    <h4 class="fw-bold header">All Subscriber</h4>
+     <div class=" ms-4 text-center d-flex flex-column justify-content-center bg-light p-3 rounded-3 shadow-sm " *ngFor="let row of subscriber">
+            <p>{{row.subscriptionName}}</p>
+     </div>
+</div> -->
+
+<div class="container my-4 text-dark">
+  <h3 class="mb-3">📋 Subscribers List</h3>
+
+  <div *ngFor="let sub of subscriber" class="card p-2 mb-2">
+  <h5>{{ sub.userName }}</h5>
+  <p>Email: {{ sub.userEmail }}</p>
+  <p>Subscription: {{ sub.subscriptionName }}</p>
+  <p>Price: ₹{{ sub.price }}</p>
+</div>
+
+</div>

@@ -1,3 +1,19 @@
 <div class="position-fixed top-0 start-0 end-0 z-3">
   <app-navbar></app-navbar>
 </div>
+
+
+<div class="main w-75 justify-content-center">
+  <div class="ms-4 text-center d-flex flex-column justify-content-center bg-light p-3 rounded-3 shadow-sm ">
+     <div *ngFor="let card of giftCards" class="mb-3">
+      <h3 class="mb-3"><b>Your Gift Card</b></h3>
+  <p>
+    Your gift card Code  <b>{{ card.giftCardCode }}</b>
+    gives you a <b>{{ card.discountPercent }}</b> discount
+    on the <b>{{ card.validForPlan.toLowerCase() }}</b> plan.
+    {{ card.description }}
+  </p>
+</div>
+
+  </div>
+</div>
