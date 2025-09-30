@@ -33,6 +33,8 @@ import { PlaceOrderComponent } from './Components/place-order/place-order.compon
 import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
 import { AssignOrderToDeliveryPersonComponent } from './Components/assign-order-to-delivery-person/assign-order-to-delivery-person.component';
 import { TrackOrderComponent } from './Components/track-order/track-order.component';
+import { ManagerListComponent } from './Components/manager-list/manager-list.component';
+import { CloudKitchenListComponent } from './Components/cloud-kitchen-list/cloud-kitchen-list.component';
 
 export const routes: Routes = [
     
@@ -78,7 +80,9 @@ export const routes: Routes = [
       { path:'subscriber',component:SubscriberComponent},
       { path:'setting',component:SettingComponent},
       { path:'offer',component:OfferComponent},
-      { path:'view_subscription',component:ViewSubscriptionComponent}
+      { path:'view_subscription',component:ViewSubscriptionComponent},
+      { path:'manager_list',component:ManagerListComponent},
+      { path:'cloudKitchen_list',component:CloudKitchenListComponent}
     ]
    }
    

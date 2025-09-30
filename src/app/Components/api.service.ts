@@ -79,8 +79,6 @@ export class ApiService {
   });
 }
 
-
-
   addMenu(){
     return this.http.get(this.apiUrl + 'manager/getAllCuisinesAndMeals');
   }
@@ -223,10 +221,38 @@ export class ApiService {
   viewInvoice(id: number, options?: any) {
     return this.http.get(this.apiUrl + 'user/viewInvoice/' + id, {...options,responseType: 'blob'});
  }
+  
+   getAllCloudeKitchenReview(){
+     return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKItchenAndReviews')
+   }
 
 
 
- 
+searchFilterForAdmin(payload: any): Observable<any> {
+  return this.http.post(this.apiUrl + 'superAdmin/searchFilterForAdmin', payload);
+}
+
+
+
+
+  deleteCloudKitchen(id:any){
+    return this.http.post(this.apiUrl + 'superAdmin/deleteCloudKitchen/'+id ,{ responseType: 'text' })
+  }
+
+  getAllManagerList(){
+    return this.http.get(this.apiUrl + 'superAdmin/getAllManagers')
+  }
+
+ deleteManager(id:any){
+  return this.http.post(this.apiUrl + 'superAdmin/deleteManager/' +id ,{ responseType: 'text' })
+ }
+
+ getCloudKitchenList(){
+  return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData')
+ }
+
+
+
 
 
 }

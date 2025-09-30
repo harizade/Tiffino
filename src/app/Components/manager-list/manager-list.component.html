@@ -1,0 +1,29 @@
+  <h3 class="card-header text-dark mb-3" >Manager List</h3>
+
+  <div class="table-responsive w-75">
+           <table class="table table-bordered table-striped mb-0">
+  <thead class="table-light">
+    <tr>
+      <th>Manager Id</th>
+      <th>manager Name</th>
+      <th>Email</th>
+      <th>cloudKitchen Id</th>
+
+      <th>Action</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of manager_list">
+      <td>{{row.managerId}}</td>
+      <td>{{row.managerName}}</td>
+      <td>{{row.managerEmail}}</td>
+      <td>{{row.cloudKitchen?.cloudKitchenId}}</td>
+      <td>
+        <button type="button" class="btn btn-danger"(click)="delManager(row.managerId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>

@@ -1,0 +1,29 @@
+  <h3 class="card-header text-dark mb-3" >CloudKitchen List</h3>
+
+  <div class="table-responsive w-75">
+           <table class="table table-bordered table-striped mb-0">
+  <thead class="table-light">
+    <tr>
+      <th>CloudKitchen Id</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Division</th>
+      <th>Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data">
+      <td>{{row.cloudKitchenId}}</td>
+      <td>{{row.state}}</td>
+      <td>{{row.city}}</td>
+      <td>{{row.division}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="delCloudeKitchen(row.cloudKitchenId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+
