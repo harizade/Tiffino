@@ -2,6 +2,16 @@
  <div class="d-flex overflow-auto vh-100">
   <div class="sidebar text-white p-3 ">
     <h4 class="text-center mb-4 fw-bold">Admin</h4>
+     <!-- <div class="container mt-2">
+    <div class="row justify-content-center">
+      <div class="search-bar d-flex">
+        <input type="text" class="form-control search-input flex-grow-1" placeholder="Search for food...">
+        <i class="bi bi-search search-icon ms-2" routerLink="/admin/searchFilter"></i>
+      </div>
+    </div>
+  </div> -->
+
+    <a routerLink="/admin/searchFilter" routerLinkActive="active">Search CloudKitchen </a>
     <a routerLink="/admin/add_cloud_kitchen" routerLinkActive="active">Add Cloud Kitchen</a>
     <a routerLink="/admin/add-manager" routerLinkActive="active">Add Manager</a>
     <a routerLink="/admin/delivery_partner" routerLinkActive="active">Add Delivery Partner </a>
@@ -14,19 +24,6 @@
     <a routerLink="/admin/setting" routerLinkActive="active">Settings</a>
   
 
-
-<!-- <form (ngSubmit)="fetchKitchens()">
-  <label>State:</label>
-  <input type="text" [(ngModel)]="state" name="state" required />
-
-  <label>City:</label>
-  <input type="text" [(ngModel)]="city" name="city" required />
-
-  <label>Division:</label>
-  <input type="text" [(ngModel)]="division" name="division" required />
-
-  <button type="submit">Search</button>
-</form> -->
 
 
 

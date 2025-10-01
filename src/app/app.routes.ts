@@ -35,6 +35,8 @@ import { AssignOrderToDeliveryPersonComponent } from './Components/assign-order-
 import { TrackOrderComponent } from './Components/track-order/track-order.component';
 import { ManagerListComponent } from './Components/manager-list/manager-list.component';
 import { CloudKitchenListComponent } from './Components/cloud-kitchen-list/cloud-kitchen-list.component';
+import { SearchFilterComponent } from './Components/search-filter/search-filter.component';
+import { MyProfileComponent } from './Components/my-profile/my-profile.component';
 
 export const routes: Routes = [
     
@@ -54,6 +56,7 @@ export const routes: Routes = [
     {"path":'place_order',component:PlaceOrderComponent},
     {"path":'myOrders',component:MyOrdersComponent},
     {"path":'trackOrder/:orderId',component:TrackOrderComponent},
+    {"path":'myProfile',component:MyProfileComponent},
 
     {
       "path":"manager",
@@ -82,7 +85,8 @@ export const routes: Routes = [
       { path:'offer',component:OfferComponent},
       { path:'view_subscription',component:ViewSubscriptionComponent},
       { path:'manager_list',component:ManagerListComponent},
-      { path:'cloudKitchen_list',component:CloudKitchenListComponent}
+      { path:'cloudKitchen_list',component:CloudKitchenListComponent},
+      { path:'searchFilter',component:SearchFilterComponent}
     ]
    }
    

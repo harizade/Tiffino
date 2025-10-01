@@ -1,7 +1,6 @@
 
 .sidebar {
   width: 280px;
-  /* position: fixed; */
   top: 0;
   left: 0;
   height: 100%;
@@ -28,10 +27,6 @@
 }
 
 .content {
-  /* margin-left: 250px;
-  padding: 20px;
-  min-height: 100vh;
-  margin-top: -20px; */
   width: calc(100% - 280px);
   background-color: #dcdcdc; 
 }
@@ -57,13 +52,6 @@
   box-shadow:  0 0 20px rgba(0, 0, 0, 0.1);
   background-color: #f5f3f3;
 }
-
-/* .main1{
-  background-image: url('./../../../assets/images/logo_img.png');
- height: 620px;
- object-fit: contain;
- background-size: 100% 100%;
-} */
 
 .btn-outline-light {
   border: 1px solid #fff;

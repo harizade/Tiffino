@@ -25,6 +25,33 @@ export class HomeComponent implements AfterViewInit {
   animationFrameId: number | null = null;
   data: any;
   meals: any;
+
+
+
+flattenMeals(res: any): any[] {
+  let result: any[] = [];
+  res.forEach((cuisineObj: any) => {
+    cuisineObj.meals.forEach((meal: any) => {
+      result.push({
+        cuisine: cuisineObj.cuisine,
+        mealId: meal.mealId,
+        mealName: meal.mealName,
+        finalPrice: meal.finalPrice,
+        originalPrice: meal.originalPrice,
+        photos: meal.photos,
+        description: meal.description,
+        nutritionalInformation: meal.nutritionalInformation,
+        kitchens: meal.kitchens
+      });
+    });
+  });
+  return result;
+}
+
+
+
+
+
   constructor(private api: ApiService, private popup: MatDialog) {
     this.api.allAvailableMeals().subscribe((res) => {
       this.data = this.flattenMeals(res);
@@ -32,14 +59,14 @@ export class HomeComponent implements AfterViewInit {
     });
     this.getchCartItems();
   }
-  flattenMeals(data: any) {
-    return data.flatMap((cuisineObj: any) =>
-      cuisineObj.meals.map((meal: any) => ({
-        ...meal,
-        cuisine: cuisineObj.cuisine,
-      }))
-    );
-  }
+  // flattenMeals(data: any) {
+  //   return data.flatMap((cuisineObj: any) =>
+  //     cuisineObj.meals.map((meal: any) => ({
+  //       ...meal,
+  //       cuisine: cuisineObj.cuisine,
+  //     }))
+  //   );
+  // }
 
 ngAfterViewInit() {
   // Start at 0 so first 6 items are visible

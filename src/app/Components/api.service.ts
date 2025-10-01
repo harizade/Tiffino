@@ -228,7 +228,7 @@ export class ApiService {
 
 
 
-searchFilterForAdmin(payload: any): Observable<any> {
+   searchFilterForAdmin(payload: any): Observable<any> {
   return this.http.post(this.apiUrl + 'superAdmin/searchFilterForAdmin', payload);
 }
 
@@ -251,7 +251,17 @@ searchFilterForAdmin(payload: any): Observable<any> {
   return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData')
  }
 
+ updateAdmin(data:any){
+  const token = localStorage.getItem('authToken');
+  return this.http.post(this.apiUrl + 'superAdmin/updateAdmin',data ,
+    { headers: { Authorization: `Bearer ${token}` } }
+  )
+ }
 
+
+ viewProfile() {
+  return this.http.get(this.apiUrl + 'user/viewProfile');
+}
 
 
 

@@ -1,0 +1,62 @@
+<!-- 🔍 Search Form -->
+<div class="container mt-2">
+  <div class="card shadow-sm p-4">
+    <h4 class="mb-3 text-dark">Search Cloud Kitchens</h4>
+    <form (ngSubmit)="fetchKitchens()" class="row g-3">
+      <div class="col-md-4">
+        <input class="form-control" type="text" [(ngModel)]="state" name="state" placeholder="Enter State" required />
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" type="text" [(ngModel)]="city" name="city" placeholder="Enter City" required />
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" type="text" [(ngModel)]="division" name="division" placeholder="Enter Division" required />
+      </div>
+
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary px-4">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+               
+<!-- 📊 Results -->
+<div class="container mt-4" *ngIf="kitchens && kitchens.length > 0">
+  <div class="card shadow-sm p-3">
+    <h4 class="mb-3 text-dark">Cloud Kitchens</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Cloud Kitchen ID</th>
+            <!-- <th>State</th> -->
+            <th>City</th>
+            <th>Division</th>
+            <th>Manager ID</th>
+            <th>Manager Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let kitchen of kitchens">
+            <td>{{ kitchen.cloudKitchenId }}</td>
+            <!-- <td>{{ kitchen.state }}</td> -->
+            <td>{{ kitchen.city }}</td>
+            <td>{{ kitchen.division }}</td>
+            <td>{{ kitchen.managerId }}</td>
+            <td>{{ kitchen.managerName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 🚫 No Data -->
+<div class="container mt-4" *ngIf="kitchens && kitchens.length === 0">
+  <div class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle"></i> No kitchens found.
+  </div>
+</div>

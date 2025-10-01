@@ -220,7 +220,7 @@
     <div class="row g-4">
 
 
-<div class="col-md-3 col-sm-6" *ngFor="let row of data">
+<!-- <div class="col-md-3 col-sm-6" *ngFor="let row of data">
   <div class="restaurant-card1">
     <div class="position-relative">
       <img [src]="row.photos" class="w-100 restaurant-img"
@@ -232,7 +232,39 @@
       <h6 class="mb-1">{{row.mealName}}</h6>
       <div class="small mb-1 rating">
         <i class="bi bi-star-fill"></i> 3.7 • 45–55 mins
+      </div> -->
+
+      <div class="col-md-3 col-sm-6" *ngFor="let row of data">
+  <div class="restaurant-card1">
+    <div class class="position-relative">
+      <img [src]="row.photos" class="w-100 restaurant-img"
+           alt="{{row.mealName}}" (click)="openPopup(row)">
+      
+      <div class="price-banner">
+        <span *ngIf="row.originalPrice === row.finalPrice">
+          ₹ {{ row.finalPrice }}
+        </span>
+        <span *ngIf="row.originalPrice !== row.finalPrice">
+          <span class="text-muted text-decoration-line-through me-2">
+            ₹ {{ row.originalPrice }}
+          </span>
+          <span class="fw-bold text-success">
+            ₹ {{ row.finalPrice }}
+          </span>
+        </span>
       </div>
+    </div>
+<!-- </div> -->
+    <div class="p-3">
+      <span class="badge bg-light text-dark">{{ row.cuisine }}</span>
+      <h6 class="mb-1">{{ row.mealName }}</h6>
+      <div class="small mb-1 rating">
+        <i class="bi bi-star-fill text-warning"></i> 3.7 • 45–55 mins
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+<!-- </div> -->
 
       <div class="text-muted small" *ngFor="let kitchen of row.kitchens">
         {{kitchen.cloudKitchenName}}
@@ -244,8 +276,6 @@
     </div>
   </div>
 </div>
-
-
       <!-- Card End -->
      
 
