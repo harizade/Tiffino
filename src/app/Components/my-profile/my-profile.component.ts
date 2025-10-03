@@ -13,22 +13,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './my-profile.component.css'
 })
 export class MyProfileComponent{
-
- 
-
-
-  data: any;   // you can later replace `any` with an interface
+  data: any;   
 
   constructor(private api: ApiService) {
-    this.api.viewProfile().subscribe({
-      next: (res) => {
-        console.log("API Response:", res);
-        this.data = res;
-   // direct assignment
-      },
-      error: (err) => {
-        console.error("Error fetching profile:", err);
-      }
+    this.api.viewProfile().subscribe(res=>{
+      console.log(res);
+      this.data =res;
+    
     });
   }
 }

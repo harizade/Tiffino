@@ -121,10 +121,17 @@ export class ApiService {
       this.apiUrl + 'superAdmin/deleteSubscriptionPlan/' + id,{ responseType: 'text' });
   }
 
-  addCuisine(data: any) {
-    return this.http.post(
-      this.apiUrl + 'superAdmin/saveOrUpdateCuisine',data,{ responseType: 'text' });
-  }
+  // addCuisine(data: any) {
+  //   return this.http.post(
+  //     this.apiUrl + 'superAdmin/saveOrUpdateCuisine',data,{ responseType: 'text' });
+  // }
+ addCuisine(cuisineData: FormData): Observable<any> {
+  return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateCuisine', cuisineData, {
+    responseType: 'text' // because backend returns String
+  });
+}
+
+
 
   getAllCuisines() {
     return this.http.get(this.apiUrl + 'superAdmin/getAllCuisines');
@@ -260,7 +267,7 @@ export class ApiService {
 
 
  viewProfile() {
-  return this.http.get(this.apiUrl + 'user/viewProfile');
+  return this.http.get(this.apiUrl + 'auth/getProfile');
 }
 
 

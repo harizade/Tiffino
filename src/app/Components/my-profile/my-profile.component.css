@@ -1,3 +1,39 @@
 .main{
     margin-top: 130px;
 }
+
+.profile-card {
+  max-width: 700px;
+  margin: 30px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #e5e7eb;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #ebe9e9, #f4f4f4);
+  color: #000000;
+  text-align: center;
+  padding: 40px 20px 20px;
+  position: relative;
+}
+.profile-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px;
+  color: #374151;
+}
+
+.profile-column {
+  flex: 1 1 300px;
+  min-width: 220px;
+}
+
+.rounded-circle{
+    height: 150px;
+    width: 150px;
+}
