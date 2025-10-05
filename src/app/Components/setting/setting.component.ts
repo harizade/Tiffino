@@ -29,7 +29,7 @@ export class SettingComponent {
 
         // Clear token and session (logout)
         localStorage.removeItem('authToken');
-        sessionStorage.clear();
+        localStorage.clear();
 
         // Redirect to login
         this.router.navigate(['/login']);

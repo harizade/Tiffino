@@ -260,8 +260,8 @@ export class ApiService {
 
  updateAdmin(data:any){
   const token = localStorage.getItem('authToken');
-  return this.http.post(this.apiUrl + 'superAdmin/updateAdmin',data ,
-    { headers: { Authorization: `Bearer ${token}` } }
+  return this.http.post(this.apiUrl + 'superAdmin/updateAdmin',data,
+    { headers: { Authorization: `Bearer ${token}` }, responseType: 'text'}
   )
  }
 
