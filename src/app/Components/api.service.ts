@@ -269,8 +269,16 @@ export class ApiService {
  viewProfile() {
   return this.http.get(this.apiUrl + 'auth/getProfile');
 }
+ 
 
-
+  editUserProfile(data:any){
+    return this.http.post(this.apiUrl + 'user/updateUser',data,{ responseType: 'text' })
+  }
+ 
+   
+  getOffer(){
+    return this.http.get(this.apiUrl + 'user/getOffers', { responseType: 'text' })
+  }
 
 }
 

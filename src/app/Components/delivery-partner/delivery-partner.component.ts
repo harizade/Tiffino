@@ -23,7 +23,7 @@ export class DeliveryPartnerComponent {
         adharCard: new FormControl(null),
         licences: new FormControl(null),
         insurance: new FormControl(null),
-        deliveryPersonId:new FormControl('0') 
+        deliveryPersonId:new FormControl(0) 
       })
   }
 

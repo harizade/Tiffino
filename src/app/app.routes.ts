@@ -37,6 +37,7 @@ import { ManagerListComponent } from './Components/manager-list/manager-list.com
 import { CloudKitchenListComponent } from './Components/cloud-kitchen-list/cloud-kitchen-list.component';
 import { SearchFilterComponent } from './Components/search-filter/search-filter.component';
 import { MyProfileComponent } from './Components/my-profile/my-profile.component';
+import { EditUserComponent } from './Components/edit-user/edit-user.component';
 
 export const routes: Routes = [
     
@@ -57,6 +58,9 @@ export const routes: Routes = [
     {"path":'myOrders',component:MyOrdersComponent},
     {"path":'trackOrder/:orderId',component:TrackOrderComponent},
     {"path":'myProfile',component:MyProfileComponent},
+    {"path":'editUser',component:EditUserComponent},
+    {"path":'offer',component:OfferComponent},
+
 
     {
       "path":"manager",
@@ -82,7 +86,6 @@ export const routes: Routes = [
       { path:'add_meals',component:AddMealsComponent},
       { path:'subscriber',component:SubscriberComponent},
       { path:'setting',component:SettingComponent},
-      { path:'offer',component:OfferComponent},
       { path:'view_subscription',component:ViewSubscriptionComponent},
       { path:'manager_list',component:ManagerListComponent},
       { path:'cloudKitchen_list',component:CloudKitchenListComponent},

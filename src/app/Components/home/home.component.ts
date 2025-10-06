@@ -27,7 +27,6 @@ export class HomeComponent implements AfterViewInit {
   meals: any;
 
 
-
 flattenMeals(res: any): any[] {
   let result: any[] = [];
   res.forEach((cuisineObj: any) => {
@@ -59,14 +58,7 @@ flattenMeals(res: any): any[] {
     });
     this.getchCartItems();
   }
-  // flattenMeals(data: any) {
-  //   return data.flatMap((cuisineObj: any) =>
-  //     cuisineObj.meals.map((meal: any) => ({
-  //       ...meal,
-  //       cuisine: cuisineObj.cuisine,
-  //     }))
-  //   );
-  // }
+  
 
 ngAfterViewInit() {
   // Start at 0 so first 6 items are visible
@@ -146,4 +138,8 @@ checkIsItemInCart(mealId: number){
   const con= this.meals?.find((meal: any)=> meal.mealId == mealId);
  return con;
 }
+
+ 
+
+
 }

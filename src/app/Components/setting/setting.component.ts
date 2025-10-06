@@ -27,11 +27,9 @@ export class SettingComponent {
       next: (res) => {
         console.log("Admin updated successfully:", res);
 
-        // Clear token and session (logout)
         localStorage.removeItem('authToken');
         localStorage.clear();
 
-        // Redirect to login
         this.router.navigate(['/login']);
       },
       error: (err) => {
