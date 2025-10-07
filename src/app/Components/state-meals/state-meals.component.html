@@ -1,0 +1,50 @@
+<div class="position-fixed top-0 start-0 end-0 z-3">
+  <app-navbar></app-navbar>
+</div>
+
+<div class="main">
+
+
+<div class="container py-5 cards">
+  <h2 class="text-center mb-4">{{ stateName }} Meals</h2>
+
+    <div class="row g-4">
+
+      <div class="col-md-3 col-sm-6" *ngFor="let meal of meals">
+  <div class="restaurant-card1">
+    <div class class="position-relative">
+      <img [src]="meal.photos" class="w-100 restaurant-img"
+           alt="{{meal.mealName}}" (click)="openPopup(meal)">
+      
+      <div class="price-banner"> price :
+        <span *ngIf="meal.mealOriginalPrice === meal.mealFinalPrice">
+         ₹ {{ meal.mealFinalPrice }} /-
+        </span>
+        <span *ngIf="meal.mealOriginalPrice !== meal.mealFinalPrice"> 
+          <span class="text-muted text-decoration-line-through me-2">
+            ₹ {{ meal.mealOriginalPrice }} /-
+          </span>
+          <span class="fw-bold text-success">
+            ₹ {{ meal.mealFinalPrice }} /-
+          </span>
+        </span>
+    <div class="p-1">
+      <span class="badge bg-light text-dark">{{ meal.cuisine }}</span>
+      <h6 class="mb-1">{{ meal.mealName }}</h6>
+      <div class="small mb-1 rating">
+        <i class="bi bi-star-fill text-warning"></i> 3.7 • 45–55 mins
+      </div>
+    </div>
+  </div>
+      <div class="text-muted small">
+        <span class="cloudKitcen">{{meal.cloudKitchenName}}</span>
+        <button class="btn btn-outline-success card-button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+    
+</div>

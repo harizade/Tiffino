@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, NgModule } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +25,7 @@ export class HomeComponent implements AfterViewInit {
   animationFrameId: number | null = null;
   data: any;
   meals: any;
+  allCuisine:any;
 
 
 flattenMeals(res: any): any[] {
@@ -45,18 +46,14 @@ flattenMeals(res: any): any[] {
     });
   });
   return result;
-}
-
-
-
-
-
-  constructor(private api: ApiService, private popup: MatDialog) {
+ }
+  constructor(private api: ApiService, private popup: MatDialog ,private router:Router) {
     this.api.allAvailableMeals().subscribe((res) => {
       this.data = this.flattenMeals(res);
       console.log(this.data);
     });
     this.getchCartItems();
+    this.getCuisine();
   }
   
 
@@ -139,7 +136,16 @@ checkIsItemInCart(mealId: number){
  return con;
 }
 
- 
 
+getdata(stateName: string) {
+  this.router.navigate(['/StateMeals', stateName]);
+}
+
+ getCuisine(){
+  this.api.getAllCuisinesUser().subscribe(res=>{
+    console.log(res);
+    this.allCuisine = res;
+  })
+ }
 
 }

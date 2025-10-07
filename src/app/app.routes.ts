@@ -38,6 +38,7 @@ import { CloudKitchenListComponent } from './Components/cloud-kitchen-list/cloud
 import { SearchFilterComponent } from './Components/search-filter/search-filter.component';
 import { MyProfileComponent } from './Components/my-profile/my-profile.component';
 import { EditUserComponent } from './Components/edit-user/edit-user.component';
+import { StateMealsComponent } from './Components/state-meals/state-meals.component';
 
 export const routes: Routes = [
     
@@ -60,7 +61,7 @@ export const routes: Routes = [
     {"path":'myProfile',component:MyProfileComponent},
     {"path":'editUser',component:EditUserComponent},
     {"path":'offer',component:OfferComponent},
-
+    {"path":'StateMeals/:stateName',component:StateMealsComponent},
 
     {
       "path":"manager",

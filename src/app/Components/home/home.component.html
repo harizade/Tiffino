@@ -23,72 +23,14 @@
 
        <div class="marquee" #container>
       <div class="marquee-content d-flex" #marquee>
-        <!-- South Indian -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img
-            src="https://media.assettype.com/lucknowwants%2F2024-12-26%2Fk2sdk5z2%2FDosa.jpg?w=480&auto=format%2Ccompress&fit=max"
-            alt="Chinese">
-          <div>South Indian</div>
+        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item" *ngFor="let row of allCuisine">
+          <div (click)="getdata(row.state)">
+            <img
+            [src]="row.cuisinePhoto"alt="cuisinePhoto">
+          <div>{{row.name}}</div>
+          </div>
         </div>
-
-        <!-- Pure Veg -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img src="https://sukhis.com/app/uploads/2022/04/image1-6-1024x684.jpg" alt="Pure Veg">
-          <div>West Bengal</div>
-        </div>
-
-        <!-- Maharastrian -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img src="https://deih43ym53wif.cloudfront.net/idly-food-india-shutterstock_101041240_7bd8a6703f.jpeg"
-            alt="Paratha">
-          <div>Maharashtra</div>
-        </div>
-
-        <!-- North Indian -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img
-            src="https://images.moneycontrol.com/static-mcnews/2021/04/paratha_shutterstock_1641709639.jpg?impolicy=website&width=1280&height=720"
-            alt="North Indian">
-          <div>Gujarat</div>
-        </div>
-
-        <!-- Panjabi -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img src="https://sukhis.com/app/uploads/2020/01/Dosa.jpg" alt="Khichdi">
-          <div>Punjab</div>
-        </div>
-
-        <!-- Rajasthani -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Dosa_at_Sri_Ganesha_Restauran%2C_Bangkok_%2844570742744%29.jpg/960px-Dosa_at_Sri_Ganesha_Restauran%2C_Bangkok_%2844570742744%29.jpg"
-            alt="Desserts">
-          <div>Rajasthan</div>
-        </div>
-
-        
-        <!-- Rajasthani -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Dosa_at_Sri_Ganesha_Restauran%2C_Bangkok_%2844570742744%29.jpg/960px-Dosa_at_Sri_Ganesha_Restauran%2C_Bangkok_%2844570742744%29.jpg"
-            alt="Desserts">
-          <div>Rajasthan</div>
-        </div>
-       
-
-         <!-- Pure Veg -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img src="https://sukhis.com/app/uploads/2022/04/image1-6-1024x684.jpg" alt="Pure Veg">
-          <div>West Bengal</div>
-        </div>
-
-        <!-- Maharastrian -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4 category-item">
-          <img src="https://deih43ym53wif.cloudfront.net/idly-food-india-shutterstock_101041240_7bd8a6703f.jpeg"
-            alt="Paratha">
-          <div>Maharashtra</div>
-        </div>
-    </div>
+         </div>
         </div>
       </div>
     </div>
@@ -257,106 +199,15 @@
 
       <!-- Card End -->
      
-
-
-      <div class="container locality my-5">
+      <div class="container locality my-4">
         <h4 class="fw-bold mb-4">Explore localities in and around You</h4>
-        <div class="row gy-3">
-          <!-- Locality Items -->
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Maharashtra</div>
+        <div class="row gy-3" >
+          <div class="col-6 col-sm-4 col-md-2 "  *ngFor="let row of allCuisine">
+            <div class="locality-btn"  (click)="getdata(row.state)">{{row.state}}</div>
           </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Gujarat</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Andhra Pradesh</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Arunachal Pradesh</div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Assam</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Bihar</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Goa</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Haryana</div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Himachal Pradesh</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Jharkhand</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Karnataka</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Kerala</div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Manipur</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Meghalaya</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Nagaland</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Odisha</div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Punjab</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Rajasthan</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Sikkim</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Tamil Nadu</div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Telangana</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Tripura</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Uttar Pradesh</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Uttarakhand</div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">West Bengal</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Chhattisgarh</div>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 ">
-            <div class="locality-btn">Mizoram</div>
-          </div>
+          
         </div>
       </div>
-
-
     </div>
-
-
-
 
     <app-footer></app-footer>

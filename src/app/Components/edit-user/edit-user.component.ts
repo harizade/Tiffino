@@ -24,32 +24,12 @@ export class EditUserComponent {
     })
    }
 
-// editUser(){
-//   this.api.editUserProfile(this.editProfileForm.value).subscribe({
-//      next: (res) => {
-//         console.log("Updated successfully:", res);
-//          this.editProfileForm.reset();
-
-//         this.router.navigate(['/MyProfile']);
-
-//       },
-//       error: (err) => {
-//         console.error("Error updating User:", err);
-//       }
-//   })
-// }
-
-
 editUser() {
   this.api.editUserProfile(this.editProfileForm.value).subscribe({
     next: (res) => {
       console.log("Updated successfully:", res);
 
       this.editProfileForm.reset();
-
-      setTimeout(() => {
-        this.router.navigate(['/MyProfile']);
-      }, 300);
     },
     error: (err) => {
       console.error("Error updating User:", err);

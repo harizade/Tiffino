@@ -175,8 +175,8 @@
       color: red;
     }
     .locality{
-      margin-bottom: 10px;
-      height: 450px;
+      /* margin-bottom: 10px; */
+      height: 40vh;
     }
     
    .pricing-card {
