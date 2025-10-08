@@ -121,6 +121,7 @@ addToCart(meal: any, kitchen: any) {
   this.api.addToCart(this.cart).subscribe({
     next: (res) => {
     this.getchCartItems()
+    this.api.cartCount.next(true);
     },
    
   });

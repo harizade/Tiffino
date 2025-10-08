@@ -39,6 +39,7 @@ import { SearchFilterComponent } from './Components/search-filter/search-filter.
 import { MyProfileComponent } from './Components/my-profile/my-profile.component';
 import { EditUserComponent } from './Components/edit-user/edit-user.component';
 import { StateMealsComponent } from './Components/state-meals/state-meals.component';
+import { SearchFilterUserComponent } from './Components/search-filter-user/search-filter-user.component';
 
 export const routes: Routes = [
     
@@ -62,6 +63,7 @@ export const routes: Routes = [
     {"path":'editUser',component:EditUserComponent},
     {"path":'offer',component:OfferComponent},
     {"path":'StateMeals/:stateName',component:StateMealsComponent},
+    {"path":'searchfilterUser',component:SearchFilterUserComponent},
 
     {
       "path":"manager",

@@ -35,6 +35,7 @@ getGrandTotal() {
 
 removeItem(id: number) {
   this.api.removeCard(id).subscribe(res=>{
+    this.api.cartCount.next(true);
     this.loadMeals()
   });
 }

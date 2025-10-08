@@ -2,3 +2,26 @@
     margin-top: 120px;
     margin-left: 12%;
 }
+
+.gift-card {
+  background: linear-gradient(135deg, #f8f9fa, #eef2ff);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gift-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.gift-card h4 span {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  color: white;
+  border: none;
+}

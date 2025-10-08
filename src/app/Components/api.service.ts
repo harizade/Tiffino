@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class ApiService {
     throw new Error('Method not implemented.');
   }
   private apiUrl = 'http://localhost:9090/';
+  public cartCount:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
   constructor(private http: HttpClient, private router: Router) {}
 
   adminLogin(data: any) {
@@ -252,6 +253,19 @@ export class ApiService {
  getAllCuisinesUser(){
   return this.http.get(this.apiUrl + 'user/getAllCuisines')
  }
+
+ searchFilterUser(payload: any): Observable<any> {
+  return this.http.post(this.apiUrl + 'user/searchFilterForUser', payload);
+}
+
+
+  getAllStateName(){
+   return this.http.get(this.apiUrl + 'user/getAllStateName')
+ }
+
+  getAllCloudKitchenName(){
+    return this.http.get(this.apiUrl + 'user/getAllCloudKitchenName')
+  }
 
 }
 

@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+
+<div class="container my-5">
+
+  <div class="search-bar bg-light shadow-sm p-4 rounded-4 mb-5">
+    <div class="row g-3 align-items-center justify-content-center">
+      <div class="col-md-5">
+              <mat-select  multiple class="form-control form-control-lg rounded-pill" placeholder="Select CloudKitchen Name" [(ngModel)]="cloudKitchenNames">
+               <mat-option *ngFor="let row of KitchenName" [value]="row">{{row}}</mat-option>
+              </mat-select>
+      </div>
+
+      <div class="col-md-5">
+              <mat-select  multiple class="form-control form-control-lg rounded-pill"  placeholder="Select Cuisine / State" [(ngModel)]="cuisineNames">
+               <mat-option *ngFor="let row of stateName" [value]="row.name" > {{row.name}} </mat-option>
+              </mat-select>
+      </div>
+
+      <div class="col-md-2 text-center">
+        <button
+          class="btn btn-primary  rounded-pill px-4"
+          (click)="fetchKitchens()">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🍽️ Show results only after search -->
+  <div *ngIf="searched">
+    <!-- ✅ Show meals if found -->
+    <div *ngIf="Meals && Meals.length > 0; else noMeals">
+      <div class="row">
+        <div *ngFor="let meal of Meals" class="col-md-4 col-lg-3 mb-4">
+          <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+            <img
+              [src]="meal.photos"
+              class="card-img-top"
+              alt="{{ meal.mealName }}"
+              style="height: 180px; object-fit: cover;"/>
+            <div class="card-body">Price -
+        <span *ngIf="meal.mealOriginalPrice === meal.mealFinalPrice">
+         ₹ {{ meal.mealFinalPrice }} /-
+        </span>
+        <span *ngIf="meal.mealOriginalPrice !== meal.mealFinalPrice"> 
+          <span class="text-muted text-decoration-line-through me-2">
+            ₹ {{ meal.mealOriginalPrice }} /-
+          </span>
+          <span class="fw-bold text-success">
+            ₹ {{ meal.mealFinalPrice }} /-
+          </span>
+        </span>
+        <h6 class=" text-dark">{{ meal.mealName }}</h6>
+              
+        <div class="small mb-1 rating">
+        <i class="bi bi-star-fill text-warning"></i> 3.7 • 45–55 mins
+        </div>
+
+        <p class="text-secondary small mb-2">
+        <i class="bi bi-geo-alt text-danger"></i>
+           {{ meal.cloudKitchenName }}
+        </p>
+              <button class="btn btn-outline-success card-button">Add To Card</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+
+
+     <!-- <div class="text-muted small" *ngFor="let kitchen of meal.kitchens">
+        <span class="cloudKitcen">{{kitchen.cloudKitchenName}}</span>
+        <button class="btn btn-outline-success card-button"
+                (click)="addToCart(row, kitchen)" [routerLink]="checkIsItemInCart(row.mealId) ? '/cart' : '/'">
+          {{checkIsItemInCart(row.mealId) ? 'Go to Cart' : 'Add to Cart'}}
+        </button>
+      </div> -->
+
+
+    <!-- ❌ No Meals Found -->
+    <ng-template #noMeals>
+      <div class="text-center p-5 bg-light rounded-4 shadow-sm">
+        <h4 class="text-muted"> No meals found for your search.</h4>
+        <p class="text-secondary">Try changing the filters and search again!</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+

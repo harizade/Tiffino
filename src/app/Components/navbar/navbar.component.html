@@ -1,44 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-collapse">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="#">Tiffino</a> -->
        <div class="logo">
-       <!-- <h1 class="fw-bold ">Sh<span class="text-danger">i</span>dor<span class="text-danger">i </span>k<span class="text-danger">i</span>tchen
-       </h1> -->
-       <!-- <img src="./../../../assets/images/logo_img.png" alt="" class="weblogo"> -->
+      
        <img src="./../../../assets/images/shidori_logo1.png" alt="" class="weblogo">
        </div>
       
-      <div class="collapse navbar-collapse  ml-5" style="margin-left: 190px;">
-        <ul class="navbar-nav me-auto mb-2 -3">
-        
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active " href="/helps">Help</a>
-          </li>
-            <li class="nav-item" >
-            <a class="nav-link active " href="/user_subscription">Subscription</a>
+  <div class="collapse navbar-collapse  ml-5" style="margin-left:0px;">
 
-            </li>
-          
-          
-          <li class="nav-item">
-            <a class="nav-link active"  href="/gift_card"> Gift Card</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/offer">Offers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/cart">Cart</a>
-          </li>
-         
+   <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center gap-3">
 
-        </ul>
-       <div>
+   <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-house"></i>
+    <a class="nav-link active" href="/">Home</a>
+   </li>
+
+   <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <a class="nav-link active" href="/searchfilterUser">Search</a>
+   </li>
+
+   <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-circle-question"></i>
+    <a class="nav-link active" href="/helps">Help</a>
+   </li>
+
+   <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-bell"></i>
+    <a class="nav-link active" href="/subscription">Subscription</a>
+   </li>
+
+   <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-gift "></i>
+    <a class="nav-link active position-relative" href="/gift_card">Gift Card</a>
+    <span *ngIf="giftCard" class="badge bg-dark text-light" style="font-size:10px;position:absolute;margin-left: 91px;margin-bottom: 33px;">NEW</span>
+
+   </li>
+
+    <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-tag "></i>
+    <a class="nav-link active position-relative" href="/offer">Offers</a>
+    <span *ngIf="offers" class="badge bg-dark text-light" style="font-size:10px;position:absolute;margin-left: 65px;margin-bottom: 30px;">NEW</span>
+    </li>
+
+    <li class="nav-item d-flex align-items-center">
+    <i class="fa-solid fa-cart-shopping "></i>
+    <a class="nav-link active" href="/cart">Cart</a>
+    <span class="badge bg-dark text-light" style="font-size:10px;position:absolute;margin-left: 60px;margin-bottom: 30px;">{{cart}}</span>
+
+    </li>
+
+   </ul>
+  <div>
 
 
     <div class="dropdown">
@@ -56,7 +68,6 @@
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
     <li><a class="dropdown-item" routerLink="/myProfile"><i class="bi bi-person"></i>My Profile</a></li>
     <li><a class="dropdown-item" routerLink="/myOrders"><i class="bi bi-bag"></i>My Orders</a></li>
-    <!-- <li><a class="dropdown-item" routerLink="/settings"><i class="bi bi-gear"></i>Settings</a></li> -->
     <li><a class="dropdown-item text-danger" (click)="logout()"><i class="bi bi-box-arrow-right"></i>
         Logout</a></li>
   </ul>
