@@ -17,10 +17,7 @@ export class CreateAccountComponent {
   constructor(private api: ApiService, private router: Router) {
     this.userRegisterForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
-      phoneNo: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[0-9]{10}$/)
-      ]),
+      phoneNo: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });

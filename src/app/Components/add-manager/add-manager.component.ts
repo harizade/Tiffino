@@ -23,19 +23,26 @@ export class AddManagerComponent {
   data: any;
   constructor(private api: ApiService) {
     this.addManagerForm = new FormGroup({
-      managerName: new FormControl('',[Validators.required]),
-      managerEmail: new FormControl('', [Validators.email, Validators.required]),
+      managerName: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
+      managerEmail: new FormControl('',[Validators.required, Validators.email]),
       dob: new FormControl(''),
-      phoneNo: new FormControl(''),
-      currentAddress: new FormControl(''),
-      permeantAddress: new FormControl(''),
-      city: new FormControl(''),
+      phoneNo: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+      currentAddress: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      permeantAddress: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      city: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
       cloudKitchenId: new FormControl(''),
       adharCard: new FormControl(null),
       panCard: new FormControl(null),
       photo: new FormControl(null),
     });
   }
+  get managerName() { return this.addManagerForm.get('managerName')!; }
+  get phoneNo() { return this.addManagerForm.get('phoneNo')!; }
+  get managerEmail() { return this.addManagerForm.get('managerEmail')!; }
+  get currentAddress() { return this.addManagerForm.get('currentAddress')!; }
+  get permeantAddress() { return this.addManagerForm.get('permeantAddress')!; }
+  get city() { return this.addManagerForm.get('city')!; }
+
 
   ngOnInit(){
     this.getCloudKitchen()
@@ -47,6 +54,11 @@ export class AddManagerComponent {
   }
 
   saveManager() {
+
+    if (this.addManagerForm.invalid) {
+      this.addManagerForm.markAllAsTouched();
+      return;
+    }
     const formData = new FormData();
 
     // Append text fields

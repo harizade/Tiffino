@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,9 +16,9 @@ export class DeliveryPartnerComponent {
 
   constructor(private api:ApiService){
       this.addDeliveryPersonForm = new FormGroup({
-        name : new FormControl(''),
-        email :new FormControl(''),
-        phoneNo : new FormControl(''),
+        name : new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
+        email :new FormControl('',[Validators.required, Validators.email]),
+        phoneNo : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
         cloudKitchenId : new FormControl(''),
         adharCard: new FormControl(null),
         licences: new FormControl(null),
@@ -26,6 +26,11 @@ export class DeliveryPartnerComponent {
         deliveryPersonId:new FormControl(0) 
       })
   }
+
+  get name() { return this.addDeliveryPersonForm.get('name')!; }
+  get email() { return this.addDeliveryPersonForm.get('email')!; }
+  get phoneNo() { return this.addDeliveryPersonForm.get('phoneNo')!; }
+
 
  ngOnInit(): void {
   this.getCloudKitchenData();
@@ -39,6 +44,11 @@ export class DeliveryPartnerComponent {
   }
 
   addDeliveryPerson(){
+      if (this.addDeliveryPersonForm.invalid) {
+      this.addDeliveryPersonForm.markAllAsTouched();
+      return;
+    }
+
     const formData = new FormData();
 
     formData.append('name',this.addDeliveryPersonForm.get('name')?.value);

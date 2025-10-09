@@ -1,34 +1,3 @@
-<!-- <div class="container d-flex justify-content-center">
-  <div class="card shadow p-3">
-    <h3 class="text-center fw-bold">Add Cuisine</h3>
-    <form [formGroup]="addCuisineForm" (ngSubmit)="addCuisine()">
-
-      <div class="mb-2">
-        <label for="" class="form-label">Cuisine Name</label>
-        <input type="text" id="" class="form-control custom-border" formControlName="name" required>
-      </div>
-
-      <div class="mb-2">
-        <label for="state" class="form-label">State</label>
-        <input type="text" class="form-control custom-border" formControlName="state" rows="3">
-      </div>
-
-      <div class="mb-2">
-        <label for="description" class="form-label">Description</label>
-        <textarea class="form-control custom-border" formControlName="description" rows="3"></textarea>
-      </div>
-
-       <div class="mb-2">
-              <label class="form-label">Cuisine Photo</label>
-              <input type="file" class="form-control" (change)="onFileSelect($event, 'cuisinePhoto')" required />
-            </div>
-
-      <button type="submit" class="button border-0 w-100 text-white p-1 mt-3 mb-2">Submit</button>
-    </form>
-  </div>
-</div> -->
-
-
 
 <div class="container d-flex justify-content-center">
   <div class="card shadow p-3">
@@ -36,27 +5,33 @@
     <form [formGroup]="addCuisineForm" (ngSubmit)="addCuisine()">
 
       <div class="mb-2">
-        <label class="form-label">Cuisine Name</label>
-        <input type="text" class="form-control custom-border" formControlName="name">
-        <small class="text-danger" *ngIf="addCuisineForm.get('name')?.invalid && addCuisineForm.get('name')?.touched">
-          Name is required
-        </small>
+        <label class="form-label"> Cuisine Name</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Cusine Name" formControlName="name">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger small">
+          <div *ngIf="name.errors?.['required']">Name is required.</div>
+          <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.</div>
+          <div *ngIf="name.errors?.['pattern']">Name must contain letters only (no numbers or special characters)</div>
+        </div>
       </div>
 
       <div class="mb-2">
-        <label class="form-label">State</label>
-        <input type="text" class="form-control custom-border" formControlName="state">
-        <small class="text-danger" *ngIf="addCuisineForm.get('state')?.invalid && addCuisineForm.get('state')?.touched">
-          State is required
-        </small>
+         <label class="form-label">State</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter State" formControlName="state">
+        <div *ngIf="state.invalid && (state.dirty || state.touched)" class="text-danger small">
+          <div *ngIf="state.errors?.['required']">State is required.</div>
+          <div *ngIf="state.errors?.['minlength']">State must be at least 3 characters long.</div>
+          <div *ngIf="state.errors?.['pattern']">State must contain letters only (no numbers or special characters)</div>
+        </div>
       </div>
 
       <div class="mb-2">
         <label class="form-label">Description</label>
-        <textarea class="form-control custom-border" formControlName="description" rows="3"></textarea>
-        <small class="text-danger" *ngIf="addCuisineForm.get('description')?.invalid && addCuisineForm.get('description')?.touched">
-          Description is required
-        </small>
+        <input type="text" class="form-control custom-border" placeholder="Enter Description" formControlName="description">
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger small">
+          <div *ngIf="description.errors?.['required']">description is required.</div>
+          <div *ngIf="description.errors?.['minlength']">description must be at least 3 characters long.</div>
+          <!-- <div *ngIf="description.errors?.['pattern']">description must contain letters only (no numbers or special characters)</div> -->
+        </div>
       </div>
 
       <div class="mb-2">
@@ -67,7 +42,7 @@
         </small>
       </div>
 
-      <button type="submit" class="button border-0 w-100 text-white p-1 mt-3 mb-2">
+      <button type="submit" class="button border-0 w-100 text-white p-1 mt-3 mb-2" [disabled]="addCuisineForm.invalid">
         Submit
       </button>
     </form>

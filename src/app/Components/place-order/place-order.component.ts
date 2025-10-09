@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -17,18 +17,28 @@ export class PlaceOrderComponent {
 
  constructor(private api:ApiService){
   this.placeOrderForm = new FormGroup({
-     phoneNo: new FormControl(''),
-     state: new FormControl(''),
-     city: new FormControl(''),
-     address: new FormControl(''),
-     pinCode: new FormControl(''),
+     phoneNo: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+     state: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
+     city: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
+     address: new FormControl('',[Validators.required, Validators.minLength(3)]),
+     pinCode: new FormControl('',[Validators.required,Validators.pattern(/^[0-9]+$/)]),
     
   })
+ }
+  get phoneNo() { return this.placeOrderForm.get('phoneNo')!; }
+  get state() { return this.placeOrderForm.get('state')!; }
+  get city() { return this.placeOrderForm.get('city')!; }
+  get address() { return this.placeOrderForm.get('address')!; }
+  get pinCode() { return this.placeOrderForm.get('pinCode')!; }
 
   
- }
 
  placeOrder() {
+    if (this.placeOrderForm.invalid) {
+      this.placeOrderForm.markAllAsTouched();
+      return;
+    }
+
   console.log('Payload:', this.placeOrderForm.value);
 
   this.api.placeOrder(this.placeOrderForm.value).subscribe({

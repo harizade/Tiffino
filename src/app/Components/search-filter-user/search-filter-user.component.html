@@ -26,9 +26,7 @@
     </div>
   </div>
 
-  <!-- 🍽️ Show results only after search -->
   <div *ngIf="searched">
-    <!-- ✅ Show meals if found -->
     <div *ngIf="Meals && Meals.length > 0; else noMeals">
       <div class="row">
         <div *ngFor="let meal of Meals" class="col-md-4 col-lg-3 mb-4">
@@ -60,7 +58,20 @@
         <i class="bi bi-geo-alt text-danger"></i>
            {{ meal.cloudKitchenName }}
         </p>
-              <button class="btn btn-outline-success card-button">Add To Card</button>
+              
+        <div class="text-muted small" >
+        <!-- <span class="cloudKitcen">{{kitchen.cloudKitchenName}}</span> -->
+     <button
+  class="btn btn-outline-success card-button"
+  [disabled]="isLoading"
+  (click)="isItemInCart(meal.mealId) ? goToCart() : addToCart(meal, meal.kitchens[0])">
+  {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId) ? 'Go to Cart' : 'Add to Cart') }}
+</button>
+
+
+      </div>
+        
+        <!-- <button class="btn btn-outline-success card-button" (click)="addToCart(meal)">Add To Card</button> -->
             </div>
           </div>
         </div>

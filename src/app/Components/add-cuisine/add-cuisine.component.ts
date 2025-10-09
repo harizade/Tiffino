@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -16,13 +16,17 @@ addCuisineForm : FormGroup;
   constructor(private api:ApiService){
     this.addCuisineForm = new FormGroup({
          cuisineId: new FormControl ('0'),
-         name: new FormControl (''),
-         description: new FormControl (''),
-         state:new FormControl (''),
+         name: new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
+         description: new FormControl ('',[Validators.required, Validators.minLength(3)]),
+         state:new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
          cuisinePhoto: new FormControl(null),
 
     })
   }
+  get name() { return this.addCuisineForm.get('name')!; }
+  get description() { return this.addCuisineForm.get('description')!; }
+  get state() { return this.addCuisineForm.get('state')!; }
+   
 
    onFileSelect(event: any, controlName: string) {
     if (event.target.files.length > 0) {
@@ -30,41 +34,13 @@ addCuisineForm : FormGroup;
     }
   }
 
-//   addCuisine(){
-//     const formData = new FormData();
-   
-//     formData.append('cuisineId',this.addCuisineForm.get('cuisineId')?.value);
-//     formData.append('name',this.addCuisineForm.get('name')?.value);
-//     formData.append('state',this.addCuisineForm.get('state')?.value);
-//     formData.append('description',this.addCuisineForm.get('description')?.value);
-// const file = this.addCuisineForm.get('cuisinePhoto')?.value;
-//   if (file) {
-//     formData.append('cuisinePhoto', file);
-//   }
 
-//     this.api.addCuisine(formData).subscribe({
-//       next: (res) => {
-//         console.log('Cuisine Added successfully:', res);
-//         alert('Cuisine Inserted successfully!');
-//         this.addCuisineForm.reset();
-
-//       },
-//       error: (err) => {
-//         console.error('Error Adding Cuisine:', err);
-//         alert('Error Inserting Cuisine!');
-//       },
-//     })
-//      const fileInputs =
-//       document.querySelectorAll<HTMLInputElement>('input[type="file"]');
-//     fileInputs.forEach((input) => (input.value = ''));
-//   }
-// }
 
 addCuisine() {
   if (this.addCuisineForm.invalid) {
-    alert('Please fill all required fields!');
-    return;
-  }
+      this.addCuisineForm.markAllAsTouched();
+      return;
+    }
 
   const formData = new FormData();
   formData.append('cuisineId', this.addCuisineForm.get('cuisineId')?.value);
@@ -80,7 +56,7 @@ addCuisine() {
   this.api.addCuisine(formData).subscribe({
     next: (res) => {
       console.log('Cuisine Added successfully:', res);
-      alert(res); // backend returns plain text like "Cuisine Inserted Successfully!!"
+      alert(res); 
       this.addCuisineForm.reset();
 
       // clear file inputs

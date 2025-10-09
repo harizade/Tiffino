@@ -3,21 +3,34 @@
     <h3 class="text-center fw-bold">Update Profile</h3>
     <form [formGroup]="adminForm" (ngSubmit)="updateAdmin()">
       <div class="mb-2">
-        <label for="name" class="form-label">Edit Name</label>
-        <input type="text" id="" class="form-control custom-border" formControlName="adminName" required>
+      <label class="form-label">Edit Name </label>
+        <input type="text" class="form-control" placeholder="Enter Name" formControlName="adminName">
+        <div *ngIf="adminName.invalid && (adminName.dirty || adminName.touched)" class="text-danger small">
+          <div *ngIf="adminName.errors?.['required']">Name is required.</div>
+          <div *ngIf="adminName.errors?.['minlength']">Name must be at least 3 characters long.</div>
+          <div *ngIf="adminName.errors?.['pattern']">Name must contain letters only (no numbers or special characters)</div>
+        </div>
       </div>
 
       <div class="mb-2">
-        <label for="email" class="form-label">Edit Email</label>
-        <input type="email" id="" class="form-control custom-border" formControlName="email" required>
+         <label class="form-label ">Edit Email</label>
+        <input type="email" class="form-control" placeholder="Enter Email" formControlName="email">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger small">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Enter a valid email address.</div>
+        </div>
       </div>
 
       <div class="mb-2">
-        <label for="password" class="form-label">Edit Password</label>
-        <input type="password" id="" class="form-control custom-border" formControlName="password" required>
+        <label class="form-label mt-2">Edit Password</label>
+        <input type="password" class="form-control" placeholder="Enter Password" formControlName="password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger small">
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+          <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>
+        </div>
       </div>
 
-      <button type="submit" class="button border-0 w-100 text-white p-1 mt-3 mb-2">Save</button>
+      <button type="submit" class="button border-0 w-100 text-white p-1 mt-3 mb-2" [disabled]="adminForm.invalid">Save</button>
     </form>
   </div>
 </div>

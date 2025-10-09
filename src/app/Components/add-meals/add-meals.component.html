@@ -5,26 +5,42 @@
 
       <!-- Name -->
       <div class="mb-2">
-        <label for="name" class="form-label">Meal Name</label>
-        <input type="text" id="name" class="form-control custom-border" formControlName="name" required>
+        <label class="form-label">Meal Name</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Name" formControlName="name">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger small">
+          <div *ngIf="name.errors?.['required']">Name is required.</div>
+          <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.</div>
+          <div *ngIf="name.errors?.['pattern']">Name must contain letters only (no numbers or special characters)</div>
+        </div>
       </div>
 
       <!-- Description -->
       <div class="mb-2">
-        <label for="description" class="form-label">Description</label>
-        <textarea class="form-control custom-border" formControlName="description" rows="1"></textarea>
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Description" formControlName="description">
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger small">
+          <div *ngIf="description.errors?.['required']">Description is required.</div>
+          <div *ngIf="description.errors?.['minlength']">Description must be at least 3 characters long.</div>
+        </div>
       </div>
 
       <!-- Price -->
       <div class="mb-2">
-        <label for="" class="form-label">Nutritional Information</label>
-        <input type="text" id="price" class="form-control custom-border"  formControlName="nutritionalInformation" required>
+         <label class="form-label">Price</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Price" formControlName="price">
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-danger small">
+          <div *ngIf="price.errors?.['required']">Price is required.</div>
+          <div *ngIf="price.errors?.['pattern']">Price must contain Numbers only (no letters or special characters)</div>
+        </div>
       </div>
 
       <div class="mb-2">
-        <label for="price" class="form-label">Price</label>
-        <input type="number" id="price" class="form-control custom-border"  formControlName="price" required>
-
+         <label class="form-label">Nutritional Information</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter NutritionalInformation" formControlName="nutritionalInformation">
+        <div *ngIf="nutritionalInformation.invalid && (nutritionalInformation.dirty || nutritionalInformation.touched)" class="text-danger small">
+          <div *ngIf="nutritionalInformation.errors?.['required']">NutritionalInformation is required.</div>
+          <div *ngIf="nutritionalInformation.errors?.['minlength']">NutritionalInformation must be at least 3 characters long.</div>
+        </div>
       </div>
       <div class="mb-2">
         <label for="image" class="form-label">Image</label>
@@ -45,7 +61,7 @@
      
 
       <!-- Submit -->
-      <button type="submit" class="button border-0 w-100 text-white p-1">Submit</button>
+      <button type="submit" class="button border-0 w-100 text-white p-1" [disabled]="addMealsForm.invalid">Submit</button>
     </form>
   </div>
 </div>

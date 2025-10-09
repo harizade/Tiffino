@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { RouterModule } from '@angular/router';
-import { FormControl, FormControlName, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,15 +17,21 @@ addMealsForm: FormGroup;
 constructor(private api:ApiService){
   this.addMealsForm= new FormGroup({
     mealId: new FormControl('0'),
-    name: new FormControl(''),
-    description: new FormControl(''),
-    nutritionalInformation: new FormControl(''),
-    price: new FormControl(''),
+    name: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
+    description: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    nutritionalInformation: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    price: new FormControl('',[Validators.required, Validators.pattern(/^[0-9]+$/)]),
     photos: new FormControl('null'),
     cuisineId: new FormControl(''),
   })
 
 }
+  get name() { return this.addMealsForm.get('name')!; }
+  get description() { return this.addMealsForm.get('description')!; }
+  get nutritionalInformation() { return this.addMealsForm.get('nutritionalInformation')!; }
+  get price() { return this.addMealsForm.get('price')!; }
+  
+
 onFileSelect(event: any, controlName: string) {
     if (event.target.files.length > 0) {
       this.addMealsForm.get(controlName)?.setValue(event.target.files[0]);
@@ -40,6 +46,12 @@ this.api.getAllCuisines().subscribe((res)=>{
 }
 
 saveMeals(){
+
+ if (this.addMealsForm.invalid) {
+      this.addMealsForm.markAllAsTouched();
+      return;
+    }
+
   const formData = new FormData();
 
     // Append text fields

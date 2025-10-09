@@ -9,15 +9,21 @@
        <form [formGroup]="addManagerForm" (ngSubmit)="saveManager()">
           <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">Manager Name</label>
-              <input type="text" class="form-control" formControlName="managerName" required />
+               <label class="form-label">ManagerName </label>
+        <input type="text" class="form-control" placeholder="ManagerName" formControlName="managerName">
+        <div *ngIf="managerName.invalid && (managerName.dirty || managerName.touched)" class="text-danger small">
+          <div *ngIf="managerName.errors?.['required']">Name is required.</div>
+          <div *ngIf="managerName.errors?.['minlength']">Name must be at least 3 characters long.</div>
+          <div *ngIf="managerName.errors?.['pattern']">Name must contain letters only (no numbers or special characters)</div>
+        </div>
             </div>
-            <div class="col-md-6 position-relative">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" formControlName="managerEmail" required />
-            <span class="text-danger error-msg"   *ngIf="addManagerForm.get('managerEmail')?.hasError('email') && addManagerForm.get('managerEmail')?.touched">
-              Please enter a valid email address.
-              </span>
+            <div class="col-md-6 ">
+              <label class="form-label ">Manager Email</label>
+        <input type="email" class="form-control" placeholder="Enter Manager Email" formControlName="managerEmail">
+        <div *ngIf="managerEmail.invalid && (managerEmail.dirty || managerEmail.touched)" class="text-danger small">
+          <div *ngIf="managerEmail.errors?.['required']">Email is required.</div>
+          <div *ngIf="managerEmail.errors?.['email']">Enter a valid email address.</div>
+        </div>
             </div>
           </div>
 
@@ -27,19 +33,31 @@
               <input type="date" class="form-control" formControlName="dob" required />
             </div>
             <div class="col-md-6">
-              <label class="form-label">Phone No</label>
-              <input type="number" class="form-control" formControlName="phoneNo" required />
+              <label class="form-label">Mobile No </label>
+        <input type="number" class="form-control" placeholder="Mobile" formControlName="phoneNo">
+        <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)" class="text-danger small">
+          <div *ngIf="phoneNo.errors?.['required']">Mobile number is required.</div>
+          <div *ngIf="phoneNo.errors?.['pattern']">Enter a valid 10-digit mobile number.</div>
+        </div>
             </div>
           </div>
 
           <div class="row mb-2">
             <div class="col-md-6">
-              <label class="form-label">Current Address</label>
-              <input type="text" class="form-control" formControlName="currentAddress" required />
+               <label class="form-label">Current Address</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Current Address" formControlName="currentAddress">
+        <div *ngIf="currentAddress.invalid && (currentAddress.dirty || currentAddress.touched)" class="text-danger small">
+          <div *ngIf="currentAddress.errors?.['required']">Address is required.</div>
+          <div *ngIf="currentAddress.errors?.['minlength']">Address must be at least 3 characters long.</div>
+        </div>
             </div>
             <div class="col-md-6">
-              <label class="form-label">Permeant Address</label>
-              <input type="text" class="form-control" formControlName="permeantAddress" required />
+             <label class="form-label">Permeant Address</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Permeant Address" formControlName="permeantAddress">
+        <div *ngIf="permeantAddress.invalid && (permeantAddress.dirty || permeantAddress.touched)" class="text-danger small">
+          <div *ngIf="permeantAddress.errors?.['required']">Address is required.</div>
+          <div *ngIf="permeantAddress.errors?.['minlength']">Address must be at least 3 characters long.</div>
+        </div>
             </div>
           </div>
 
@@ -61,19 +79,24 @@
             </div>
             <div class="col-md-6">
               <label class="form-label">City</label>
-              <input type="text" class="form-control" formControlName="city" required />
+        <input type="text" class="form-control custom-border" placeholder="Enter City" formControlName="city">
+        <div *ngIf="city.invalid && (city.dirty || city.touched)" class="text-danger small">
+          <div *ngIf="city.errors?.['required']">City is required.</div>
+          <div *ngIf="city.errors?.['minlength']">City must be at least 3 characters long.</div>
+          <div *ngIf="city.errors?.['pattern']">City must contain letters only (no numbers or special characters)</div>
+        </div>
             </div>
           </div>
 
           <div class="row mb-2">
             <div class="col-md-6">
               <label class="form-label">Cloud Kitchen Id</label>
-              <input type="text" class="form-control" formControlName="cloudKitchenId" required />
+              <input type="text" class="form-control" placeholder="Enter CloudKitchenId" formControlName="cloudKitchenId" required />
             </div>
           </div>
 
           <div class="col-12">
-            <button type="submit" class="button border-0 w-100 text-white p-1 mt-2">Submit</button>
+            <button type="submit" class="button border-0 w-100 text-white p-1 mt-2" [disabled]="addManagerForm.invalid">Submit</button>
           </div>
         </form>
 
