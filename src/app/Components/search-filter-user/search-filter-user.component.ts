@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { EOF } from '@angular/compiler';
 
 @Component({
   selector: 'app-search-filter-user',
@@ -61,9 +62,7 @@ export class SearchFilterUserComponent {
 cart: any = { cloudKitchenId: null, meals: [] };
 meals: any[] = [];
 
-// constructor(private api: ApiService, private router: Router) {
-//   this.getCartItems();
-// }
+
 
 ngOnInit() {
   this.getCartItems();
@@ -71,15 +70,15 @@ ngOnInit() {
 
 
 // ✅ Add to cart
-addToCart(meal: any, kitchen: any) {
+addToCart(meal: any, cloudKitchenId: any) {
   if (this.isLoading) return;
   this.isLoading = true;
 
   // Allow only one cloud kitchen
   if (!this.cart.cloudKitchenId) {
-    this.cart.cloudKitchenId = kitchen.cloudKitchenId;
+    this.cart.cloudKitchenId = cloudKitchenId;
   }
-  if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
+  if (this.cart.cloudKitchenId !== cloudKitchenId) {
     alert('⚠️ You can only add items from one cloud kitchen!');
     this.isLoading = false;
     return;
@@ -134,3 +133,4 @@ goToCart() {
 
 }
   
+

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,11 @@ export class ApiService {
   getMeals() {
     throw new Error('Method not implemented.');
   }
-  private apiUrl = 'http://localhost:9090/';
+  private apiUrl: string;
   public cartCount:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.apiUrl = environment.baseURL;
+  }
 
   adminLogin(data: any) {
     return this.http.post(this.apiUrl + 'auth/login', data);

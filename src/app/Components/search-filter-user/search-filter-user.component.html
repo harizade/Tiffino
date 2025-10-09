@@ -64,7 +64,7 @@
      <button
   class="btn btn-outline-success card-button"
   [disabled]="isLoading"
-  (click)="isItemInCart(meal.mealId) ? goToCart() : addToCart(meal, meal.kitchens[0])">
+  (click)="isItemInCart(meal.mealId) ? goToCart() : addToCart(meal, meal.cloudKitchenId)">
   {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId) ? 'Go to Cart' : 'Add to Cart') }}
 </button>
 
