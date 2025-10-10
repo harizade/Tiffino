@@ -99,43 +99,70 @@ animate() {
 cart: any = { cloudKitchenId: null, meals: [] };
 
 addToCart(meal: any, kitchen: any) {
+  // Initialize the cart if not already present
+  if (!this.cart) {
+    this.cart = { cloudKitchenId: null, meals: [] };
+  }
+
+  // If no cloud kitchen is set yet, set it
   if (!this.cart.cloudKitchenId) {
     this.cart.cloudKitchenId = kitchen.cloudKitchenId;
   }
 
+  // Prevent mixing items from different cloud kitchens
   if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
-    alert('You can only add items from one cloud kitchen!');
+    alert('You can only add items from one cloud kitchen at a time!');
     return;
   }
 
-  const existingMeal = this.cart.meals.find((m: any) => m.mealId === meal.mealId);
+  // Find if the same meal from this cloud kitchen already exists
+  const existingMeal = this.cart.meals.find(
+    (m: any) => m.mealId === meal.mealId && m.cloudKitchenId === kitchen.cloudKitchenId
+  );
 
   if (existingMeal) {
-    existingMeal.quantity += 1; 
+    existingMeal.quantity += 1;
   } else {
-    this.cart.meals.push({ mealId: meal.mealId, quantity: 1 });
+    this.cart.meals.push({
+      mealId: meal.mealId,
+      mealName: meal.mealName,
+      quantity: 1,
+      finalPrice: meal.finalPrice,
+      photos: meal.photos,
+      cloudKitchenId: kitchen.cloudKitchenId,
+      cloudKitchenName: kitchen.cloudKitchenName
+    });
   }
 
   console.log('Cart updated:', this.cart);
 
+  // API call to sync with backend
   this.api.addToCart(this.cart).subscribe({
     next: (res) => {
-    this.getchCartItems()
-    this.api.cartCount.next(true);
+      this.getchCartItems();
+      this.api.cartCount.next(true);
     },
-   
+    error: (err) => {
+      console.error('Error adding to cart:', err);
+    }
   });
 }
+
 getchCartItems(){
    this.api.viewCart().subscribe((res: any) => {
     this.meals = res.meals;
   });
 }
 
-checkIsItemInCart(mealId: number){
-  const con= this.meals?.find((meal: any)=> meal.mealId == mealId);
- return con;
+checkIsItemInCart(mealId: number, cloudKitchenId: string): boolean {
+  if (!this.cart || !this.cart.meals) return false;
+
+  return this.cart.meals.some(
+    (m: any) => m.mealId === mealId && m.cloudKitchenId === cloudKitchenId
+  );
 }
+
+
 
 
 getdata(stateName: string) {

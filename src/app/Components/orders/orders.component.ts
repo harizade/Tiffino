@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,39 +13,89 @@ import { RouterModule } from '@angular/router';
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent {
- data: any[] = [];
+//  data: any[] = [];
+//   deliveryPersons: any[] = [];
+//   selectedOrderId: number | null = null;
+
+//   constructor(private api: ApiService) {
+//     this.loadOrders();
+//     this.api.getAllDeliveryPersons().subscribe(res => {
+//       this.deliveryPersons = res;
+//     });
+//   }
+
+//   loadOrders() {
+//     this.api.getAllOrder().subscribe(res => {
+//       this.data = res;
+//     });
+//   }
+
+//   showDeliveryPersons(orderId: number) {
+//     this.selectedOrderId = orderId;
+//   }
+
+//   assignOrder(orderId: number, deliveryPersonId: number) {
+//     this.api.assignOrderToDeliveryPerson(orderId, deliveryPersonId).subscribe({
+//       next: () => {
+//         alert(`Order ${orderId} assigned successfully!`);
+//         const order = this.data.find(o => o.orderId === orderId);
+//         if (order) {
+//           order.assigned = true; 
+//         }
+//         this.selectedOrderId = null;
+//       },
+//       error: (err) => {
+//         console.error(err);
+//         alert('Failed to assign order!');
+//       }
+//     });
+//   }
+
+
+// }
+
+
+
+
+data: any[] = [];
 deliveryPersons: any[] = [];
 selectedOrderId: number | null = null;
 
 constructor(private api: ApiService) {
-  // Get all orders
+  this.loadOrders();
+  this.loadDeliveryPersons();
+}
+
+loadOrders() {
   this.api.getAllOrder().subscribe(res => {
     this.data = res;
   });
+}
 
-  // Get all delivery persons
+loadDeliveryPersons() {
   this.api.getAllDeliveryPersons().subscribe(res => {
     this.deliveryPersons = res;
   });
 }
 
-// Step 1: When Assign clicked
 showDeliveryPersons(orderId: number) {
   this.selectedOrderId = orderId;
 }
 
-// Step 2: Assign API call
 assignOrder(orderId: number, deliveryPersonId: number) {
   this.api.assignOrderToDeliveryPerson(orderId, deliveryPersonId).subscribe({
-    next: (res) => {
+    next: () => {
       alert(`Order ${orderId} assigned successfully!`);
-      this.selectedOrderId = null; 
+      const order = this.data.find(o => o.orderId === orderId);
+      if (order) {
+        order.assigned = true;
+      }
+      this.selectedOrderId = null;
     },
     error: (err) => {
       console.error(err);
-      alert("Failed to assign order!");
+      alert('Failed to assign order!');
     }
   });
 }
-
 }

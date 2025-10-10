@@ -9,7 +9,7 @@ import { MealImageComponent } from '../PopUp/meal-image/meal-image.component';
 @Component({
   selector: 'app-state-meals',
   standalone: true,
-  imports: [NavbarComponent,CommonModule ,MatDialogModule,MealImageComponent],
+  imports: [NavbarComponent,CommonModule ,MatDialogModule,],
   templateUrl: './state-meals.component.html',
   styleUrl: './state-meals.component.css'
 })
@@ -18,7 +18,15 @@ export class StateMealsComponent {
   stateName!: string;
   meals: any = [];
 
+  Meals: any[] = [];
+  cuisineNames: string[] = [];
+  cloudKitchenNames: string [] = [] ;
+  searched = false; 
+  isLoading = false;
+
+
   constructor(private route: ActivatedRoute, private api: ApiService ,private router:Router, private popup:MatDialog) {
+  this.getCartItems();
     
   }
 
@@ -39,13 +47,78 @@ export class StateMealsComponent {
       }
     });
     
-
+      
   }
 
 
+
   
+   // ✅ Add a meal to the cart
+ 
+cart: any = { cloudKitchenId: null, meals: [] };
+
+ addToCart(meal: any, cloudKitchenId: any) {
+    if (this.isLoading) return;
+    this.isLoading = true;
+
+    // Allow only one cloud kitchen
+    if (!this.cart.cloudKitchenId) {
+      this.cart.cloudKitchenId = cloudKitchenId;
+    }
+    if (this.cart.cloudKitchenId !== cloudKitchenId) {
+      alert('⚠️ You can only add items from one cloud kitchen!');
+      this.isLoading = false;
+      return;
+    }
+
+    // Check if meal already exists
+    const existingMeal = this.cart.meals.find((m: any) => m.mealId === meal.mealId);
+    if (existingMeal) {
+      existingMeal.quantity += 1;
+    } else {
+      this.cart.meals.push({ mealId: meal.mealId, quantity: 1 });
+    }
+
+    console.log(' Cart updated:', this.cart);
+
+    // Send updated cart to backend
+    this.api.addToCart(this.cart).subscribe({
+      next: (res) => {
+        console.log('✅ Added to cart:', res);
+        this.getCartItems();
+        this.api.cartCount.next(true);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error(' Failed to add to cart:', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
+  //  Fetch current cart items
+  getCartItems() {
+    this.api.viewCart().subscribe({
+      next: (res: any) => {
+        this.cartItems = res.meals || [];
+        console.log(' Current Cart Items:', this.cartItems);
+      },
+      error: (err) => {
+        console.error(' Failed to fetch cart items:', err);
+      }
+    });
+  }
+
+  //  Check if meal exists in cart
+  isItemInCart(mealId: number): boolean {
+    return !!this.cartItems.find((item: any) => item.mealId === mealId);
+  }
+
+  //  Navigate to cart page
+  goToCart() {
+    this.router.navigate(['/cart']);
+  }
 }
 
 
-  
 

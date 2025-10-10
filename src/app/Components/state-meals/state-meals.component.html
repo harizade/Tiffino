@@ -34,11 +34,30 @@
       <div class="small mb-1 rating">
         <i class="bi bi-star-fill text-warning"></i> 3.7 • 45–55 mins
       </div>
+      <p class="text-secondary small mb-2">
+        <i class="bi bi-geo-alt text-danger"></i>
+           {{ meal.cloudKitchenName }}
+        </p>
     </div>
   </div>
       <div class="text-muted small">
-        <span class="cloudKitcen">{{meal.cloudKitchenName}}</span>
-        <button class="btn btn-outline-success card-button">Add to Cart</button>
+        <!-- <span class="cloudKitcen">{{meal.cloudKitchenName}}</span> -->
+        <!-- <button
+  class="btn btn-outline-success card-button"
+  [disabled]="isLoading"
+  (click)="isItemInCart(meal.mealId) ? goToCart() : addToCart(meal, meal.cloudKitchenId)">
+  {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId) ? 'Go to Cart' : 'Add to Cart') }}
+</button> -->
+
+
+<button
+  type="button"
+  class="btn btn-outline-success card-button"
+  [disabled]="isLoading"
+  (click)="isItemInCart(meal.mealId) ? goToCart() : addToCart(meal, meal.cloudKitchenId)">
+  {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId) ? 'Go to Cart' : 'Add to Cart') }}
+</button>
+
       </div>
     </div>
   </div>

@@ -61,12 +61,19 @@
               
         <div class="text-muted small" >
         <!-- <span class="cloudKitcen">{{kitchen.cloudKitchenName}}</span> -->
-     <button
-  class="btn btn-outline-success card-button"
+  <button
+  class="btn card-button"
+  [ngClass]="{
+    'btn-outline-success': !isItemInCart(meal.mealId, meal.cloudKitchenId),
+    'btn-success': isItemInCart(meal.mealId, meal.cloudKitchenId)
+  }"
   [disabled]="isLoading"
-  (click)="isItemInCart(meal.mealId) ? goToCart() : addToCart(meal, meal.cloudKitchenId)">
-  {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId) ? 'Go to Cart' : 'Add to Cart') }}
+  (click)="isItemInCart(meal.mealId, meal.cloudKitchenId) ? goToCart() : addToCart(meal, meal.cloudKitchenId)">
+  {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId, meal.cloudKitchenId) ? 'Go to Cart' : 'Add to Cart') }}
 </button>
+
+
+
 
 
       </div>

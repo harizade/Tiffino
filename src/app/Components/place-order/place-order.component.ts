@@ -45,7 +45,8 @@ export class PlaceOrderComponent {
     next: (res) => {
       console.log('Order placed successfully!', res);
       alert('✅ Order placed successfully!');
-      this.placeOrderForm.reset();   
+      this.placeOrderForm.reset();  
+       
     },
     error: (err) => {
       console.error('Error placing order:', err);
