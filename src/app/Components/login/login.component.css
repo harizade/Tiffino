@@ -19,8 +19,6 @@
     .btn-custom:hover {
       background: linear-gradient(to right, #cf4818, #db7232);
     }
-
-
 .body {
       margin: 0;
       height: 100vh;
@@ -41,7 +39,6 @@
       width: 100%;
       height: 100vh;
       filter: blur(3px);
-      
     }
     .bg-blur::after {
       content: "";
@@ -53,8 +50,6 @@
       background: rgba(0, 0, 0, 0.5); 
       z-index: -1;
     }
-
-
     .login-container {
       max-width: 1000px;
       width: 100%;

@@ -28,7 +28,6 @@ constructor(private api: ApiService) {
   });
 }
 
-
 getGrandTotal() {
   return this.meals.reduce((sum: number, m: any) => sum + (m.unitPrice * m.quantity), 0);
 }
@@ -51,6 +50,4 @@ changeQuantity(meal: any){
     this.loadMeals();
   })
 }
-
-
 }

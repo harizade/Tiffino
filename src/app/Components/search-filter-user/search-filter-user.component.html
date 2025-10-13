@@ -60,42 +60,19 @@
         </p>
               
         <div class="text-muted small" >
-        <!-- <span class="cloudKitcen">{{kitchen.cloudKitchenName}}</span> -->
-  <button
-  class="btn card-button"
-  [ngClass]="{
-    'btn-outline-success': !isItemInCart(meal.mealId, meal.cloudKitchenId),
-    'btn-success': isItemInCart(meal.mealId, meal.cloudKitchenId)
-  }"
-  [disabled]="isLoading"
-  (click)="isItemInCart(meal.mealId, meal.cloudKitchenId) ? goToCart() : addToCart(meal, meal.cloudKitchenId)">
-  {{ isLoading ? 'Adding...' : (isItemInCart(meal.mealId, meal.cloudKitchenId) ? 'Go to Cart' : 'Add to Cart') }}
+   <button
+  class="btn btn-outline-success card-button"
+  (click)="checkIsItemInCart(meal.mealId, meal.cloudKitchenId) ? goToCart() : addToCart(meal)">
+  {{ checkIsItemInCart(meal.mealId, meal.cloudKitchenId) ? 'Go to Cart' : 'Add to Cart' }}
 </button>
-
-
-
-
 
       </div>
         
-        <!-- <button class="btn btn-outline-success card-button" (click)="addToCart(meal)">Add To Card</button> -->
             </div>
           </div>
         </div>
       </div>
     </div> 
-
-
-
-     <!-- <div class="text-muted small" *ngFor="let kitchen of meal.kitchens">
-        <span class="cloudKitcen">{{kitchen.cloudKitchenName}}</span>
-        <button class="btn btn-outline-success card-button"
-                (click)="addToCart(row, kitchen)" [routerLink]="checkIsItemInCart(row.mealId) ? '/cart' : '/'">
-          {{checkIsItemInCart(row.mealId) ? 'Go to Cart' : 'Add to Cart'}}
-        </button>
-      </div> -->
-
-
     <!-- ❌ No Meals Found -->
     <ng-template #noMeals>
       <div class="text-center p-5 bg-light rounded-4 shadow-sm">

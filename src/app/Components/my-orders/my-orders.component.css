@@ -7,12 +7,9 @@
     width: 70%;
    margin-left: 15%;
 }
-
 .ratting{
   margin-right: 250px;
 }
-
-
 .card {
   border-radius: 10px;
   border: 1px solid #ddd;
@@ -20,14 +17,10 @@
 .img-thumbnail {
   border-radius: 8px;
 }
-
-
-
 .card {
   border-radius: 10px;
   border: 1px solid #ddd;
 }
-
 .img-thumbnail {
   border-radius: 8px;
 }

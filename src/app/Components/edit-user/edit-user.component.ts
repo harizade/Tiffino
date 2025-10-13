@@ -29,8 +29,6 @@ export class EditUserComponent {
   get mealPreference() { return this.editProfileForm.get('mealPreference')!; }
   get dietaryNeeds() { return this.editProfileForm.get('dietaryNeeds')!; }
    
-
-
 editUser() {
  
    if (this.editProfileForm.invalid) {

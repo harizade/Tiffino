@@ -1,14 +1,11 @@
-
 .sidebar {
   width: 280px;
   top: 0;
   left: 0;
   height: 100%;
   background-image: linear-gradient(to bottom right, red, yellow);
-
   padding-top: 20px;
 }
-
 .sidebar a {
   padding: 12px 18px;
   display: block;
@@ -19,18 +16,15 @@
   margin: 8px 0;
   transition: all 0.3s ease;
 }
-
 .sidebar a:hover,
 .sidebar a.active {
   background: #fff;
   color: #ff8d41 !important; 
 }
-
 .content {
   width: calc(100% - 280px);
   background-color: #dcdcdc; 
 }
-
 .navbar {
   border-radius: 10px;
   background:linear-gradient(90deg, #FF512F, #FF7043);

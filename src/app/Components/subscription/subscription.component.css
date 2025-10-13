@@ -20,8 +20,6 @@ button{
   stroke: orange !important; 
 }
 ::ng-deep .mdc-notched-outline {
-  /* background-color: white !important; */
-  /* color: black !important;  */
   border: 1px solid orange !important;
 
 }

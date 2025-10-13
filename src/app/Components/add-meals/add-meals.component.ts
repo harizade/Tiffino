@@ -54,7 +54,6 @@ saveMeals(){
 
   const formData = new FormData();
 
-    // Append text fields
     formData.append('mealId',this.addMealsForm.get('mealId')?.value);
     formData.append('name',this.addMealsForm.get('name')?.value);
     formData.append('description',this.addMealsForm.get('description')?.value);
@@ -62,7 +61,6 @@ saveMeals(){
     formData.append('price', this.addMealsForm.get('price')?.value);
     formData.append('cuisineId',this.addMealsForm.get('cuisineId')?.value);
 
-    // Append files
     formData.append('photos', this.addMealsForm.get('photos')?.value);
 
     this.api.addMeals(formData).subscribe({

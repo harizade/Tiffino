@@ -29,8 +29,6 @@ export class AddCloudKitchenComponent {
   get division() { return this.cloudKitchenForm.get('division')!; }
   get address() { return this.cloudKitchenForm.get('address')!; }
   get pinCode() { return this.cloudKitchenForm.get('pinCode')!; }
-    
-
 
   addCloudKitchen(){
      
@@ -38,7 +36,6 @@ export class AddCloudKitchenComponent {
       this.cloudKitchenForm.markAllAsTouched();
       return;
     }
-
 
     this.api.addCloudKitchen(this.cloudKitchenForm.value).subscribe({
 
@@ -52,8 +49,6 @@ export class AddCloudKitchenComponent {
         console.error('Error Adding Cloud_Kitchen:', err);
         alert('Error Inserting Cloud_Kitchen!');
       },
-      
-
     })
   }
 }

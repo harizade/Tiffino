@@ -49,8 +49,6 @@ export class ForgotPasswordComponent {
     });
   }
 
-
-
   resetPassword(){
     if (this.resetPasswordForm.invalid) {
     alert('Please fill all fields correctly.');
@@ -58,23 +56,6 @@ export class ForgotPasswordComponent {
   }
 
   const formValue = this.resetPasswordForm.value;
-
-  // this.api.resetPassword({
-  //   otp: formValue.otp,
-  //   newPassword: formValue.newPassword,
-  //   confirmNewPassword: formValue.confirmNewPassword
-  // }).subscribe({
-  //   next: (res) => {
-  //     console.log('Password reset successfully:', res);
-  //     alert('Password reset successfully! You can now log in with your new password.');
-  //     this.resetPasswordForm.reset();
-  //     this.router.navigate(['/login']);
-  //   },
-  //   error: (err) => {
-  //     console.error('Error resetting password:', err);
-  //     alert('Error resetting password! Please try again.');
-  //   },
-  // });
 
   this.api.resetPassword({
     emailOrId: this.forgotPasswordForm.get('emailOrId')?.value,
@@ -84,7 +65,7 @@ export class ForgotPasswordComponent {
 }).subscribe({
   next: (res) => {
     console.log('Password reset successfully:', res);
-    alert(res);  // will show "Password has Changed!!!"
+    alert(res);  
     this.resetPasswordForm.reset();
     this.router.navigate(['/login']);
   },

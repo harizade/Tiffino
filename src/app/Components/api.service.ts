@@ -78,55 +78,25 @@ export class ApiService {
     withCredentials: true
   });
 }
-  addMenu(){
-    return this.http.get(this.apiUrl + 'manager/getAllCuisinesAndMeals');
-   }
-  addOrRemoveMeal(mealId: number):Observable<any> {
-  return this.http.post(this.apiUrl + 'manager/addOrRemoveMeals/' + mealId, {}, { responseType: 'text' } );
-   }
-  addCloudKitchen(data: any) {
-    return this.http.post(this.apiUrl + 'superAdmin/saveCloudKitchen', data, {responseType: 'text'});
-   }
-  addManager(data: FormData): Observable<any> {
-    return this.http.post(this.apiUrl + 'superAdmin/saveManager', data, {responseType: 'text'});
-   }
-  getCloudeKitchen_WithManager() {
-    return this.http.get(
-      this.apiUrl + 'superAdmin/getAllManagersWithCloudKitchen');
-   }
-  addSubscriptionPlan(data: any) {
-    return this.http.post(
-      this.apiUrl + 'superAdmin/saveOrUpdateSubscriptionPlan',data,{ responseType: 'text' });
-   }
-  getAllSubscriptionPlans() {
-  return this.http.get<any[]>(this.apiUrl + 'superAdmin/getAllSubscribedUser');
-  }
-  deleteSubscriptionPlan(id: any) {
-    return this.http.delete(
-      this.apiUrl + 'superAdmin/deleteSubscriptionPlan/' + id,{ responseType: 'text' });
-   }
- addCuisine(cuisineData: FormData): Observable<any> {
-  return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateCuisine', cuisineData, {
-    responseType: 'text'});
- }
-  getAllCuisines() {
-    return this.http.get(this.apiUrl + 'superAdmin/getAllCuisines');
-  }
+  
+ viewProfile() {
+  return this.http.get(this.apiUrl + 'auth/getProfile');
+}
 
-  addMeals(data: any) {
-    return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateMeal', data, {responseType: 'text'});
+  
+ 
+  
+                                      // User Side Api
+ getAllCloudKitchenName(){
+    return this.http.get(this.apiUrl + 'user/getAllCloudKitchenName')
   }
-
+ 
   userRegister(data: any) {
     return this.http.post(this.apiUrl + 'user/register', data, {responseType: 'text'});
   }
 
   userSubscription(data:any){
     return this.http.post(this.apiUrl + 'user/assignSubscriptionToUser',data)
-  }
-
-  cloudeKitchenData(){
-    return this.http.get(this.apiUrl + 'manager/getDataOfCloudKitchen');
   }
 
   allAvailableMeals(){
@@ -161,36 +131,6 @@ export class ApiService {
     return this.http.get(this.apiUrl + 'user/getAllOrders')
   }
 
-  addDeliveryPerson(data:any){
-    return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateDeliveryPerson',data,{responseType: 'text'})
-  }
-
-  getCloudKitchenDeliveryPerson() {
-  return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData', { withCredentials: true });
-  }
- 
-  getAllOrder() {
-    return this.http.get<any[]>(`${this.apiUrl}manager/getAllOrders`);
-  }
-
-  getAllDeliveryPersons() {
-    return this.http.get<any[]>(`${this.apiUrl}manager/listOfDeliveryPersonIsAvailable`);
-  }
-
-  assignOrderToDeliveryPerson(orderId: number, deliveryPersonId: number) {
-    return this.http.post(`${this.apiUrl}manager/assignOrderToDeliveryPerson`, null, {
-      params: { orderId: orderId, deliveryPersonId: deliveryPersonId },
-      responseType: 'text'
-    });
-  }
-
-  pikUpOrder(deliveryId: string) {
-   return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/pickup`, {} ,{responseType:'text'});
-  }
-
-  deliverOrder(deliveryId: string) {
-   return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {} ,{responseType:'text'});
-  }
 
   trackOrder(id: number) {
   return this.http.get(`${this.apiUrl}user/trackOrder/${id}`);
@@ -204,12 +144,128 @@ export class ApiService {
   viewInvoice(id: number, options?: any) {
     return this.http.get(this.apiUrl + 'user/viewInvoice/' + id, {...options,responseType: 'blob'});
  }
+
+   getAllStateName(){
+   return this.http.get(this.apiUrl + 'user/getAllStateName')
+ }
+
+ searchFilterUser(payload: any): Observable<any> {
+  return this.http.post(this.apiUrl + 'user/searchFilterForUser', payload);
+}
+
+getAllCuisinesUser(){
+  return this.http.get(this.apiUrl + 'user/getAllCuisines')
+ }
+
+ getAvailableMealsByStateName(stateName: string) {
+  return this.http.get(this.apiUrl + 'user/getAllMealsByCuisineName/' + stateName);
+}
+
+getOffer(){
+    return this.http.get(this.apiUrl + 'user/getOffers', { responseType: 'text' })
+  }
+
+  editUserProfile(data:any){
+    return this.http.post(this.apiUrl + 'user/updateUser',data,{ responseType: 'text' })
+  }
+
+
+
+                                      // Manager Side Api
+ getAllOrder() {
+    return this.http.get<any[]>(`${this.apiUrl}manager/getAllOrders`);
+  }
+
+  addMenu(){
+    return this.http.get(this.apiUrl + 'manager/getAllCuisinesAndMeals');
+   }
+  addOrRemoveMeal(mealId: number):Observable<any> {
+  return this.http.post(this.apiUrl + 'manager/addOrRemoveMeals/' + mealId, {}, { responseType: 'text' } );
+   }
   
-   getAllCloudeKitchenReview(){
-     return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKItchenAndReviews')
+  cloudeKitchenData(){
+    return this.http.get(this.apiUrl + 'manager/getDataOfCloudKitchen');
+  }
+
+  getAllDeliveryPersons() {
+    return this.http.get<any[]>(`${this.apiUrl}manager/listOfDeliveryPersonIsAvailable`);
+  }
+
+  assignOrderToDeliveryPerson(orderId: number, deliveryPersonId: number) {
+    return this.http.post(`${this.apiUrl}manager/assignOrderToDeliveryPerson`, null, {
+      params: { orderId: orderId, deliveryPersonId: deliveryPersonId },
+      responseType: 'text'
+    });
+  }
+
+
+
+                                      // Delivery partner Side Api
+
+ pikUpOrder(deliveryId: string) {
+   return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/pickup`, {} ,{responseType:'text'});
+  }
+
+  deliverOrder(deliveryId: string) {
+   return this.http.post(`${this.apiUrl}delivery-person/${deliveryId}/deliver`, {} ,{responseType:'text'});
+  }
+
+                                      // Admin Side Api
+
+updateAdmin(data:any){
+  const token = localStorage.getItem('authToken');
+  return this.http.post(this.apiUrl + 'superAdmin/updateAdmin',data,
+    { headers: { Authorization: `Bearer ${token}` }, responseType: 'text'}
+  )
+ }
+
+addCloudKitchen(data: any) {
+    return this.http.post(this.apiUrl + 'superAdmin/saveCloudKitchen', data, {responseType: 'text'});
+   }
+  addManager(data: FormData): Observable<any> {
+    return this.http.post(this.apiUrl + 'superAdmin/saveManager', data, {responseType: 'text'});
+   }
+  getCloudeKitchen_WithManager() {
+    return this.http.get(
+      this.apiUrl + 'superAdmin/getAllManagersWithCloudKitchen');
    }
 
-   searchFilterForAdmin(payload: any): Observable<any> {
+ addSubscriptionPlan(data: any) {
+    return this.http.post(
+      this.apiUrl + 'superAdmin/saveOrUpdateSubscriptionPlan',data,{ responseType: 'text' });
+   }
+  getAllSubscriptionPlans() {
+  return this.http.get<any[]>(this.apiUrl + 'superAdmin/getAllSubscribedUser');
+  }
+  deleteSubscriptionPlan(id: any) {
+    return this.http.delete(
+      this.apiUrl + 'superAdmin/deleteSubscriptionPlan/' + id,{ responseType: 'text' });
+   }
+ addCuisine(cuisineData: FormData): Observable<any> {
+  return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateCuisine', cuisineData, {
+    responseType: 'text'});
+ }
+  getAllCuisines() {
+    return this.http.get(this.apiUrl + 'superAdmin/getAllCuisines');
+  }
+
+  addMeals(data: any) {
+    return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateMeal', data, {responseType: 'text'});
+  }
+
+ addDeliveryPerson(data:any){
+    return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateDeliveryPerson',data,{responseType: 'text'})
+  }
+
+  getCloudKitchenDeliveryPerson() {
+  return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData', { withCredentials: true });
+  }
+
+ getCloudKitchenList(){
+  return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData')
+ }
+
+ searchFilterForAdmin(payload: any): Observable<any> {
   return this.http.post(this.apiUrl + 'superAdmin/searchFilterForAdmin', payload);
 }
 
@@ -225,51 +281,11 @@ export class ApiService {
   return this.http.post(this.apiUrl + 'superAdmin/deleteManager/' +id ,{ responseType: 'text' })
  }
 
- getCloudKitchenList(){
-  return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKitchenData')
- }
-
- updateAdmin(data:any){
-  const token = localStorage.getItem('authToken');
-  return this.http.post(this.apiUrl + 'superAdmin/updateAdmin',data,
-    { headers: { Authorization: `Bearer ${token}` }, responseType: 'text'}
-  )
- }
-
- viewProfile() {
-  return this.http.get(this.apiUrl + 'auth/getProfile');
-}
-
-  editUserProfile(data:any){
-    return this.http.post(this.apiUrl + 'user/updateUser',data,{ responseType: 'text' })
-  }
- 
-   
-  getOffer(){
-    return this.http.get(this.apiUrl + 'user/getOffers', { responseType: 'text' })
-  }
-
- getAvailableMealsByStateName(stateName: string) {
-  return this.http.get(this.apiUrl + 'user/getAllMealsByCuisineName/' + stateName);
-}
-
- getAllCuisinesUser(){
-  return this.http.get(this.apiUrl + 'user/getAllCuisines')
- }
-
- searchFilterUser(payload: any): Observable<any> {
-  return this.http.post(this.apiUrl + 'user/searchFilterForUser', payload);
-}
+  getAllCloudeKitchenReview(){
+     return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKItchenAndReviews')
+   }
 
 
-  getAllStateName(){
-   return this.http.get(this.apiUrl + 'user/getAllStateName')
- }
 
-  getAllCloudKitchenName(){
-    return this.http.get(this.apiUrl + 'user/getAllCloudKitchenName')
-  }
 
 }
-
-

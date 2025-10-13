@@ -150,15 +150,15 @@ addToCart(meal: any, kitchen: any) {
 
 getchCartItems(){
    this.api.viewCart().subscribe((res: any) => {
-    this.meals = res.meals;
+    this.meals = res;
   });
 }
 
 checkIsItemInCart(mealId: number, cloudKitchenId: string): boolean {
-  if (!this.cart || !this.cart.meals) return false;
+  if (!this.meals || !this.meals) return false;
 
-  return this.cart.meals.some(
-    (m: any) => m.mealId === mealId && m.cloudKitchenId === cloudKitchenId
+  return this.meals.meals.some(
+    (m: any) => m.mealId === mealId && this.meals.cloudKitchenId === cloudKitchenId
   );
 }
 

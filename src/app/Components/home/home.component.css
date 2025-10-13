@@ -30,9 +30,7 @@
     .category-item {
       text-align: center;
       font-weight: 500;
-     
     }
-
 
     .d-flex.w-100.overflow-auto {
   scrollbar-width: none; 

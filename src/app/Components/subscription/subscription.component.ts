@@ -37,9 +37,6 @@ export class SubscriptionComponent {
     }
   }
 
-
-
-
   addSubscription() {
   const formData = new FormData();
 
@@ -61,8 +58,6 @@ export class SubscriptionComponent {
   if (giftCard) {
     formData.append('giftCardCodeInput', giftCard); 
   }
-
-
 
 this.api.userSubscription(formData).subscribe({
   next: (res: any) => {

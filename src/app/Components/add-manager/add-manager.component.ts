@@ -61,7 +61,6 @@ export class AddManagerComponent {
     }
     const formData = new FormData();
 
-    // Append text fields
     formData.append('managerName',this.addManagerForm.get('managerName')?.value);
     formData.append('managerEmail',this.addManagerForm.get('managerEmail')?.value);
     formData.append('dob', this.addManagerForm.get('dob')?.value);
@@ -71,7 +70,6 @@ export class AddManagerComponent {
     formData.append('city', this.addManagerForm.get('city')?.value);
     formData.append('cloudKitchenId',this.addManagerForm.get('cloudKitchenId')?.value);
 
-    // Append files
     formData.append('adharCard', this.addManagerForm.get('adharCard')?.value);
     formData.append('panCard', this.addManagerForm.get('panCard')?.value);
     formData.append('photo', this.addManagerForm.get('photo')?.value);

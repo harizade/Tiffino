@@ -5,12 +5,9 @@
 <div class="row w-100 gx-4" [class.mt-8]="!isAdmin">
     <div class="col-3 mb-3" *ngFor="let row of data">
   <div
-    class="card  p-4 text-center position-relative" [ngClass]="{'pricing-card-hover': !isAdmin, 'pricing-card': isAdmin}"
-        
-    >
+    class="card  p-4 text-center position-relative" [ngClass]="{'pricing-card-hover': !isAdmin, 'pricing-card': isAdmin}">
           
          <div *ngIf="isAdmin" class="position-absolute end-0 top-0 p-4" (click)="deleteSubscription(row.subId)" style="cursor: pointer;">
-        
          <i class="bi bi-trash h5 text-danger"></i>
          </div>
 

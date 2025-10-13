@@ -34,8 +34,6 @@ addCuisineForm : FormGroup;
     }
   }
 
-
-
 addCuisine() {
   if (this.addCuisineForm.invalid) {
       this.addCuisineForm.markAllAsTouched();
@@ -59,7 +57,6 @@ addCuisine() {
       alert(res); 
       this.addCuisineForm.reset();
 
-      // clear file inputs
       const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
       fileInputs.forEach((input) => (input.value = ''));
     },

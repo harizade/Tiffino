@@ -10,7 +10,6 @@
     height: 100px;
     width: 40px;
 }
-
 .order-btn {
       background-color: green;
       color: #fff;
@@ -19,9 +18,7 @@
       height: 50px;
       margin-left: 580px;
     }
-    
-
-    .total{
-        margin-left: 1200px;
+.total{
+    margin-left: 1200px;
     }
   

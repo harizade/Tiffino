@@ -23,7 +23,6 @@ export class CreateAccountComponent {
     });
   }
 
-  // Getters for cleaner template code
   get name() { return this.userRegisterForm.get('name')!; }
   get phoneNo() { return this.userRegisterForm.get('phoneNo')!; }
   get email() { return this.userRegisterForm.get('email')!; }

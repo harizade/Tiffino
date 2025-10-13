@@ -57,13 +57,7 @@ export class LoginComponent {
         alert('Something went wrong');
       },
     });
-
-
-   
-  
-
    }
-    
 }
 
   

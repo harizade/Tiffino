@@ -17,17 +17,12 @@
     background-color: rgb(246, 246, 244);
 }
 .bg_nav{
-    /* background-color: rgb(198, 198, 198); */
     margin-top: 80px;
-    /* border-bottom: 2px solid black; */
 } 
 
 pre{
   font-family: poppins;
 }
-
-
-
   .faq-container {
   max-width: 600px;
   margin: auto;
@@ -39,7 +34,6 @@ pre{
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  /* gap: 8px; */
 }
 
 .button-list button {

@@ -27,12 +27,11 @@
       <td class="fw-semibold">{{ meal.mealName || '-' }}</td>
       <td>{{ meal.unitPrice || '-' }}</td>
 
-      <!-- Quantity Controls -->
       <td>
         <div class="d-flex justify-content-center align-items-center">
-          <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity-1}]})">-</button>
+          <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity-1}]})" class="btn btn-outline-secondary btn-sm" >-</button>
           <span class="fw-bold px-2">{{ meal.quantity }}</span>
-          <button class="" (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity+1}]})">+</button>
+          <button class="" (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity+1}]})" class="btn btn-outline-secondary btn-sm">+</button>
         </div>
       </td>
 

@@ -19,7 +19,6 @@ export class MenuComponent {
       console.log(this.data);
     })
   }
-  
 
   toggleMeal(meal: any) {
     meal.isSelected = !meal.isSelected;

@@ -13,35 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-//  kitchens: any[] = [];
-
-// state: string = '';
-// city: string = '';
-// division: string = '';
-
 constructor(private api:ApiService){}
-
-
-// fetchKitchens() {
-//   const payload = {
-//     state: [this.state],
-//     city: [this.city],
-//     division: [this.division]
-//   };
-
-//   this.api.searchFilterForAdmin(payload).subscribe({
-//     next: (res) => {
-//       this.kitchens = res;
-//       console.log('Kitchens:', this.kitchens);
-//     },
-//     error: (err) => {
-//       console.error('Error:', err);
-//     }
-//   });
-// }
-
-
-
 
   logout(){
     this.api.adminLOgout();  

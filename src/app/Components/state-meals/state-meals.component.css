@@ -1,18 +1,14 @@
 .main{
     margin-top: 100px;
 }
-
 .restaurant-img{
       border-radius: 20px;
       height: 190px;
-      
     }
-
     .card-button{
       margin-left: 180px;
       margin-top: -26px;    
     }
-
     .restaurant-card1{
       min-width: 312px;
       flex: 0 0 auto;

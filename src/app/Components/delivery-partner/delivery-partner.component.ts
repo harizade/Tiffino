@@ -98,12 +98,4 @@ getCloudKitchenData() {
   });
 }
 
-
-
-// getCloudKitchenData(){
-//   this.api.getCloudKitchenDeliveryPerson().subscribe(res=>{
-
-//   })
-// }
-
 }

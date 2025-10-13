@@ -30,7 +30,6 @@
         <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger small">
           <div *ngIf="description.errors?.['required']">description is required.</div>
           <div *ngIf="description.errors?.['minlength']">description must be at least 3 characters long.</div>
-          <!-- <div *ngIf="description.errors?.['pattern']">description must contain letters only (no numbers or special characters)</div> -->
         </div>
       </div>
 

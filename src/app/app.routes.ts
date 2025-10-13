@@ -17,12 +17,10 @@ import { AddMealsComponent } from './Components/add-meals/add-meals.component';
 import { ManagerComponent } from './Components/manager/manager.component';
 import { SubscriberComponent } from './Components/subscriber/subscriber.component';
 import { CloudKitchenDataComponent } from './Components/cloud-kitchen-data/cloud-kitchen-data.component';
-import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { SettingComponent } from './Components/setting/setting.component';
 import { OfferComponent } from './Components/offer/offer.component';
 import { authGuard, loginGuard, managerGuard } from './gaurds/auth.guard';
 import { ViewSubscriptionComponent } from './Components/view-subscription/view-subscription.component';
-import { ManagerLoginComponent } from './Components/manager-login/manager-login.component';
 import { DeliveryPartnerDashbordComponent } from './Components/delivery-partner-dashbord/delivery-partner-dashbord.component';
 import { UserSubscriptionComponent } from './Components/user-subscription/user-subscription.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
@@ -31,7 +29,6 @@ import { CartComponent } from './Components/cart/cart.component';
 import { GiftCardComponent } from './Components/gift-card/gift-card.component';
 import { PlaceOrderComponent } from './Components/place-order/place-order.component';
 import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
-import { AssignOrderToDeliveryPersonComponent } from './Components/assign-order-to-delivery-person/assign-order-to-delivery-person.component';
 import { TrackOrderComponent } from './Components/track-order/track-order.component';
 import { ManagerListComponent } from './Components/manager-list/manager-list.component';
 import { CloudKitchenListComponent } from './Components/cloud-kitchen-list/cloud-kitchen-list.component';
@@ -73,7 +70,6 @@ export const routes: Routes = [
       { path:'orders',component:OrdersComponent},
       { path:'cloud_kitchen_data',component:CloudKitchenDataComponent}, 
       { path:'menu',component:MenuComponent},
-      // { path:'assignOrderToDeliveryPerson',component:AssignOrderToDeliveryPersonComponent}   
       ]
     },
    {
