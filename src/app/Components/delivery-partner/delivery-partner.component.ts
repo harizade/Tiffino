@@ -16,7 +16,7 @@ export class DeliveryPartnerComponent {
 
   constructor(private api:ApiService){
       this.addDeliveryPersonForm = new FormGroup({
-        name : new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
+        name : new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s]+$/)]),
         email :new FormControl('',[Validators.required, Validators.email]),
         phoneNo : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
         cloudKitchenId : new FormControl(''),

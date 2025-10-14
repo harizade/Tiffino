@@ -22,7 +22,10 @@ last: any;
   route: any;
 
   constructor(private api: ApiService ,routes:Router,private popup:MatDialog) {
-    this.api.getAllOrderUser().subscribe((res: any) => {
+    this.getOrders();
+  }
+  getOrders(){
+     this.api.getAllOrderUser().subscribe((res: any) => {
       this.orders = res;
     });
    
@@ -64,4 +67,26 @@ viewInvoice(order: any) {
       data: { orderId: order } ,
     });
   }
+
+cancelOrder(orderId: any) {
+  const confirmCancel = confirm('Are you sure you want to cancel this order?');
+  
+  if (!confirmCancel) {
+    return; 
+  }
+
+  this.api.CancelOrder(orderId).subscribe({
+    next: (res) => {
+      console.log('Order cancelled successfully:', res);
+      alert('✅ Order cancelled successfully!');
+      this.getOrders(); 
+    },
+    error: (err) => {
+      console.error('Error cancelling order:', err);
+      alert('❌ Failed to cancel the order. Please try again.');
+    }
+  });
+}
+
+
 }

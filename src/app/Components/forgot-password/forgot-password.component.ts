@@ -18,36 +18,48 @@ export class ForgotPasswordComponent {
   isOtpReceived: boolean = false;
   constructor(private api: ApiService, private router: Router) {
     this.forgotPasswordForm = new FormGroup({
-      emailOrId: new FormControl(''),
+      // emailOrId: new FormControl(''),
+      emailOrId: new FormControl('', [Validators.required, Validators.email]),
+
     });
+      
+
     this.resetPasswordForm = new FormGroup({
        otp: new FormControl('', [Validators.required]),
        newPassword: new FormControl('', [Validators.required]),
        confirmNewPassword: new FormControl('',[Validators.required])
     });
   }
+        get emailOrId() { return this.forgotPasswordForm.get('emailOrId')!; }
 
-  sendOtp() {
-    if (this.forgotPasswordForm.invalid) {
-      alert('Please enter a valid email address.');
-      return;
-    }
+sendOtp() {
+  if (this.forgotPasswordForm.invalid) {
+    alert('Please enter a valid email address.');
+    return;
+  }
 
-    const emailOrIdValue = this.forgotPasswordForm.get('emailOrId')?.value;
-    const emailOrIdData = { emailOrId: emailOrIdValue };
+  const emailOrIdValue = this.forgotPasswordForm.get('emailOrId')?.value;
+  const emailOrIdData = { emailOrId: emailOrIdValue };
 
-    this.api.forgotPassword(emailOrIdData, emailOrIdValue).subscribe({
-      next: (res) => {
-        console.log('OTP sent successfully:', res);
+  this.api.forgotPassword(emailOrIdData, emailOrIdValue).subscribe({
+    next: (res: string) => {
+      console.log('API Response:', res);
+
+      if (res.includes('Invalid')) {
+        alert('Invalid user credentials. Please try again.');
+      } else if (res.includes('Check your Email')) {
         alert('OTP sent successfully! Please check your email.');
         this.isOtpReceived = true;
-      },
-      error: (err) => {
-        console.error('Error sending OTP:', err);
-        alert('Error sending OTP! Please try again.');
-      },
-    });
-  }
+      } else {
+        alert('Unexpected response: ' + res);
+      }
+    },
+    error: (err) => {
+      console.error('Error sending OTP:', err);
+      alert('Error sending OTP! Please try again.');
+    },
+  });
+}
 
   resetPassword(){
     if (this.resetPasswordForm.invalid) {

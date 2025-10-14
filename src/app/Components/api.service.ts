@@ -58,13 +58,13 @@ export class ApiService {
   });
   }
 
-  forgotPassword(data: any, emailOrId: string) {
-    return this.http.post(this.apiUrl + 'auth/forgotPassword', data, {
-      params: { emailOrId: emailOrId },
-      responseType: 'text',
-      withCredentials: true
-    });
-  }
+ forgotPassword(data: any, emailOrId: string) {
+  return this.http.post(this.apiUrl + 'auth/forgotPassword', data, {
+    params: { emailOrId: emailOrId },
+    responseType :'text',
+    withCredentials: true
+  });
+ }
 
  resetPassword(data: any) {
   return this.http.post(this.apiUrl + 'auth/changePassword', null, {
@@ -127,10 +127,13 @@ export class ApiService {
     return this.http.post(this.apiUrl + 'user/orders',data ,{responseType:'text'})
   }
 
+  CancelOrder(orderId: any) {
+  return this.http.delete(`${this.apiUrl}user/deleteOrder/${orderId}`,{responseType:'text'});
+}
+
   getAllOrderUser(){
     return this.http.get(this.apiUrl + 'user/getAllOrders')
   }
-
 
   trackOrder(id: number) {
   return this.http.get(`${this.apiUrl}user/trackOrder/${id}`);
@@ -139,7 +142,6 @@ export class ApiService {
   ratting_Reviews(review:any){
     return this.http.post(this.apiUrl + 'user/createReview',review,{responseType:'text'})
   }
- 
 
   viewInvoice(id: number, options?: any) {
     return this.http.get(this.apiUrl + 'user/viewInvoice/' + id, {...options,responseType: 'blob'});
@@ -285,7 +287,8 @@ addCloudKitchen(data: any) {
      return this.http.get(this.apiUrl + 'superAdmin/getAllCloudKItchenAndReviews')
    }
 
-
-
-
 }
+
+
+
+
