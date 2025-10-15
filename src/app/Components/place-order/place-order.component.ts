@@ -3,7 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-place-order',
@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 export class PlaceOrderComponent {
  placeOrderForm :FormGroup
 
- constructor(private api:ApiService){
+ constructor(private api:ApiService ,private router:Router){
   this.placeOrderForm = new FormGroup({
      phoneNo: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
      state: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
@@ -46,6 +46,7 @@ export class PlaceOrderComponent {
       console.log('Order placed successfully!', res);
       alert('✅ Order placed successfully!');
       this.placeOrderForm.reset();  
+       this.router.navigate(['/trackOrder/'+res]);
        
     },
     error: (err) => {

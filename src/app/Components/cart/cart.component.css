@@ -22,3 +22,21 @@
     margin-left: 1200px;
     }
   
+
+
+    .allergy-section {
+  border: 2px dashed #ffc107;
+  background-color: #fff8e1;
+}
+
+.allergy-section .btn.active {
+  background-color: #fe9a21;
+  color: white;
+  border-color: #fe9a21;
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, #fe9a21, #ff6b00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

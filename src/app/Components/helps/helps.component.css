@@ -1,58 +1,27 @@
-  h2{
-    font-weight: bold;
+.help-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
 }
 
-.button{
-    height: 60px;
-    width: 350px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    padding: px;
-    align-items: center;
-    text-align: center;
-    float: right;
-    border-radius: 20px;
-}
-.bg_button{
-    background-color: rgb(246, 246, 244);
-}
-.bg_nav{
-    margin-top: 80px;
-} 
-
-pre{
-  font-family: poppins;
-}
-  .faq-container {
-  max-width: 600px;
-  margin: auto;
-  margin-top: 20px;
-  font-family: Arial, sans-serif;
+.accordion-button {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid rgb(202, 201, 201);
 }
 
-.button-list {
-  display: flex;
-  flex-direction: column;
-  border-radius: 20px;
+.accordion-button:not(.collapsed) {
+  background-color: #d9dadc;
 }
 
-.button-list button {
-  padding: px;
-  border: none;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  text-align: left;
-  font-size: 16px;
+.accordion-body {
+  background: #ffffff;
+  border-radius: 0 0 12px 12px;
 }
-
-.button-list button:hover {
-  background-color: #e0e0e0;
-  color: red;
+.accordion-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
 }
-
- 
-
-
 
 
 

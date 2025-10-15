@@ -18,7 +18,7 @@ export class EditUserComponent {
    constructor(private api:ApiService ,private router:Router){
     this.editProfileForm = new FormGroup({
       name:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
-      address:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
+      address:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z0-9 ,\-]+$/)]),
       mealPreference:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
       dietaryNeeds:new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
     })
@@ -50,4 +50,4 @@ editUser() {
 }
  }
 
- 
+

@@ -8,7 +8,7 @@
     <h3 class="text-center fw-bold">Update Profile</h3>
     <form [formGroup]="editProfileForm" (ngSubmit)="editUser()">
       <div class="mb-2">
-        <!-- Name -->
+        
         <label class="form-label">Edit Name </label>
         <input type="text" class="form-control custom-border" placeholder="User name" formControlName="name">
         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger small">
@@ -24,7 +24,7 @@
         <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-danger small">
           <div *ngIf="address.errors?.['required']">Address is required.</div>
           <div *ngIf="address.errors?.['minlength']">Address must be at least 3 characters long.</div>
-          <div *ngIf="address.errors?.['pattern']">Address must contain letters only (no numbers or special characters)</div>
+          <div *ngIf="address.errors?.['pattern']">Address must contain letters & Numbers only (no special characters)</div>
         </div>
       </div>
       
@@ -52,5 +52,4 @@
     </form>
   </div>
 </div>
-
 </div>

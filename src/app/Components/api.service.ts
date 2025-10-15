@@ -171,6 +171,10 @@ getOffer(){
     return this.http.post(this.apiUrl + 'user/updateUser',data,{ responseType: 'text' })
   }
 
+  addAllergies(data:any){
+     return this.http.post(this.apiUrl + 'user/addAllergies',data,{ responseType: 'text' })
+  }
+
 
 
                                       // Manager Side Api
