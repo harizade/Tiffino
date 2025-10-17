@@ -43,15 +43,13 @@
   color: white;
 }
 
-/* Main content card */
 .main {
-  margin-top: 20px;
   background: #fff;
   border-radius: 15px;
-  /* color: #333; */
+   max-height: 87vh;
+  overflow: auto;
 }
 
-/* Button styling */
 .btn-outline-light {
   border: 1px solid #fff;
   transition: 0.3s;
@@ -61,3 +59,4 @@
   color: #ff6600;
   border-color: #fff;
 }
+

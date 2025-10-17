@@ -44,6 +44,18 @@
              style="min-width: 200px;">
           <p class="fw-bold fs-4 text-dark mb-2">₹ {{ order.totalCost }} /-</p>
           <p class="mb-0">
+             <span *ngIf="order.orderStatus === 'PENDING'" 
+                  class="badge bg-danger rounded-pill px-3 py-2 fs-6 shadow-sm">
+              ⏳ Pending
+            </span>
+             <span *ngIf="order.orderStatus === 'ACCEPTED-ORDER'" 
+                  class="badge bg-danger rounded-pill px-3 py-2 fs-6 shadow-sm">
+              ⏳ Accept Your Order
+            </span>
+            <span *ngIf="order.orderStatus === 'ORDER-PREPARED'" 
+                  class="badge bg-danger rounded-pill px-3 py-2 fs-6 shadow-sm">
+              ⏳ Prepare Your Order
+            </span>
             <span *ngIf="order.orderStatus === 'DELIVERED'" 
                   class="badge bg-success rounded-pill px-3 py-2 fs-6 shadow-sm">
               ✔ Delivered
@@ -52,10 +64,7 @@
                   class="badge bg-warning text-dark rounded-pill px-3 py-2 fs-6 shadow-sm">
               🚚 Out for Delivery
             </span>
-            <span *ngIf="order.orderStatus === 'PENDING'" 
-                  class="badge bg-danger rounded-pill px-3 py-2 fs-6 shadow-sm">
-              ⏳ Pending
-            </span>
+           
             <span *ngIf="order.orderStatus === 'ASSIGNED_TO_DELIVERY'" 
                   class="badge bg-secondary rounded-pill px-3 py-2 fs-6 shadow-sm">
               👤 Assign

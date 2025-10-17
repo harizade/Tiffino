@@ -93,9 +93,9 @@
           <th>Cloud Kitchen</th>
           <th>Meal Photo</th>
           <th>Meal Name</th>
-          <th>Unit Price (₹)</th>
-          <th>Quantity</th>
-          <th>Total (₹)</th>
+          <th *ngIf="!data.hasSubscribed">Unit Price (₹)</th>
+          <th *ngIf="!data.hasSubscribed">Quantity</th>
+          <th *ngIf="!data.hasSubscribed">Total (₹)</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -109,19 +109,19 @@
                  style="width: 70px; height: 70px; object-fit: cover;">
           </td>
           <td class="fw-semibold">{{ meal.mealName || '-' }}</td>
-          <td>{{ meal.unitPrice || '-' }}</td>
+          <td *ngIf="!data.hasSubscribed">{{ meal.unitPrice || '-' }}</td>
 
-          <td>
+          <td *ngIf="!data.hasSubscribed">
             <div class="d-flex justify-content-center align-items-center">
               <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity-1}]})"
-                      class="btn btn-outline-secondary btn-sm">-</button>
+                      class="btn btn-outline-secondary btn-sm" [disabled]="meal.quantity <= 1">-</button>
               <span class="fw-bold px-2">{{ meal.quantity }}</span>
               <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity+1}]})"
                       class="btn btn-outline-secondary btn-sm">+</button>
             </div>
           </td>
 
-          <td class="fw-bold text-success">{{ (meal.unitPrice || 0) * meal.quantity }}</td>
+          <td *ngIf="!data.hasSubscribed" class="fw-bold text-success">{{ (meal.unitPrice || 0) * meal.quantity }}</td>
           <td>
             <div class="text-danger" style="cursor: pointer;">
               <i class="bi bi-trash text-danger h4" (click)="removeItem(meal.mealId)"></i>

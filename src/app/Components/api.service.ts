@@ -175,6 +175,8 @@ getOffer(){
      return this.http.post(this.apiUrl + 'user/addAllergies',data,{ responseType: 'text' })
   }
 
+  
+
 
 
                                       // Manager Side Api
@@ -190,8 +192,8 @@ getOffer(){
    }
   
   cloudeKitchenData(){
-    return this.http.get(this.apiUrl + 'manager/getDataOfCloudKitchen');
-  }
+    return this.http.get(this.apiUrl + 'auth/getProfile');
+  }   
 
   getAllDeliveryPersons() {
     return this.http.get<any[]>(`${this.apiUrl}manager/listOfDeliveryPersonIsAvailable`);
@@ -204,7 +206,29 @@ getOffer(){
     });
   }
 
+  acceptOrder(orderId: number) {
+  return this.http.post(
+    this.apiUrl + 'manager/acceptedOrder/' + orderId, 
+    {}, 
+    { responseType: 'text' } 
+  );
+}
 
+
+  orderPrepared(orderId: number){
+    return this.http.post(this.apiUrl + 'manager/orderPrepared/' + orderId,
+       {},
+       {responseType: 'text'}
+    );
+  }
+
+  getAllDetails(){
+    return this.http.get(this.apiUrl + 'manager/getAllDetails')
+  }
+
+  openClosedCloudKitchen(data:any){
+    return this.http.post(this.apiUrl + 'manager/openClosedCloudKitchen',data)
+  }
 
                                       // Delivery partner Side Api
 

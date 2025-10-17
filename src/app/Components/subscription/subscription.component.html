@@ -5,7 +5,7 @@
 <div class="container mt-4 d-flex justify-content-center">
     <div class="card shadow p-4">
         <h3 class="text-center mb-3 fw-bold">Get Subscription Plans</h3>
-        <form action="" [formGroup]="subscriptionForm" (ngSubmit)="addSubscription()">
+        <form action="" [formGroup]="subscriptionForm">
   <div class="mb-3">
                 <label for="duration"class="form-label">Subscription Type</label>
                 <select class="form-select custom-border"aria-label="Default select example"
@@ -63,7 +63,7 @@
               <label class="form-label">GiftCard CodeInput</label>
               <input type="text" class="form-control custom-border form-select" formControlName="giftCardCodeInput" required />
             </div>
-        <button type="submit" class="button border-0 w-100 text-white p-1 mt-1 mb-2">Submit</button>
+        <button type="submit" class="button border-0 w-100 text-white p-1 mt-1 mb-2" (click)=" addSubscription()">Submit</button>
             </form>
         </div>
         </div>

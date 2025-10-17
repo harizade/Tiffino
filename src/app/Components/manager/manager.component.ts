@@ -11,10 +11,31 @@ import { ApiService } from '../api.service';
   styleUrl: './manager.component.css'
 })
 export class ManagerComponent {
+  
+  isOpen: boolean = false;
  constructor(private api:ApiService,private router: Router){
- 
-   }
+    // this.toggleCloudKitchen();
+ }
+
+   toggleCloudKitchen() {
+    const data = { status: this.isOpen ? 'close' : 'open' };
+
+    this.api.openClosedCloudKitchen(data).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.isOpen = !this.isOpen; 
+        alert(`Cloud Kitchen is now ${this.isOpen ? 'Open' : 'Closed'}`);
+      },
+      error: (err) => {
+        console.error('Error:', err);
+        alert('Something went wrong!');
+      }
+    });
+  }
+
+  
    logout(){
      this.api.adminLOgout();  
    }
+
 }

@@ -54,4 +54,34 @@ assignOrder(orderId: number, deliveryPersonId: number) {
     }
   });
 }
+acceptOrder(orderId: number) {
+  this.api.acceptOrder(orderId).subscribe({
+    next: (res) => {
+      console.log('Order accepted:', res);
+      alert('✅ Order accepted!');
+    this.loadOrders();
+    },
+    error: (err) => {
+      console.error('Error while accepting order:', err);
+      alert('❌ Failed to accept order. Please try again.');
+    }
+  });
+}
+
+orderPrepared(orderId: number) {
+  this.api.orderPrepared(orderId).subscribe({
+    next: (res) => {
+      console.log('Order Prepared:', res);
+      alert('✅ orderPrepared!');
+    this.loadOrders();
+    },
+    error: (err) => {
+      console.error('Error while Order Prepared:', err);
+      alert('❌ Failed to Order Prepared. Please try again.');
+    }
+  });
+}
+
+
+
 }

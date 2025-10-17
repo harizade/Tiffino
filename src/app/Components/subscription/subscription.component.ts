@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 export class SubscriptionComponent {
   subscriptionForm: FormGroup;
 
-  constructor(private api:ApiService){
+  constructor(private api:ApiService ,private router:Router){
  this.subscriptionForm = new FormGroup({
       durationType: new FormControl(''),
       mealTime: new FormControl('[]'),
@@ -45,8 +45,24 @@ export class SubscriptionComponent {
   const mealTimes: string[] = this.subscriptionForm.get('mealTime')?.value || [];
   mealTimes.forEach(time => formData.append('mealTimes', time));
 
-  const allergies: string[] = this.subscriptionForm.get('allergies')?.value || [];
+
+let allergies = this.subscriptionForm.get('allergies')?.value;
+
+if (typeof allergies === 'string') {
+  try {
+    allergies = JSON.parse(allergies);
+  } catch {
+    allergies = [];
+  }
+}
+
+if (Array.isArray(allergies) && allergies.length > 0) {
   allergies.forEach(allergy => formData.append('allergies', allergy));
+} else {
+  formData.append('allergies', '');
+}
+
+
 
   const file = this.subscriptionForm.get('dietaryFile')?.value;
   if (file) {
@@ -87,7 +103,11 @@ this.api.userSubscription(formData).subscribe({
       customClass: {
         popup: 'animated fadeInDown'
       }
-    });
+    }).then((result) => {
+  if (result.isConfirmed) {
+    this.router.navigate(['/']);
+  }
+});
 
     this.subscriptionForm.reset();
     const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');

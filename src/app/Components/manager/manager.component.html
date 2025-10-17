@@ -2,16 +2,21 @@
   <div class="sidebar text-white p-3">
     <h4 class="text-center mb-4 fw-bold">Manager</h4>
     <a routerLink="/manager/cloud_kitchen_data" routerLinkActive="active">Cloud_Kitchen Data</a>
-
     <a routerLink="/manager/orders" routerLinkActive="active">Orders</a>
-
     <a routerLink="/manager/menu" routerLinkActive="active">Add Menu</a>
+    <a routerLink="/manager/viewSummary" routerLinkActive="active">View Summary</a>
     
-    <!-- <a routerLink="/order" routerLinkActive="active">Assign Order</a> -->
   </div>
 
   <div class="content flex-grow-1 py-4">
-    <nav class="navbar navbar shadow-sm mb-3 px-3">
+    <nav class="navbar navbar shadow-sm mb-1 px-3">
+
+     <button (click)="toggleCloudKitchen()" class="btn rounded-circle"
+        [ngClass]="isOpen ? 'btn-outline-danger' : 'btn-outline-success'">
+       <i class="bi" [ngClass]="isOpen ? 'bi-lock-fill' : 'bi-unlock-fill'"></i>
+       {{ isOpen ? '' : '' }}
+     </button>
+
       <span class="navbar-brand mx-auto fw-bold text-dark">Manager Dashboard</span>
       <button class="btn btn-outline-dark rounded-circle" (click)="logout()">
         <i class="bi bi-box-arrow-right"></i>

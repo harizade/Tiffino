@@ -1,27 +1,18 @@
-h4{
-    margin-left: 195px;
-    font-weight: bold;
-}
-.button{
- margin-left: 250px;
- margin-top: 10px;
- margin-bottom: 10px;
- border-radius: 8px;
-}
-.card-header{
-    margin-left: 500px;
-    font-weight: bold;
-}
-.card-body{
-border-bottom: 1px solid black;    
-}
-.card-title{
-   font-weight: bold; 
+
+ .text-gradient {
+  background: linear-gradient(90deg, #ffb703, #fb8500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.text{
-    margin-top: 15px;
-    margin-left: 30px;
-    font-weight: bold;
+.icon-circle {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
+ 
