@@ -7,7 +7,8 @@
   <h2 class="text-center mb-4">{{ stateName }} Meals</h2>
   <div class="row g-4">
     <div class="col-md-3 col-sm-6" *ngFor="let meal of meal">
-      <div class="restaurant-card1">
+      <div class="restaurant-card1"
+       [ngClass]="{ 'closed-card': !meal.isOpened }">
         <div class="position-relative">
           <img
             [src]="meal.photos"
@@ -44,6 +45,7 @@
           <div class="text-center">
            <button
             class="btn btn-outline-success card-button"
+            [disabled]="!meal.isOpened"
             (click)="checkIsItemInCart(meal.mealId, meal.cloudKitchenId) ? goToCart() : addToCart(meal)">
             {{ checkIsItemInCart(meal.mealId, meal.cloudKitchenId) ? 'Go to Cart' : 'Add to Cart' }}
           </button>

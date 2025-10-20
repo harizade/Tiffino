@@ -30,7 +30,8 @@
     <div *ngIf="Meals && Meals.length > 0; else noMeals">
       <div class="row">
         <div *ngFor="let meal of Meals" class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+          <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden"
+          [ngClass]="{ 'closed-card': !meal.isOpened }">
             <img
               [src]="meal.photos"
               class="card-img-top"
@@ -62,6 +63,7 @@
         <div class="text-muted small" >
    <button
   class="btn btn-outline-success card-button"
+  [disabled]="!meal.isOpened"
   (click)="checkIsItemInCart(meal.mealId, meal.cloudKitchenId) ? goToCart() : addToCart(meal)">
   {{ checkIsItemInCart(meal.mealId, meal.cloudKitchenId) ? 'Go to Cart' : 'Add to Cart' }}
 </button>

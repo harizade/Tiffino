@@ -11,19 +11,35 @@ import { ApiService } from '../api.service';
   styleUrl: './manager.component.css'
 })
 export class ManagerComponent {
-  
+ value: any;
   isOpen: boolean = false;
- constructor(private api:ApiService,private router: Router){
-    // this.toggleCloudKitchen();
- }
 
-   toggleCloudKitchen() {
-    const data = { status: this.isOpen ? 'close' : 'open' };
+  constructor(private api: ApiService, private router: Router) {}
+
+  ngOnInit() {
+    this.status(); 
+  }
+
+  status() {
+    this.api.cloudeKitchenData().subscribe({
+      next: (res: any) => {
+        this.value = res;
+        this.isOpen = res?.cloudKitchen?.isOpened ?? false;
+        console.log('Cloud Kitchen Status:', this.isOpen ? 'Open' : 'Closed');
+      },
+      error: (err) => {
+        console.error('Error fetching status:', err);
+      }
+    });
+  }
+
+  toggleCloudKitchen() {
+    const data = { status: this.isOpen ? 'open' : 'close' };
 
     this.api.openClosedCloudKitchen(data).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.isOpen = !this.isOpen; 
+        this.isOpen = !this.isOpen;
         alert(`Cloud Kitchen is now ${this.isOpen ? 'Open' : 'Closed'}`);
       },
       error: (err) => {
@@ -33,9 +49,13 @@ export class ManagerComponent {
     });
   }
 
-  
+
    logout(){
      this.api.adminLOgout();  
    }
 
 }
+                                
+
+
+                                                  

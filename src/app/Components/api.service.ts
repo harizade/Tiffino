@@ -227,7 +227,7 @@ getOffer(){
   }
 
   openClosedCloudKitchen(data:any){
-    return this.http.post(this.apiUrl + 'manager/openClosedCloudKitchen',data)
+    return this.http.post(this.apiUrl + 'manager/openClosedCloudKitchen',data,{ responseType: 'text' })
   }
 
                                       // Delivery partner Side Api

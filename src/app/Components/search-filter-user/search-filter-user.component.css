@@ -2,3 +2,14 @@
       margin-left: 147px;
       margin-top: -7px;    
     }
+
+    .closed-card {
+  filter: grayscale(100%) brightness(0.8);
+  opacity: 0.7;
+  pointer-events: none; 
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.closed-card .card-button {
+  pointer-events: auto; 
+}
