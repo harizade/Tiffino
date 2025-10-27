@@ -12,15 +12,15 @@
     <nav class="navbar navbar shadow-sm mb-1 px-3">
 
      <button (click)="toggleCloudKitchen()" class="btn rounded-circle"
-  [ngClass]="isOpen ? 'btn-outline-success' : 'btn-outline-danger'"
-  [title]="isOpen ? 'Click to Open Cloud Kitchen' : 'Click to Close Cloud Kitchen'">
-  <i class="bi" [ngClass]="isOpen ? 'bi-unlock-fill' : 'bi-lock-fill'"></i>
-</button>
+      [ngClass]="isOpen ? 'btn-outline-success' : 'btn-outline-danger'"
+      [title]="isOpen ? 'Click to Open Cloud Kitchen' : 'Click to Close Cloud Kitchen'">
+      <i class="bi" [ngClass]="isOpen ? 'bi-unlock-fill' : 'bi-lock-fill'"></i>
+     </button>
 
       <span class="navbar-brand mx-auto fw-bold text-dark">Manager Dashboard</span>
-      <button class="btn btn-outline-dark rounded-circle" (click)="logout()">     
+       <button class="btn btn-outline-dark rounded-circle" (click)="logout()">     
         <i class="bi bi-box-arrow-right"></i>
-      </button>
+       </button>
     </nav>
 
     <div class="main card shadow-sm p-4  text-light rounded-3">

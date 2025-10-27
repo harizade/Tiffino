@@ -55,6 +55,13 @@
 </button>
 
 <button 
+  *ngIf="row.orderStatus === 'DELIVERED'" 
+  type="button" 
+  class="btn btn-success actionButton">
+  Delivered
+</button>
+
+<button 
   *ngIf="row.orderStatus === 'ASSIGNED_TO_DELIVERY'" 
   type="button" 
   class="btn btn-secondary actionButton"
@@ -105,6 +112,9 @@
 
   </div>
 </div>
+
+
+
 
 
 

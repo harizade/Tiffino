@@ -160,7 +160,7 @@ getAllCuisinesUser(){
  }
 
  getAvailableMealsByStateName(stateName: string) {
-  return this.http.get(this.apiUrl + 'user/getAllMealsByCuisineName/' + stateName);
+  return this.http.get(this.apiUrl + 'user/getAllMealsByStateName/' + stateName);
 }
 
 getOffer(){
