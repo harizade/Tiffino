@@ -1,91 +1,9 @@
-
-
-
   <div class="position-fixed top-0 start-0 end-0 z-3">
   <app-navbar></app-navbar>
 </div>
 
-<!-- <div class="main">
-
-  <div *ngIf="meals && meals.length > 0; else emptyCart">
-
-    <table class="table table-bordered align-middle shadow-sm">
-      <thead class="table-light text-center">
-        <tr>
-          <th>#</th>
-          <th>Cloud Kitchen</th>
-          <th>Meal Photo</th>
-          <th>Meal Name</th>
-          <th>Unit Price (₹)</th>
-          <th>Quantity</th>
-          <th>Total (₹)</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let meal of meals; let i = index" class="text-center">
-          <td>{{ i + 1 }}</td>
-          <td>{{ data.cloudKitchenName }}</td>
-          <td>
-            <img [src]="meal.mealPhotos" class="img-thumbnail" alt="" 
-                 style="width: 70px; height: 70px; object-fit: cover;">
-          </td>
-          <td class="fw-semibold">{{ meal.mealName || '-' }}</td>
-          <td>{{ meal.unitPrice || '-' }}</td>
-
-          <td>
-            <div class="d-flex justify-content-center align-items-center">
-              <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity-1}]})" 
-                      class="btn btn-outline-secondary btn-sm">-</button>
-              <span class="fw-bold px-2">{{ meal.quantity }}</span>
-              <button (click)="changeQuantity({items:[{mealId: meal.mealId,quantity: meal.quantity+1}]})" 
-                      class="btn btn-outline-secondary btn-sm">+</button>
-            </div>
-          </td>
-
-          <td class="fw-bold text-success">{{ (meal.unitPrice || 0) * meal.quantity }}</td>
-          <td>
-            <div class="text-danger" style="cursor: pointer;">
-              <i class="bi bi-trash text-danger h4" (click)="removeItem(meal.mealId)"></i>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="justify-content-between align-items-center mt-3 p-3 border-top">
-      <h5 class="mb-0 total">
-        Total Amount:
-        <span class="text-primary fw-bold">₹ {{ getGrandTotal() }}</span>
-      </h5>
-    </div>
-
-    <button class="btn order-btn w-25 mt-5" routerLink="/place_order">
-      Place Order
-    </button>
-
-  </div>
-
-  <ng-template #emptyCart>
-    <div class="text-center mt-5 p-5 text-muted">
-      <i class="bi bi-cart-x fs-1 d-block mb-3"></i>
-      <h4>Your cart is empty</h4>
-      <p class="text-secondary">Looks like you haven’t added anything yet!</p>
-      <a routerLink="/" class="btn btn-warning mt-3 rounded-pill px-4">
-        Add Meals
-      </a>
-    </div>
-  </ng-template>
-
-</div> -->
-
-
-
 <div class="main">
-
   <div *ngIf="meals && meals.length > 0; else emptyCart">
-
     <table class="table table-bordered align-middle shadow-sm">
       <thead class="table-light text-center">
         <tr>
@@ -138,7 +56,7 @@
       </h5>
     </div>
 
-    <!-- 🟡 Allergies Section -->
+    <!--  Allergies Section -->
     <div *ngIf="!data.hasSubscribed" class="allergy-section mt-5 p-4 rounded-4 shadow-sm bg-light">
       <h5 class="fw-bold mb-3 text-gradient">Do you have any food allergies?</h5>
       <p class="text-muted mb-3">Select or type your allergies below. We’ll ensure your meals are prepared safely.</p>
@@ -172,7 +90,7 @@
       </div> 
     </div>
 
-    <!-- 🟢 Place Order -->
+    <!--  Place Order -->
     <div class="text-center">
       <button class="btn order-btn w-25 mt-5 rounded-pill"
               routerLink="/place_order">
@@ -195,3 +113,7 @@
   </ng-template>
 
 </div>
+
+
+
+    

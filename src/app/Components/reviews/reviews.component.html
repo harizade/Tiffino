@@ -18,7 +18,7 @@
           <p class="mb-1"><strong>Division:</strong> {{ kitchen.division }}</p>
 
           <div class="mt-3">
-            <h6>⭐ Reviews:</h6>
+            <h6>⭐ Reviews:</h6>    
             <div *ngIf="kitchen.reviews?.length > 0; else noReview">
               <div *ngFor="let review of kitchen.reviews" class="border-bottom py-2">
                 <div>
@@ -40,6 +40,8 @@
     </div>
   </div>
 </div>
-
-
 </div>
+
+
+
+                         

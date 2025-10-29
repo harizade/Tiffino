@@ -9,3 +9,8 @@
 </div>
 
 </div>
+<div class="container mt-4" *ngIf="subscriber && subscriber.length === 0">
+  <div class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle"></i> No Subscriber found.
+  </div>
+</div>

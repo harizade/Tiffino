@@ -28,49 +28,46 @@
                   <td>{{ row.orderDate }}</td>
                   <td>{{ row.orderTime }}</td>
                   <td>
-                  
+                  <button 
+                   *ngIf="row.orderStatus === 'PENDING'" 
+                    type="button" 
+                    class="btn btn-success actionButton"
+                    (click)="acceptOrder(row.orderId)">
+                    Accept
+                  </button>
 
-<button 
-  *ngIf="row.orderStatus === 'PENDING'" 
-  type="button" 
-  class="btn btn-success actionButton"
-  (click)="acceptOrder(row.orderId)">
-  Accept
-</button>
+                  <button 
+                   *ngIf="row.orderStatus === 'ACCEPTED-ORDER'" 
+                   type="button" 
+                   class="btn btn-warning text-light actionButton"
+                   (click)="orderPrepared(row.orderId)">
+                   Prepared
+                  </button>
 
-<button 
-  *ngIf="row.orderStatus === 'ACCEPTED-ORDER'" 
-  type="button" 
-  class="btn btn-warning text-light actionButton"
-  (click)="orderPrepared(row.orderId)">
-  Prepared
-</button>
+                  <button 
+                   *ngIf="row.orderStatus === 'ORDER-PREPARED'" 
+                   type="button" 
+                   class="btn btn-danger actionButton"
+                   (click)="showDeliveryPersons(row.orderId)">
+                   Assign
+                  </button>
 
-<button 
-  *ngIf="row.orderStatus === 'ORDER-PREPARED'" 
-  type="button" 
-  class="btn btn-danger actionButton"
-  (click)="showDeliveryPersons(row.orderId)">
-  Assign
-</button>
+                  <button 
+                   *ngIf="row.orderStatus === 'DELIVERED'" 
+                   type="button" 
+                   class="btn btn-success actionButton">
+                   Delivered
+                  </button>
 
-<button 
-  *ngIf="row.orderStatus === 'DELIVERED'" 
-  type="button" 
-  class="btn btn-success actionButton">
-  Delivered
-</button>
-
-<button 
-  *ngIf="row.orderStatus === 'ASSIGNED_TO_DELIVERY'" 
-  type="button" 
-  class="btn btn-secondary actionButton"
-  disabled>
-  Assigned
-</button>
-
-
-</td>
+                  <button 
+                   *ngIf="row.orderStatus === 'ASSIGNED_TO_DELIVERY'" 
+                   type="button" 
+                   class="btn btn-secondary actionButton"
+                   disabled>
+                   Assigned
+                  </button>
+        
+                </td>
                 </tr>
               </tbody>
             </table>
@@ -109,14 +106,7 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 
-
-
-
-
- 
-     

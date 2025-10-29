@@ -16,16 +16,13 @@
       font-weight: bold;
       border-radius: 8px;
       height: 50px;
-      /* margin-left: px; */
     }
 .total{
     margin-left: 1200px;
     }
-  
-
 
     .allergy-section {
-  border: 2px dashed #ffc107;
+  border: 2px solid #ffc107;
   background-color: #fff8e1;
 }
 
@@ -40,3 +37,5 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+    
+
