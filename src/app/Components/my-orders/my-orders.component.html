@@ -85,6 +85,14 @@
            (click)="cancelOrder(order.orderId)">
           ❌ Cancel 
        </button>
+        <button 
+  class="btn btn-outline-danger btn-sm rounded-pill shadow-sm ms-2"  
+  *ngIf="order.orderStatus === 'DELIVERED'"
+  (click)="openChatbot()">
+  ❓ Help
+</button>
+
+       
         <button class="btn btn-outline-primary btn-sm rounded-pill shadow-sm ms-2" 
                 (click)="viewInvoice(order)">
           📄 View Invoice
@@ -110,5 +118,18 @@
       </a>
     </div>
   </ng-template>
+
+  <!-- Chatbot Popup -->
+<div class="chatbot-backdrop" *ngIf="chatbotVisible" (click)="closeChatbot()"></div>
+<div class="chatbot-box shadow-lg rounded-4 p-3" *ngIf="chatbotVisible">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h6 class="m-0 text-danger">Tiffino Help Chat</h6>
+    <button class="btn btn-sm btn-light" (click)="closeChatbot()">✖</button>
+  </div>
+  <div class="chat-content border rounded p-2 mb-2" style="height: 200px; overflow-y: auto;">
+    <p class="text-muted small">Hi! How can I help you with this order?</p>
+  </div>
+  <input type="text" class="form-control form-control-sm" placeholder="Type your message...">
+</div>
 
 </div>

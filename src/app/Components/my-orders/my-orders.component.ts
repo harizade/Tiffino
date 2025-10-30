@@ -88,5 +88,15 @@ cancelOrder(orderId: any) {
   });
 }
 
+ chatbotVisible = false;
+
+  openChatbot() {
+    this.chatbotVisible = true;
+  }
+
+  closeChatbot() {
+    this.chatbotVisible = false;
+  }
 
 }
+
