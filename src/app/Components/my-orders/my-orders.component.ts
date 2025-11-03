@@ -21,7 +21,9 @@ export class MyOrdersComponent {
 last: any;
   route: any;
 
-  constructor(private api: ApiService ,routes:Router,private popup:MatDialog) {
+
+
+  constructor(private api: ApiService ,private router:Router,private popup:MatDialog) {
     this.getOrders();
   }
   getOrders(){
@@ -92,12 +94,14 @@ cancelOrder(orderId: any) {
 
   openChatbot() {
     this.chatbotVisible = true;
+    this.router.navigate(['/myOrders/chatbot']);
   }
 
   closeChatbot() {
     this.chatbotVisible = false;
+    this.router.navigate(['/myOrders']);
   }
-
+  
   
 
 }

@@ -2,7 +2,7 @@
   <app-navbar></app-navbar>
 </div>
 
-<div class="container ">
+< class="container ">
 
   <div *ngIf="orders && orders.length > 0; else noOrders">
     <div *ngFor="let order of orders" 
@@ -118,24 +118,7 @@
     </div>
   </ng-template>
 
-  <!-- Chatbot Popup -->
-<!-- <div class="chatbot-backdrop" *ngIf="chatbotVisible" (click)="closeChatbot()"></div>
-<div class="chatbot-box shadow-lg rounded-4 p-3" *ngIf="chatbotVisible">
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <h6 class="m-0 text-danger">Tiffino Help Chat</h6>
-    <button class="btn btn-sm btn-light" (click)="closeChatbot()">✖</button>
-  </div>
-  <div class="chat-content border rounded p-2 mb-2" style="height: 380px; overflow-y: auto;">
-    <p class="text-muted small">Hi! How can I help you with this order?</p>
-
-  </div>
-  
-   <div class="input-group input-group-sm">
-    <input type="text" class="form-control form-control rounded-pill me-2" placeholder="Type your message...">
-    <button class="btn btn-success send"><i class="bi bi-send-fill fs-6"></i></button>
-  </div>
-</div>  -->
-
+ 
 <div class="chatbot-backdrop" *ngIf="chatbotVisible" (click)="closeChatbot()"></div>
 
 <div class="chatbot-box shadow-lg rounded-4 p-3" *ngIf="chatbotVisible">
@@ -144,31 +127,17 @@
     <button class="btn btn-sm btn-light" (click)="closeChatbot()">✖</button>
   </div>
 
-  <div class="chat-content border rounded p-2 mb-2" style="height: 380px; overflow-y: auto;">
-    <p class="text-muted small">Hi! How can I help you with this order?</p>
-
-    <!-- 👇 Add food issue options here -->
-    <div class="mt-2">
-      <p class="fw-semibold small mb-1">Choose an issue:</p>
-      <button class="btn btn-outline-danger btn-sm w-100 text-start mb-1" >
-        🚫 Food was cold
-      </button>
-      <button class="btn btn-outline-danger btn-sm w-100 text-start mb-1" >
-        🚫 Wrong item delivered
-      </button>
-      <button class="btn btn-outline-danger btn-sm w-100 text-start mb-1" >
-        🚫 Food quality issue
-      </button>
-      <button class="btn btn-outline-danger btn-sm w-100 text-start" >
-        ❓ Other issue
-      </button>
-    </div>
-  </div>
+    <router-outlet></router-outlet>
     
-  <div class="input-group ">
-    <input type="text" class="form-control rounded-pill me-2" placeholder="Type your message...">
-    <button class="btn btn-success send"><i class="bi bi-send-fill fs-6"></i></button>
-  </div>
-</div>
+</div> 
 
-</div>
+
+ 
+
+
+
+
+
+
+
+ 
