@@ -4,3 +4,52 @@
   border-radius: 50%;
   padding: 0;
 }
+
+.chatbot-box {
+  width: 380px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.user-msg {
+  text-align: right;
+}
+
+.user-msg p {
+  display: inline-block;
+  background-color: #dcf8c6;
+  padding: 8px 12px;
+  border-radius: 20px;
+  margin: 4px 0;
+}
+
+.bot-msg p {
+  display: inline-block;
+  background-color: #eee;
+  padding: 8px 12px;
+  border-radius: 20px;
+  margin: 4px 0;
+}
+
+.chat-footer {
+  display: flex;
+}
+
+.send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.upload-btn {
+  cursor: pointer;
+}

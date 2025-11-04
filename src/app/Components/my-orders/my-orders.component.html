@@ -88,7 +88,7 @@
         <button 
            class="btn btn-outline-danger btn-sm rounded-pill shadow-sm ms-2"  
            *ngIf="order.orderStatus === 'DELIVERED'"
-           (click)="openChatbot()">
+           (click)="openChatbot(order.orderId)">
            ❓ Help
         </button>
 
@@ -127,7 +127,7 @@
     <button class="btn btn-sm btn-light" (click)="closeChatbot()">✖</button>
   </div>
 
-    <router-outlet></router-outlet>
+        <iframe *ngIf="iframeSrc" [src]="iframeSrc" width="480" height="500"></iframe>
     
 </div> 
 

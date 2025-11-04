@@ -8,6 +8,9 @@ import { routes } from '../../app.routes';
 import { MatDialog } from '@angular/material/dialog';
 import { RattingReviewsComponent } from '../PopUp/ratting-reviews/ratting-reviews.component';
 import Swal from 'sweetalert2';
+// import { ChatbotComponent } from '../chatbot/chatbot.component';
+// import { ChatbotComponent } from '../chatbot/chatbot.component';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-orders',
@@ -20,12 +23,14 @@ export class MyOrdersComponent {
  orders: any[] = [];
 last: any;
   route: any;
+orderId: number | null = null;
+  iframeSrc: SafeResourceUrl | null = null;
 
-
-
-  constructor(private api: ApiService ,private router:Router,private popup:MatDialog) {
+  constructor(private api: ApiService ,private router:Router,private popup:MatDialog,private sanitizer: DomSanitizer) {
     this.getOrders();
   }
+
+  
   getOrders(){
      this.api.getAllOrderUser().subscribe((res: any) => {
       this.orders = res;
@@ -92,14 +97,17 @@ cancelOrder(orderId: any) {
 
  chatbotVisible = false;
 
-  openChatbot() {
+  openChatbot(orderId: number) {
+    this.orderId = orderId;
+        const url = `http://localhost:9090/index.html?orderId=${orderId}&t=${Date.now()}`;
+        this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     this.chatbotVisible = true;
-    this.router.navigate(['/myOrders/chatbot']);
+    // this.router.navigate(['/myOrders/chatbot']);
   }
 
   closeChatbot() {
     this.chatbotVisible = false;
-    this.router.navigate(['/myOrders']);
+    // this.router.navigate(['/myOrders']);
   }
   
   
