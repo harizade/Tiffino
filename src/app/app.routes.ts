@@ -39,6 +39,7 @@ import { StateMealsComponent } from './Components/state-meals/state-meals.compon
 import { SearchFilterUserComponent } from './Components/search-filter-user/search-filter-user.component';
 import { CancelOrderComponent } from './Components/cancel-order/cancel-order.component';
 import { ViewSummaryComponent } from './Components/view-summary/view-summary.component';
+import { OrderComplaintComponent } from './Components/order-complaint/order-complaint.component';
 // import { ChatbotComponent } from './Components/chatbot/chatbot.component';
 
 export const routes: Routes = [
@@ -80,6 +81,7 @@ export const routes: Routes = [
       { path:'cloud_kitchen_data',component:CloudKitchenDataComponent}, 
       { path:'menu',component:MenuComponent},
       { path:'viewSummary',component:ViewSummaryComponent},
+      { path:'orderComplaint',component:OrderComplaintComponent},
       ]
     },
    {

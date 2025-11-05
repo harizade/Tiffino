@@ -8,8 +8,6 @@ import { routes } from '../../app.routes';
 import { MatDialog } from '@angular/material/dialog';
 import { RattingReviewsComponent } from '../PopUp/ratting-reviews/ratting-reviews.component';
 import Swal from 'sweetalert2';
-// import { ChatbotComponent } from '../chatbot/chatbot.component';
-// import { ChatbotComponent } from '../chatbot/chatbot.component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -102,15 +100,11 @@ cancelOrder(orderId: any) {
         const url = `http://localhost:9090/index.html?orderId=${orderId}&t=${Date.now()}`;
         this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     this.chatbotVisible = true;
-    // this.router.navigate(['/myOrders/chatbot']);
   }
 
   closeChatbot() {
     this.chatbotVisible = false;
-    // this.router.navigate(['/myOrders']);
   }
-  
-  
 
 }
 

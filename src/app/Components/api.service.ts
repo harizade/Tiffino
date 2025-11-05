@@ -229,7 +229,10 @@ getOffer(){
   openClosedCloudKitchen(data:any){
     return this.http.post(this.apiUrl + 'manager/openClosedCloudKitchen',data,{ responseType: 'text' })
   }
-
+  
+  orderComplaint(){
+    return this.http.get(this.apiUrl + 'manager/getAllOrderQuery')
+  }
                                       // Delivery partner Side Api
 
  pikUpOrder(deliveryId: string) {
