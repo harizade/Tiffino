@@ -4,17 +4,14 @@
   </h2>
 
   <div class="space-y-6">
-    <!-- Loop through all complaints -->
     <div
-      *ngFor="let c of complaints"
+      *ngFor="let row of complaints"
       class="border bg-white text-black rounded-2xl shadow-md p-4 hover:shadow-lg transition d-flex flex-row md:flex-row items-start md:items-center gap-4 "
     >
-      
-
        <div class="flex-shrink-0 w-full md:w-48">
         <img
-          *ngIf="c.imageUrl; else noImage"
-          [src]="c.imageUrl"
+          *ngIf="row.imageUrl; else noImage"
+          [src]="row.imageUrl"
           alt="Complaint Image"
           class="w-full h-40 object-cover rounded-xl border border-gray-200"
         />
@@ -27,29 +24,30 @@
         </ng-template>
       </div>
 
-      <!-- Right side: details -->
       <div class="flex flex-row justify-between text-gray-800">
-        <h3 class="text-xl font-semibold mb-2">{{ c.customerName }}</h3>
+        <h3 class="text-xl font-semibold mb-2">{{ row.customerName }}</h3>
 
         <p class="text-sm mb-1">
-          <strong>📞 Phone:</strong> {{ c.customerPhoneNo }}
+          <strong>📞 Phone:</strong> {{ row.customerPhoneNo }}
         </p>
         <p class="text-sm mb-1">
-          <strong>🏠 Address:</strong> {{ c.customerAddress }}
+          <strong>🏠 Address:</strong> {{ row.customerAddress }}
         </p>
         <p class="text-sm mb-1">
-          <strong>🧾 Order ID:</strong> {{ c.orderId }}
+          <strong>🧾 Order ID:</strong> {{ row.orderId }}
         </p>
         <p class="text-sm text-red-600 font-semibold mt-2">
-          ⚠️ Complaint: {{ c.complaint }}
+          ⚠️ Complaint: {{ row.complaint }}
         </p>
         
       </div>
     </div>
   </div>
 
-  <!-- Empty state -->
-  <div *ngIf="complaints.length === 0" class="text-gray-500 text-center mt-8">
-    No complaints found.
+</div>
+
+  <div class="container noComplaints" *ngIf="complaints.length === 0">
+  <div class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle"></i> No complaints found.
   </div>
 </div>
