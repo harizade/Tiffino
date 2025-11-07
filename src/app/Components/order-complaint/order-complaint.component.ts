@@ -23,4 +23,33 @@ export class OrderComplaintComponent {
       }
     })
   }
+
+
+  // complaints: any[] = [];
+  // selectedComplaint: any = null;
+
+  // constructor(private api: ApiService) {
+  //   this.api.orderComplaint().subscribe({
+  //     next: (res) => {
+  //       this.complaints = res as any[];
+  //       console.log('✅ Complaints loaded:', this.complaints);
+  //     },
+  //     error: (err) => {
+  //       console.error('❌ Failed to load complaints:', err);
+  //     },
+  //   });
+  // }
+
+  // openDetails(row: any) {
+  //   this.selectedComplaint = row;
+  // }
+
+  // closeDetails() {
+  //   this.selectedComplaint = null;
+  // }
+  //  clearSelection() {
+  //   this.selectedComplaint = null;
+  // }
 }
+
+
