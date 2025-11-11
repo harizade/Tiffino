@@ -125,7 +125,7 @@
       transform: translateY(-10px);
     }
      .restaurant-card1{
-      min-width: 312px;
+      /* min-width: 210px; */
       flex: 0 0 auto;
       border-radius: 15px;
       overflow: hidden;
@@ -134,8 +134,8 @@
       padding-bottom: 0px !important;
     }
     .card-button{
-      margin-left: 190px;
-      margin-top: -26px;    
+      margin-left: 140px;
+      /* margin-top: -26px;     */
     }
     .locality-btn {
       width: 100%;
