@@ -131,6 +131,18 @@ export class TrackOrderComponent implements AfterViewInit {
     private api: ApiService
   ) {}
 
+  kitchenIcon = L.icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
+});
+
+userIcon = L.icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
+});
+
   ngAfterViewInit(): void {
     this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
     console.log("ORDER ID =", this.orderId);
@@ -181,8 +193,8 @@ export class TrackOrderComponent implements AfterViewInit {
     }
 
     // Markers
-    L.marker(kitchenCoords).addTo(this.map);
-    L.marker(userCoords).addTo(this.map);
+   L.marker(kitchenCoords, { icon: this.kitchenIcon }).addTo(this.map);
+   L.marker(userCoords, { icon: this.userIcon }).addTo(this.map);
 
     this.map.fitBounds([kitchenCoords, userCoords]);
 
