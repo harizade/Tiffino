@@ -2,7 +2,7 @@
   <app-navbar></app-navbar>
 
 
-<div class="container " *ngIf="orderData; else loading">
+<!-- <div class="container " *ngIf="orderData; else loading">
   <div class="card border-0 rounded-4 shadow-lg p-4">
     <button class="cross position-absolute top-0 end-0 m-2" routerLink="/myOrders"><span>✖</span></button>
 
@@ -89,6 +89,35 @@
 </ng-template>
 
 
+ -->
 
 
+<!-- <div class="map-container">
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgBzpXw_MmTzFpFWEAlPDlkXGzffRm6Dg&libraries=geometry,places">
+</script>
+
+  <google-map height="500px" width="100%" [center]="center" [zoom]="12">
+
+    <map-marker
+      *ngIf="cloudKitchenMarker"
+      [position]="cloudKitchenMarker"
+      label="Kitchen">
+    </map-marker>
+
+    <map-marker
+      *ngIf="userMarker"
+      [position]="userMarker"
+      label="User">
+    </map-marker>
+
+    <map-polyline
+      *ngIf="routePath.length > 0"
+      [path]="routePath"
+      [options]="polylineOptions">
+    </map-polyline>
+
+  </google-map>
+</div> -->
 
