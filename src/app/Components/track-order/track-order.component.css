@@ -5,3 +5,87 @@
 .cancel-card{
     margin-top: 100px;
 }
+
+
+
+
+
+
+
+.track-layout {
+  display: flex;
+  height: calc(100vh - 70px);
+  width: 100%;
+}
+
+/* LEFT PANEL */
+.timeline-box {
+  width: 40%;
+  padding: 25px;
+  overflow-y: auto;
+  border-right: 1px solid #e0e0e0;
+  background: #ffffff;
+}
+
+.shipping-title {
+  font-size: 16px;
+  color: #777;
+}
+
+.shipping-id {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* STATUS BADGE */
+.status-badge {
+  display: inline-block;
+  background: #e0f2ff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* TIMELINE ITEMS */
+.timeline-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.timeline-item .dot {
+  width: 12px;
+  height: 12px;
+  background: #0d6efd;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.time {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.location {
+  color: #444;
+  font-size: 14px;
+}
+
+/* RIGHT PANEL (MAP) */
+#map {
+  width: 60%;
+  height: 90%;
+  padding: 50px;
+  margin: 10px;
+}

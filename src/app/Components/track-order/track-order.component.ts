@@ -106,19 +106,18 @@
 
 
 import { Component, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import * as L from 'leaflet';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from '../api.service';
+import { CommonModule, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-track-order',
   standalone: true,
   imports: [NavbarComponent],
-  template: `
-    <app-navbar></app-navbar>
-    <div id="map" style="height: calc(100vh - 70px); width: 100%; margin-top: 0;"></div>
-  `
+  templateUrl: './track-order.component.html',
+  styleUrls: ['./track-order.component.css']
 })
 export class TrackOrderComponent implements AfterViewInit {
 
@@ -132,24 +131,25 @@ export class TrackOrderComponent implements AfterViewInit {
   ) {}
 
   kitchenIcon = L.icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
-});
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40]
+  });
 
-userIcon = L.icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
-});
+  userIcon = L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40]
+  });
 
   ngAfterViewInit(): void {
+  setTimeout(() => {
     this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
-    console.log("ORDER ID =", this.orderId);
-
     this.initMap();
     this.loadOrderFromAPI();
-  }
+  }, 100); // 100ms delay ensures HTML is loaded
+}
+
 
   private initMap(): void {
     this.map = L.map('map').setView([18.5204, 73.8567], 12);
@@ -166,19 +166,12 @@ userIcon = L.icon({
     const data = await res.json();
 
     if (!data.length) return null;
-
     return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
   }
 
-  // ⭐ Call your API
   private loadOrderFromAPI() {
     this.api.trackOrder(this.orderId).subscribe(async (res: any) => {
-      console.log("API Response:", res);
-
-      // API MUST RETURN:
-      // { userAddress: "...", cloudKitchenAddress: "..." }
       this.order = res;
-
       await this.loadLocations();
     });
   }
@@ -192,13 +185,11 @@ userIcon = L.icon({
       return;
     }
 
-    // Markers
-   L.marker(kitchenCoords, { icon: this.kitchenIcon }).addTo(this.map);
-   L.marker(userCoords, { icon: this.userIcon }).addTo(this.map);
+    L.marker(kitchenCoords, { icon: this.kitchenIcon }).addTo(this.map);
+    L.marker(userCoords, { icon: this.userIcon }).addTo(this.map);
 
     this.map.fitBounds([kitchenCoords, userCoords]);
 
-    // 🚗 Shortest Driving Route
     const url =
       `https://router.project-osrm.org/route/v1/driving/` +
       `${kitchenCoords[1]},${kitchenCoords[0]};${userCoords[1]},${userCoords[0]}` +
@@ -210,7 +201,6 @@ userIcon = L.icon({
     if (routeData.routes?.length) {
       const coords = routeData.routes[0].geometry.coordinates;
       const latlngs = coords.map((c: any) => [c[1], c[0]]);
-
       L.polyline(latlngs, { color: 'blue', weight: 5 }).addTo(this.map);
     }
   }

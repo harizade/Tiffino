@@ -121,3 +121,58 @@
   </google-map>
 </div> -->
 
+
+
+
+
+<div class="track-layout">
+
+  <!-- LEFT INFO PANEL -->
+  <div class="timeline-box">
+
+    <h2 class="title">Order Details</h2>
+
+    <div class="info-row">
+      <span class="label">Order ID:</span>
+      <span class="value">#{{ order.orderId }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Order Status:</span>
+      <span class="value status">{{ order.orderStatus }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Delivery Status:</span>
+      <span class="value status">{{ order.deliveryStatus }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Delivery Person:</span>
+      <span class="value">{{ order.deliveryPersonName }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Phone:</span>
+      <span class="value">{{ order.deliveryPersonPhone }}</span>
+    </div>
+
+    <h3 class="subtitle">Addresses</h3>
+
+    <div class="info-row">
+      <span class="label">User Address:</span>
+      <span class="value">{{ order.userAddress }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Cloud Kitchen:</span>
+      <span class="value">{{ order.cloudKitchenAddress }}</span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE MAP -->
+  <div id="map"></div>
+
+</div>
+
