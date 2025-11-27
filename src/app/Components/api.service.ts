@@ -175,6 +175,10 @@ getOffer(){
      return this.http.post(this.apiUrl + 'user/addAllergies',data,{ responseType: 'text' })
   }
 
+  sendChat(data:any){
+    return this.http.post(this.apiUrl + 'helpdesk/chat' ,data)
+  }
+
   
 
 

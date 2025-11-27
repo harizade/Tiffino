@@ -1,0 +1,28 @@
+<div class="chat-container">
+
+  <div class="chat-header">
+    <span>Tiffino Help Chat</span>
+  </div>
+
+  <div class="chat-messages" #messagesContainer>
+    <div *ngFor="let msg of chatHistory" class="msg-row">
+      <div class="message" [ngClass]="msg.sender">
+        {{ msg.text }}
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="userPrompt"
+      placeholder="Type your message..."
+      (keyup.enter)="sendMessage()"
+    />
+
+    <button (click)="sendMessage()">
+      <i class="fa fa-paper-plane"></i>
+    </button>
+  </div>
+
+</div>

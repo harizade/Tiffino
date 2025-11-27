@@ -1,110 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { NavbarComponent } from '../navbar/navbar.component';
-// import { RouterModule } from '@angular/router';
-// import { CommonModule } from '@angular/common';
-// import { GoogleMapsModule } from '@angular/google-maps';
-
-// @Component({
-//   selector: 'app-track-order',
-//   standalone: true,
-//   imports: [NavbarComponent, CommonModule, RouterModule, GoogleMapsModule],
-//   templateUrl: './track-order.component.html',
-//   styleUrls: ['./track-order.component.css']
-// })
-// export class TrackOrderComponent implements OnInit {
-
-//   response = {
-//     orderId: 1,
-//     userAddress: "karvenagar pune ,411052",
-//     cloudKitchenAddress: "katraj pune ,411046"
-//   };
-
-//   center: google.maps.LatLngLiteral = { lat: 18.5204, lng: 73.8567 };
-
-//   cloudKitchenMarker: google.maps.LatLngLiteral | null = null;
-//   userMarker: google.maps.LatLngLiteral | null = null;
-
-//   routePath: google.maps.LatLngLiteral[] = [];
-
-//   polylineOptions: google.maps.PolylineOptions = {
-//     strokeColor: "#FF0000",
-//     strokeWeight: 4,
-//     strokeOpacity: 1.0
-//   };
-
-//   geocoder = new google.maps.Geocoder();
-
-//   ngOnInit() {
-//     this.loadMapData();
-//   }
-
-//   loadMapData() {
-//     this.geocodeAddress(this.response.cloudKitchenAddress).then(kitchenLocation => {
-//       this.cloudKitchenMarker = kitchenLocation;
-
-//       this.geocodeAddress(this.response.userAddress).then(userLocation => {
-
-//         this.userMarker = userLocation;
-
-//         this.center = {
-//           lat: (kitchenLocation.lat + userLocation.lat) / 2,
-//           lng: (kitchenLocation.lng + userLocation.lng) / 2
-//         };
-
-//         this.routePath = [kitchenLocation, userLocation];
-//       });
-//     });
-//   }
-
-//   geocodeAddress(address: string): Promise<google.maps.LatLngLiteral> {
-//     return new Promise((resolve, reject) => {
-//       this.geocoder.geocode({ address }, (results, status) => {
-//         if (status === "OK" && results && results.length > 0) {
-//           resolve({
-//             lat: results[0].geometry.location.lat(),
-//             lng: results[0].geometry.location.lng()
-//           });
-//         } else {
-//           reject("Geocode failed: " + status);
-//         }
-//       });
-//     });
-//   }
-
-// }
-
-
-   
-
-
-
-//  orderId!: number;
-//   orderStatus!: string;
-//   orderData:any;
-
-//   constructor(private route:ActivatedRoute, private api: ApiService) {}
-
-//   ngOnInit() {
-//     this.orderId = +this.route.snapshot.paramMap.get('orderId')!;
-//     this.loadOrder();
-//   }
-
-//   loadOrder() {
-//     this.api.trackOrder(this.orderId).subscribe(res=>{
-//       console.log(res);
-//       this.orderData = res;
-//     });
-//   }
-
-
-
-
-// AIzaSyBgBzpXw_MmTzFpFWEAlPDlkXGzffRm6Dg
-
-
-
-
-
 import { Component, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import * as L from 'leaflet';
@@ -147,9 +40,8 @@ export class TrackOrderComponent implements AfterViewInit {
     this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
     this.initMap();
     this.loadOrderFromAPI();
-  }, 100); // 100ms delay ensures HTML is loaded
+  }, 100);
 }
-
 
   private initMap(): void {
     this.map = L.map('map').setView([18.5204, 73.8567], 12);

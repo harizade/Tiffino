@@ -7,6 +7,7 @@ import { ApiService } from '../api.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { MealImageComponent } from '../PopUp/meal-image/meal-image.component';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ import { MealImageComponent } from '../PopUp/meal-image/meal-image.component';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements AfterViewInit {
+  [x: string]: any;
   @ViewChild('container', { static: false }) containerRef!: ElementRef;
   @ViewChild('marquee', { static: true }) marqueeRef!: ElementRef;
   position = 0;
@@ -47,7 +49,7 @@ flattenMeals(res: any): any[] {
   });
   return result;
  }
-  constructor(private api: ApiService, private popup: MatDialog ,private router:Router) {
+  constructor(private api: ApiService, private popup: MatDialog ,private router:Router,private dailog:MatDialog) {
     this.api.allAvailableMeals().subscribe((res) => {
       this.data = this.flattenMeals(res);
       console.log(this.data);
@@ -58,7 +60,6 @@ flattenMeals(res: any): any[] {
   
 
 ngAfterViewInit() {
-  // Start at 0 so first 6 items are visible
   this.position = 0;
   this.animate();
 }
@@ -99,23 +100,19 @@ animate() {
 cart: any = { cloudKitchenId: null, meals: [] };
 
 addToCart(meal: any, kitchen: any) {
-  // Initialize the cart if not already present
   if (!this.cart) {
     this.cart = { cloudKitchenId: null, meals: [] };
   }
 
-  // If no cloud kitchen is set yet, set it
   if (!this.cart.cloudKitchenId) {
     this.cart.cloudKitchenId = kitchen.cloudKitchenId;
   }
 
-  // Prevent mixing items from different cloud kitchens
   if (this.cart.cloudKitchenId !== kitchen.cloudKitchenId) {
     alert('You can only add items from one cloud kitchen at a time!');
     return;
   }
 
-  // Find if the same meal from this cloud kitchen already exists
   const existingMeal = this.cart.meals.find(
     (m: any) => m.mealId === meal.mealId && m.cloudKitchenId === kitchen.cloudKitchenId
   );
@@ -136,7 +133,6 @@ addToCart(meal: any, kitchen: any) {
 
   console.log('Cart updated:', this.cart);
 
-  // API call to sync with backend
   this.api.addToCart(this.cart).subscribe({
     next: (res) => {
       this.getchCartItems();
@@ -175,5 +171,18 @@ getdata(stateName: string) {
     this.allCuisine = res;
   })
  }
+
+openChat(){
+   this.dailog.open(ChatComponent,{
+   width: '420px',
+    height: '550px',
+    panelClass: 'chat-dialog',
+   position: {
+      right: '70px',
+      bottom: '10px'
+    }
+  })
+}
+
 
 }

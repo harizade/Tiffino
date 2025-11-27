@@ -40,6 +40,7 @@ import { SearchFilterUserComponent } from './Components/search-filter-user/searc
 import { CancelOrderComponent } from './Components/cancel-order/cancel-order.component';
 import { ViewSummaryComponent } from './Components/view-summary/view-summary.component';
 import { OrderComplaintComponent } from './Components/order-complaint/order-complaint.component';
+import { ChatComponent } from './Components/chat/chat.component';
 // import { ChatbotComponent } from './Components/chatbot/chatbot.component';
 
 export const routes: Routes = [
@@ -58,6 +59,7 @@ export const routes: Routes = [
     {"path":'cart',component:CartComponent},
     {"path":'gift_card',component:GiftCardComponent},
     {"path":'place_order',component:PlaceOrderComponent},
+    {"path":'chat',component:ChatComponent},
     {"path":"myOrders",
       component:MyOrdersComponent},
       // children:[ 
