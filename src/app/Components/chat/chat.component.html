@@ -5,12 +5,21 @@
   </div>
 
   <div class="chat-messages" #messagesContainer>
-    <div *ngFor="let msg of chatHistory" class="msg-row">
-      <div class="message" [ngClass]="msg.sender">
-        {{ msg.text }}
-      </div>
+
+  <div *ngFor="let msg of chatHistory" class="msg-row">
+    <div class="message" [ngClass]="msg.sender">
+      {{ msg.text }}
     </div>
   </div>
+
+  <div *ngIf="isTyping" class="typing-indicator">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+</div>
+
 
   <div class="chat-input">
     <input

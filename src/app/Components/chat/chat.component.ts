@@ -11,62 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent {
-
-  // userPrompt = '';
-  // chatHistory: any[] = [];
-
-  // @ViewChild('messagesContainer') messagesContainer!: ElementRef;
-
-  // constructor(private api: ApiService) {}
-
-  // ngAfterViewInit() {
-  //   this.scrollToBottom();
-  // }
-
-  // scrollToBottom() {
-  //   setTimeout(() => {
-  //     const el = this.messagesContainer.nativeElement;
-  //     el.scrollTop = el.scrollHeight;
-  //   }, 100);
-  // }
-
-  // sendMessage() {
-  //   if (!this.userPrompt.trim()) return;
-
-  //   const userMsg = this.userPrompt;
-
-    
-  //   this.chatHistory.push({
-  //     sender: 'user',
-  //     text: userMsg
-  //   });
-
-  //   const payload = { prompt_message: userMsg };
-
-  //   this.userPrompt = '';
-  //   this.scrollToBottom();
-
-    
-  //   this.api.sendChat(payload).subscribe({
-  //     next: (res: any) => {
-  //       this.chatHistory.push({
-  //         sender: 'bot',
-  //         text: res.result || "No response"
-  //       });
-  //       this.scrollToBottom();
-  //     },
-  //     error: (err) => {
-  //       this.chatHistory.push({
-  //         sender: 'bot',
-  //         text: 'API Error: ' + err.message
-  //       });
-  //       this.scrollToBottom();
-  //     }
-  //   });
-  // }
-
-
-
+  isTyping = false;
   userPrompt = '';
   chatHistory: { sender: 'user'|'bot', text: string }[] = [];
 
@@ -82,21 +27,43 @@ export class ChatComponent {
   }
 
   sendMessage() {
-    if (!this.userPrompt.trim()) return;
-    const userMsg = this.userPrompt;
-    this.chatHistory.push({ sender: 'user', text: userMsg });
-    const payload = { prompt_message: userMsg };
-    this.userPrompt = '';
-    this.scrollToBottom();
-    this.api.sendChat(payload).subscribe({
-      next: (res: any) => {
-        this.chatHistory.push({ sender: 'bot', text: res.result || 'No response' });
-        this.scrollToBottom();
-      },
-      error: err => {
-        this.chatHistory.push({ sender: 'bot', text: 'API Error: ' + err.message });
-        this.scrollToBottom();
-      }
-    });
-  }
+  if (!this.userPrompt.trim()) return;
+
+  const userMsg = this.userPrompt;
+
+  this.chatHistory.push({
+    sender: 'user',
+    text: userMsg
+  });
+
+  const payload = { prompt_message: userMsg };
+  this.userPrompt = '';
+  this.scrollToBottom();
+
+  this.isTyping = true;
+
+  this.api.sendChat(payload).subscribe({
+    next: (res: any) => {
+      this.isTyping = false;
+
+      this.chatHistory.push({
+        sender: 'bot',
+        text: res.result || 'No response'
+      });
+
+      this.scrollToBottom();
+    },
+    error: (err) => {
+      this.isTyping = false;
+
+      this.chatHistory.push({
+        sender: 'bot',
+        text: 'API Error: ' + err.message
+      });
+
+      this.scrollToBottom();
+    }
+  });
+}
+
 }

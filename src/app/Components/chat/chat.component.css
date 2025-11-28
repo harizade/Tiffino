@@ -5,7 +5,6 @@
   background: #e5ddd5;
 }
 
-/* header */
 .chat-header {
   background: #ef6103;
   padding: 12px;
@@ -14,7 +13,6 @@
   text-align: center;
 }
 
-/* messages area */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -24,13 +22,11 @@
   gap: 10px;
 }
 
-/* each row keeps layout consistent */
 .msg-row {
   display: flex;
   width: 100%;
 }
 
-/* bubble common */
 .message {
   display: inline-block;
   max-width: 75%;
@@ -41,23 +37,20 @@
   white-space: pre-wrap;
 }
 
-/* USER = RIGHT */
 .message.user {
   background: #dcf8c6;
-  margin-left: auto;          /* forces it to the right */
+  margin-left: auto;         
   margin-right: 6px;
   border-bottom-right-radius: 0;
 }
 
-/* BOT = LEFT */
 .message.bot {
   background: #fff;
-  margin-right: auto;         /* keeps it to the left */
+  margin-right: auto;         
   margin-left: 6px;
   border-bottom-left-radius: 0;
 }
 
-/* input */
 .chat-input {
   display: flex;
   padding: 10px;
@@ -78,4 +71,37 @@
   margin-left: 8px;
   border-radius: 50%;
   cursor: pointer;
+}
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: 10px;
+  width: fit-content;
+  border-bottom-left-radius: 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #999;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%   { opacity: .2; }
+  20%  { opacity: 1;  }
+  100% { opacity: .2; }
 }
