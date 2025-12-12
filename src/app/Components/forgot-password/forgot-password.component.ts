@@ -18,8 +18,8 @@ export class ForgotPasswordComponent {
   isOtpReceived: boolean = false;
   constructor(private api: ApiService, private router: Router) {
     this.forgotPasswordForm = new FormGroup({
-      // emailOrId: new FormControl(''),
-      emailOrId: new FormControl('', [Validators.required, Validators.email]),
+      emailOrId: new FormControl(''),
+      // emailOrId: new FormControl('', [Validators.required, Validators.email]),
 
     });
       
