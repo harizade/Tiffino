@@ -1,51 +1,116 @@
   <app-navbar></app-navbar>
 
-<div class="track-layout">
 
-  <div class="timeline-box">
+<div *ngIf="order?.orderId; else cancelledOrder" class="track-card">
+  <h3 class="title"> Track Order</h3>
+ <div class="status-bar">
+  <div class="status-step"
+       [class.active]="order?.orderStatus === 'PENDING'
+        || order?.orderStatus === 'ACCEPTED-ORDER'
+        || order?.orderStatus === 'ORDER-PREPARED'
+        || order?.orderStatus === 'ASSIGNED_TO_DELIVERY'
+        || order?.orderStatus === 'DELIVERED'">
+    <small>Pending</small>
+  </div>
 
-    <h2 class="title">Order Details</h2>
+  <div class="status-line"
+       [class.active]="order?.orderStatus !== 'PENDING'"></div>
 
-    <div class="info-row">
-      <span class="label">Order ID:</span>
-      <span class="value">#{{ order.orderId }}</span>
+  <div class="status-step"
+       [class.active]="order?.orderStatus === 'ACCEPTED-ORDER'
+        || order?.orderStatus === 'ORDER-PREPARED'
+        || order?.orderStatus === 'ASSIGNED_TO_DELIVERY'
+        || order?.orderStatus === 'DELIVERED'">
+    <small>Accepted</small>
+  </div>
+
+  <div class="status-line"
+       [class.active]="order?.orderStatus === 'ORDER-PREPARED'
+        || order?.orderStatus === 'ASSIGNED_TO_DELIVERY'
+        || order?.orderStatus === 'DELIVERED'"></div>
+
+  <div class="status-step"
+       [class.active]="order?.orderStatus === 'ORDER-PREPARED'
+        || order?.orderStatus === 'ASSIGNED_TO_DELIVERY'
+        || order?.orderStatus === 'DELIVERED'">
+    <small>Prepared</small>
+  </div>
+
+  <div class="status-line"
+       [class.active]="order?.orderStatus === 'ASSIGNED_TO_DELIVERY'
+        || order?.orderStatus === 'DELIVERED'"></div>
+
+  <div class="status-step"
+       [class.active]="order?.orderStatus === 'ASSIGNED_TO_DELIVERY'
+        || order?.orderStatus === 'DELIVERED'">
+    <small>Assigned</small>
+  </div>
+
+  <div class="status-line"
+       [class.active]="order?.orderStatus === 'DELIVERED'"></div>
+
+  <div class="status-step"
+       [class.active]="order?.orderStatus === 'DELIVERED'">
+    <small>Delivered</small>
+  </div>
+
+</div>
+
+
+  <div class="details">
+
+    <div class="item">
+      <span>Order ID</span>
+      <strong>#{{ order.orderId }}</strong>
     </div>
 
-    <div class="info-row">
-      <span class="label">Order Status:</span>
-      <span class="value status">{{ order.orderStatus }}</span>
+    <div class="item">
+      <span>Order Status</span>
+      <strong class="status-text">{{ order.orderStatus }}</strong>
     </div>
 
-    <div class="info-row">
-      <span class="label">Delivery Status:</span>
-      <span class="value status">{{ order.deliveryStatus }}</span>
+    <div class="item">
+      <span>Delivery Status</span>
+      <strong>{{ order.deliveryStatus || 'Not Assigned' }}</strong>
     </div>
 
-    <div class="info-row">
-      <span class="label">Delivery Person:</span>
-      <span class="value">{{ order.deliveryPersonName }}</span>
+    <div class="item">
+      <span>Delivery Partner</span>
+      <strong>{{ order.deliveryPersonName }}</strong>
     </div>
 
-    <div class="info-row">
-      <span class="label">Phone:</span>
-      <span class="value">{{ order.deliveryPersonPhone }}</span>
+    <div class="item phone-divider">
+      <span>Phone</span>
+      <strong>{{ order.deliveryPersonPhone }}</strong>
     </div>
 
-    <h3 class="subtitle">Addresses</h3>
-
-    <div class="info-row">
-      <span class="label">User Address:</span>
-      <span class="value">{{ order.userAddress }}</span>
+    <div class="item">
+      <span>Assigned At</span>
+      <strong [class.pending]="!order.assignedAt">
+        {{ order.assignedAt ? (order.assignedAt | date:'short') : 'Pending' }}
+      </strong>
     </div>
 
-    <div class="info-row">
-      <span class="label">Cloud Kitchen:</span>
-      <span class="value">{{ order.cloudKitchenAddress }}</span>
+    <div class="item">
+      <span>Picked Up At</span>
+      <strong [class.pending]="!order.pickedUpAt">
+        {{ order.pickedUpAt ? (order.pickedUpAt | date:'short') : 'Pending' }}
+      </strong>
+    </div>
+
+    <div class="item">
+      <span>Delivered At</span>
+      <strong [class.pending]="!order.deliveredAt">
+        {{ order.deliveredAt ? (order.deliveredAt | date:'short') : 'Pending' }}
+      </strong>
     </div>
 
   </div>
 
-  <div id="map"></div>
-
 </div>
 
+<ng-template #cancelledOrder>
+  <div class="cancel-card">
+    ❌ This order has been cancelled
+  </div>
+</ng-template>

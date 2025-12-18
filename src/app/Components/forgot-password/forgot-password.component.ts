@@ -19,9 +19,8 @@ export class ForgotPasswordComponent {
   constructor(private api: ApiService, private router: Router) {
     this.forgotPasswordForm = new FormGroup({
       emailOrId: new FormControl(''),
-      // emailOrId: new FormControl('', [Validators.required, Validators.email]),
 
-    });
+    }); 
       
 
     this.resetPasswordForm = new FormGroup({

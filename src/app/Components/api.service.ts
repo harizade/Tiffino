@@ -135,9 +135,9 @@ export class ApiService {
     return this.http.get(this.apiUrl + 'user/getAllOrders')
   }
 
-  trackOrder(id: number) {
-  return this.http.get(`${this.apiUrl}user/trackOrder/${id}`);
- }
+ trackOrder(id: number) {
+  return this.http.get<any>(this.apiUrl + 'user/trackOrder/' + id);
+}
 
   ratting_Reviews(review:any){
     return this.http.post(this.apiUrl + 'user/createReview',review,{responseType:'text'})

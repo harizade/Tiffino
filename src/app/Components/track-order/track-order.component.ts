@@ -1,99 +1,32 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import * as L from 'leaflet';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from '../api.service';
-import { CommonModule, NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-track-order',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent,CommonModule,RouterModule],
   templateUrl: './track-order.component.html',
   styleUrls: ['./track-order.component.css']
 })
-export class TrackOrderComponent implements AfterViewInit {
+export class TrackOrderComponent  {
 
-  private map!: L.Map;
-  orderId!: number;
-  order: any = {};
+orderId!: number;
+order: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private api: ApiService
-  ) {}
+constructor(
+  private route: ActivatedRoute,
+  private api: ApiService
+) {}
 
-  kitchenIcon = L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    iconSize: [40, 40],
-    iconAnchor: [20, 40]
+ngOnInit(): void {
+  this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
+
+  this.api.trackOrder(this.orderId).subscribe(res => {
+    console.log('API RESPONSE:', res);
+    this.order = res;
   });
-
-  userIcon = L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    iconSize: [40, 40],
-    iconAnchor: [20, 40]
-  });
-
-  ngAfterViewInit(): void {
-  setTimeout(() => {
-    this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
-    this.initMap();
-    this.loadOrderFromAPI();
-  }, 100);
 }
-
-  private initMap(): void {
-    this.map = L.map('map').setView([18.5204, 73.8567], 12);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap'
-    }).addTo(this.map);
-  }
-
-  private async geocode(address: string): Promise<[number, number] | null> {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if (!data.length) return null;
-    return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
-  }
-
-  private loadOrderFromAPI() {
-    this.api.trackOrder(this.orderId).subscribe(async (res: any) => {
-      this.order = res;
-      await this.loadLocations();
-    });
-  }
-
-  private async loadLocations() {
-    const kitchenCoords = await this.geocode(this.order.cloudKitchenAddress);
-    const userCoords = await this.geocode(this.order.userAddress);
-
-    if (!kitchenCoords || !userCoords) {
-      alert("Address not found!");
-      return;
-    }
-
-    L.marker(kitchenCoords, { icon: this.kitchenIcon }).addTo(this.map);
-    L.marker(userCoords, { icon: this.userIcon }).addTo(this.map);
-
-    this.map.fitBounds([kitchenCoords, userCoords]);
-
-    const url =
-      `https://router.project-osrm.org/route/v1/driving/` +
-      `${kitchenCoords[1]},${kitchenCoords[0]};${userCoords[1]},${userCoords[0]}` +
-      `?overview=full&geometries=geojson`;
-
-    const routeRes = await fetch(url);
-    const routeData = await routeRes.json();
-
-    if (routeData.routes?.length) {
-      const coords = routeData.routes[0].geometry.coordinates;
-      const latlngs = coords.map((c: any) => [c[1], c[0]]);
-      L.polyline(latlngs, { color: 'blue', weight: 5 }).addTo(this.map);
-    }
-  }
 }
