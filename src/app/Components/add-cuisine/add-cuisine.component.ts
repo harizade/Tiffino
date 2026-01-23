@@ -16,10 +16,10 @@ addCuisineForm : FormGroup;
   constructor(private api:ApiService){
     this.addCuisineForm = new FormGroup({
          cuisineId: new FormControl ('0'),
-         name: new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
-         description: new FormControl ('',[Validators.required, Validators.minLength(3)]),
+         name: new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
+         description: new FormControl ('',[Validators.required, Validators.minLength(3)]),           
          state:new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
-         cuisinePhoto: new FormControl(null),
+         cuisinePhoto: new FormControl(null,[Validators.required]),
 
     })
   }
@@ -29,10 +29,13 @@ addCuisineForm : FormGroup;
    
 
    onFileSelect(event: any, controlName: string) {
-    if (event.target.files.length > 0) {
-      this.addCuisineForm.get(controlName)?.setValue(event.target.files[0]);
-    }
+  if (event.target.files && event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.addCuisineForm.get(controlName)?.setValue(file);
+    this.addCuisineForm.get(controlName)?.markAsTouched();
   }
+}
+
 
 addCuisine() {
   if (this.addCuisineForm.invalid) {

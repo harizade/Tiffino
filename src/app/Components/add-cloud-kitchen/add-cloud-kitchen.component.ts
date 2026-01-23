@@ -20,7 +20,7 @@ export class AddCloudKitchenComponent {
       city:new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
       division:new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
       address:new FormControl('',[Validators.required, Validators.minLength(3)]),
-      pinCode:new FormControl('',[Validators.required,Validators.pattern(/^[0-9]+$/)])
+      pinCode:new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{6}$/)])
     })
 
   }

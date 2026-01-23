@@ -18,11 +18,11 @@ export class DeliveryPartnerComponent {
       this.addDeliveryPersonForm = new FormGroup({
         name : new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s]+$/)]),
         email :new FormControl('',[Validators.required, Validators.email]),
-        phoneNo : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+        phoneNo : new FormControl('',[Validators.required,Validators.pattern('^[0-9]{10}$')]),
         cloudKitchenId : new FormControl(''),
-        adharCard: new FormControl(null),
-        licences: new FormControl(null),
-        insurance: new FormControl(null),
+        adharCard: new FormControl(null,[Validators.required]),                                   
+        licences: new FormControl(null,[Validators.required]),
+        insurance: new FormControl(null,[Validators.required]),
         deliveryPersonId:new FormControl(0) 
       })
   }
@@ -30,6 +30,9 @@ export class DeliveryPartnerComponent {
   get name() { return this.addDeliveryPersonForm.get('name')!; }
   get email() { return this.addDeliveryPersonForm.get('email')!; }
   get phoneNo() { return this.addDeliveryPersonForm.get('phoneNo')!; }
+  get adharCard() { return this.addDeliveryPersonForm.get('adharCard')!; }
+  get licences() { return this.addDeliveryPersonForm.get('licences')!; }
+  get insurance() { return this.addDeliveryPersonForm.get('insurance')!; }
 
 
  ngOnInit(): void {
@@ -38,10 +41,13 @@ export class DeliveryPartnerComponent {
 
 
   onFileSelect(event: any, controlName: string) {
-    if (event.target.files.length > 0) {
-      this.addDeliveryPersonForm.get(controlName)?.setValue(event.target.files[0]);
-    }
+  if (event.target.files && event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.addDeliveryPersonForm.get(controlName)?.setValue(file);
+    this.addDeliveryPersonForm.get(controlName)?.markAsTouched();
   }
+}
+
 
   addDeliveryPerson(){
       if (this.addDeliveryPersonForm.invalid) {

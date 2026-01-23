@@ -18,10 +18,10 @@
 
         <!-- Mobile -->
         <label class="form-label mt-2">Mobile No :</label>
-        <input type="number" class="form-control" placeholder="Mobile" formControlName="phoneNo">
+        <input type="tel" class="form-control" placeholder="Mobile" formControlName="phoneNo">
         <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)" class="text-danger small">
           <div *ngIf="phoneNo.errors?.['required']">Mobile number is required.</div>
-          <div *ngIf="phoneNo.errors?.['pattern']">Enter a valid 10-digit mobile number.</div>
+          <div *ngIf="phoneNo.errors?.['pattern']">Enter a valid 10-digit mobile number only (no alphbet or special characters).</div>
         </div>
 
         <!-- Email -->
@@ -29,7 +29,7 @@
         <input type="email" class="form-control" placeholder="Email" formControlName="email">
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger small">
           <div *ngIf="email.errors?.['required']">Email is required.</div>
-          <div *ngIf="email.errors?.['email']">Enter a valid email address.</div>
+          <div *ngIf="email.errors?.['pattern']">Enter a valid email address.</div>
         </div>
 
         <!-- Password -->
@@ -37,7 +37,8 @@
         <input type="password" class="form-control" placeholder="Password" formControlName="password">
         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger small">
           <div *ngIf="password.errors?.['required']">Password is required.</div>
-          <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>
+          <!-- <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div> -->
+          <div *ngIf="password.errors?.['pattern']">Password must contain at least 6 characters long ,one uppercase letter, one lowercase letter, one number, and one special character.</div>
         </div>
 
         <!-- Submit -->

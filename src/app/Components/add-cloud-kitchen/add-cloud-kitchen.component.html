@@ -49,11 +49,11 @@
 
           <!-- PinCode -->
           <div class="mb-3">
-           <label class="form-label">PinCode</label>
-        <input type="text" class="form-control custom-border" placeholder="Enter PinCode" formControlName="pinCode">
+           <label class="form-label">Pin_Code</label>
+        <input type="text" class="form-control custom-border" placeholder="Enter Pin_Code" formControlName="pinCode">
         <div *ngIf="pinCode.invalid && (pinCode.dirty || pinCode.touched)" class="text-danger small">
           <div *ngIf="pinCode.errors?.['required']">PinCode is required.</div>
-          <div *ngIf="pinCode.errors?.['pattern']">PinCode must contain Numbers only (no Letters or special characters)</div>
+          <div *ngIf="pinCode.errors?.['pattern']">PinCode must contain six digits only (no Letters or special characters)</div>
         </div>
           </div>
 

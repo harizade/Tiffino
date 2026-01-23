@@ -21,6 +21,7 @@ import { ApiService } from '../api.service';
 export class AddManagerComponent {
   addManagerForm: FormGroup;
   data: any;
+  today!: string;
   constructor(private api: ApiService) {
     this.addManagerForm = new FormGroup({
       managerName: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
@@ -31,9 +32,9 @@ export class AddManagerComponent {
       permeantAddress: new FormControl('',[Validators.required, Validators.minLength(3)]),
       city: new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
       cloudKitchenId: new FormControl(''),
-      adharCard: new FormControl(null),
-      panCard: new FormControl(null),
-      photo: new FormControl(null),
+      adharCard: new FormControl(null, Validators.required),
+      panCard: new FormControl(null, Validators.required),
+      photo: new FormControl(null, [Validators.required]),
     });
   }
   get managerName() { return this.addManagerForm.get('managerName')!; }
@@ -42,23 +43,49 @@ export class AddManagerComponent {
   get currentAddress() { return this.addManagerForm.get('currentAddress')!; }
   get permeantAddress() { return this.addManagerForm.get('permeantAddress')!; }
   get city() { return this.addManagerForm.get('city')!; }
+  get adharCard() { return this.addManagerForm.get('adharCard')!; }
+  get panCard() { return this.addManagerForm.get('panCard')!; } 
+  get photo() { return this.addManagerForm.get('photo')!; }
 
 
   ngOnInit(){
     this.getCloudKitchen()
+    const now = new Date();
+  this.today = now.toISOString().split('T')[0];
   }
-  onFileSelect(event: any, controlName: string) {
-    if (event.target.files.length > 0) {
-      this.addManagerForm.get(controlName)?.setValue(event.target.files[0]);
-    }
+  // onFileSelect(event: any, controlName: string) {
+  //   if (event.target.files.length > 0) {
+  //     this.addManagerForm.get(controlName)?.setValue(event.target.files[0]);
+  //   }
+  // }
+
+onFileSelect(event: any, controlName: string) {
+  const file = event.target.files[0];
+
+  if (file) {
+    this.addManagerForm.patchValue({
+      [controlName]: file
+    });
+
+    this.addManagerForm.get(controlName)?.markAsTouched();
+    this.addManagerForm.get(controlName)?.updateValueAndValidity();
   }
+}
+
+
 
   saveManager() {
 
-    if (this.addManagerForm.invalid) {
-      this.addManagerForm.markAllAsTouched();
-      return;
-    }
+    // if (this.addManagerForm.invalid) {
+    //   this.addManagerForm.markAllAsTouched();
+    //   return;
+    // }
+
+if (this.addManagerForm.invalid) {
+    this.addManagerForm.markAllAsTouched();
+    return; // ❌ STOP submit if any file missing
+  }
+
     const formData = new FormData();
 
     formData.append('managerName',this.addManagerForm.get('managerName')?.value);

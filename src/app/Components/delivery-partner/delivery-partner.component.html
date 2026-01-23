@@ -29,31 +29,48 @@
 
           <div class="mb-2">
             <label class="form-label mt-2">Mobile No </label>
-        <input type="number" class="form-control" placeholder="Enter Mobile" formControlName="phoneNo">
+        <input type="tel" class="form-control" placeholder="Enter Mobile" formControlName="phoneNo">
         <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)" class="text-danger small">
           <div *ngIf="phoneNo.errors?.['required']">Mobile number is required.</div>
-          <div *ngIf="phoneNo.errors?.['pattern']">Enter a valid 10-digit mobile number.</div>
+          <div *ngIf="phoneNo.errors?.['pattern']">Enter a valid 10-digit mobile number Only.</div>
         </div>
           </div>
 
            <div class="mb-2">
-              <label class="form-label">Adhar Card</label>
-              <input type="file" class="form-control" (change)="onFileSelect($event, 'adharCard')" required />
+              <label class="form-label">Aadhar Card</label>
+              <input type="file" class="form-control" (change)="onFileSelect($event, 'adharCard')" required/>
+              <small class="text-danger"
+               *ngIf="addDeliveryPersonForm.get('adharCard')?.invalid 
+                 && addDeliveryPersonForm.get('adharCard')?.touched">
+                 Aadhar Card is required
+              </small>
+
             </div>
 
             <div class="mb-2">
-              <label class="form-label">Licences</label>
-              <input type="file" class="form-control" (change)="onFileSelect($event, 'licences')" required />
+              <label class="form-label">License</label>
+              <input type="file" class="form-control" (change)="onFileSelect($event, 'licences')" required/>
+              <small class="text-danger"
+                *ngIf="addDeliveryPersonForm.get('licences')?.invalid 
+                && addDeliveryPersonForm.get('licences')?.touched">
+                 License is required
+              </small>
             </div>
 
             <div class="mb-2">
               <label class="form-label">Insurance</label>
-              <input type="file" class="form-control" (change)="onFileSelect($event, 'insurance')" required />
+              <input type="file" class="form-control" (change)="onFileSelect($event, 'insurance')" required/>
+              <small class="text-danger"
+                *ngIf="addDeliveryPersonForm.get('insurance')?.invalid 
+                && addDeliveryPersonForm.get('insurance')?.touched">
+                Insurance is required
+                </small>
+
             </div>
 
             <div class="mb-2">
-            <label class="form-label">CloudKitchen Id </label>
-            <input type="text" class="form-control" placeholder="Enter CloudKitchen Id" formControlName="cloudKitchenId"  required>
+            <label class="form-label">Cloud Kitchen Id </label>
+            <input type="text" class="form-control" placeholder="Enter Cloud Kitchen Id" formControlName="cloudKitchenId"  required>
           </div>
 
           <button class=" button border-0 w-100 text-white p-1 mt-3 mb-2" [disabled]="addDeliveryPersonForm.invalid">Submit</button>

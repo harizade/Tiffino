@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, provideZoneChangeDetection } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
@@ -138,7 +138,7 @@ export class ApiService {
  trackOrder(id: number) {
   return this.http.get<any>(this.apiUrl + 'user/trackOrder/' + id);
 }
-
+ 
   ratting_Reviews(review:any){
     return this.http.post(this.apiUrl + 'user/createReview',review,{responseType:'text'})
   }
@@ -179,7 +179,7 @@ getOffer(){
     return this.http.post(this.apiUrl + 'helpdesk/chat' ,data)
   }
 
-  
+      
 
 
 
@@ -195,7 +195,7 @@ getOffer(){
   return this.http.post(this.apiUrl + 'manager/addOrRemoveMeals/' + mealId, {}, { responseType: 'text' } );
    }
   
-  cloudeKitchenData(){
+  cloudeKitchenData(){ 
     return this.http.get(this.apiUrl + 'auth/getProfile');
   }   
 
@@ -323,6 +323,7 @@ addCloudKitchen(data: any) {
    }
 
 }
+
 
 
 

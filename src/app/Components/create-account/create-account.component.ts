@@ -16,11 +16,10 @@ export class CreateAccountComponent {
 
   constructor(private api: ApiService, private router: Router) {
     this.userRegisterForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/
-)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
       phoneNo: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)])
     });
   }
 
