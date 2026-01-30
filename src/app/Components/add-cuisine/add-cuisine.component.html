@@ -15,11 +15,17 @@
 
       <div class="mb-2">
          <label class="form-label">State</label>
-        <input type="text" class="form-control custom-border" placeholder="Enter State" formControlName="state">
+        <!-- <input type="text" class="form-control custom-border" placeholder="Enter State" formControlName="state"> -->
+         <select class="form-select custom-border" formControlName="state">
+    <option value="">Select State</option>
+    <option *ngFor="let s of states" [value]="s">
+      {{ s }}
+    </option>
+  </select>
         <div *ngIf="state.invalid && (state.dirty || state.touched)" class="text-danger small">
           <div *ngIf="state.errors?.['required']">State is required.</div>
           <div *ngIf="state.errors?.['minlength']">State must be at least 3 characters long.</div>
-          <div *ngIf="state.errors?.['pattern']">State must contain letters only (no numbers or special characters)</div>
+          <!-- <div *ngIf="state.errors?.['pattern']">State must contain letters only (no numbers or special characters)</div> -->
         </div>
       </div>
 

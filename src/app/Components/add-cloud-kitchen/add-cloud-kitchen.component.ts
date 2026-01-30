@@ -14,10 +14,12 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 })
 export class AddCloudKitchenComponent {
   cloudKitchenForm :FormGroup;
+  states: string[] = [];
+  cities: string[] = [];
   constructor(private api:ApiService){
     this.cloudKitchenForm=new FormGroup({
-      state:new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
-      city:new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
+      state:new FormControl('',[Validators.required,]),
+      city:new FormControl('',[Validators.required, ]),
       division:new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z\s-]+$/)]),
       address:new FormControl('',[Validators.required, Validators.minLength(3)]),
       pinCode:new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{6}$/)])
@@ -29,6 +31,32 @@ export class AddCloudKitchenComponent {
   get division() { return this.cloudKitchenForm.get('division')!; }
   get address() { return this.cloudKitchenForm.get('address')!; }
   get pinCode() { return this.cloudKitchenForm.get('pinCode')!; }
+
+
+
+
+   ngOnInit(): void {
+    this.loadStates();
+  }
+
+  // 🔹 Load states
+  loadStates() {
+    this.api.getStates().subscribe(res => {
+      this.states = res.data.states.map((s: any) => s.name);
+    });
+  }
+
+  // 🔹 On state change load cities
+  onStateChange() {
+    const selectedState = this.cloudKitchenForm.value.state;
+    this.cities = [];
+    this.cloudKitchenForm.patchValue({ city: '' });
+
+    this.api.getCities(selectedState).subscribe(res => {
+      this.cities = res.data;
+    });
+  }
+
 
   addCloudKitchen(){
      

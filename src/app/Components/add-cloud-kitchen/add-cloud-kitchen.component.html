@@ -7,22 +7,36 @@
           <!-- State -->
           <div class="mb-3">
            <label class="form-label">State</label>
-        <input type="text" class="form-control custom-border" placeholder="Enter State" formControlName="state">
+        <!-- <input type="text" class="form-control custom-border" placeholder="Enter State" formControlName="state"> -->
+          <select
+    class="form-select custom-border"
+    formControlName="state"
+    (change)="onStateChange()">
+    <option value="">Select State</option>
+    <option *ngFor="let s of states" [value]="s">
+      {{ s }}
+    </option>
+  </select>
         <div *ngIf="state.invalid && (state.dirty || state.touched)" class="text-danger small">
           <div *ngIf="state.errors?.['required']">State is required.</div>
-          <div *ngIf="state.errors?.['minlength']">State must be at least 3 characters long.</div>
-          <div *ngIf="state.errors?.['pattern']">State must contain letters only (no numbers or special characters)</div>
         </div>
           </div>
 
           <!-- City -->
           <div class="mb-3">
            <label class="form-label">City</label>
-        <input type="text" class="form-control custom-border" placeholder="Enter City" formControlName="city">
+        <!-- <input type="text" class="form-control custom-border" placeholder="Enter City" formControlName="city"> -->
+          <select
+    class="form-select custom-border"
+    formControlName="city"
+    [disabled]="!cities.length">
+    <option value="">Select City</option>
+    <option *ngFor="let c of cities" [value]="c">
+      {{ c }}
+    </option>
+  </select>
         <div *ngIf="city.invalid && (city.dirty || city.touched)" class="text-danger small">
           <div *ngIf="city.errors?.['required']">City is required.</div>
-          <div *ngIf="city.errors?.['minlength']">City must be at least 3 characters long.</div>
-          <div *ngIf="city.errors?.['pattern']">City must contain letters only (no numbers or special characters)</div>
         </div>
           </div>
 
@@ -35,7 +49,11 @@
           <div *ngIf="division.errors?.['minlength']">Division must be at least 3 characters long.</div>
           <div *ngIf="division.errors?.['pattern']">Division must contain letters only (no numbers or special characters)</div>
         </div>
-          </div>
+          </div> 
+
+
+
+
 
           <!-- Address -->
           <div class="mb-3">

@@ -1,28 +1,39 @@
-import { Component } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-cuisine',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule,CommonModule,RouterModule],
+  imports: [ReactiveFormsModule,FormsModule,CommonModule,RouterModule,HttpClientModule],
   templateUrl: './add-cuisine.component.html',
   styleUrl: './add-cuisine.component.css'
 })
 export class AddCuisineComponent {
 addCuisineForm : FormGroup;
+ states: string[] = [];
   constructor(private api:ApiService){
     this.addCuisineForm = new FormGroup({
          cuisineId: new FormControl ('0'),
          name: new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
          description: new FormControl ('',[Validators.required, Validators.minLength(3)]),           
-         state:new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)]),
+         state:new FormControl ('',[Validators.required, Validators.minLength(3) ]),
          cuisinePhoto: new FormControl(null,[Validators.required]),
 
     })
   }
+    ngOnInit(): void {
+    this.api.getIndianStates().subscribe({
+      next: (data) => this.states = data,
+      error: (err) => console.error('State API error', err)
+    });
+  }
+  
+
+
   get name() { return this.addCuisineForm.get('name')!; }
   get description() { return this.addCuisineForm.get('description')!; }
   get state() { return this.addCuisineForm.get('state')!; }

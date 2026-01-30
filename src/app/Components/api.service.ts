@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, provideZoneChangeDetection } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
 
 @Injectable({
@@ -256,6 +256,28 @@ updateAdmin(data:any){
   )
  }
 
+
+
+ // 🔹 Get all states of India
+  getStates(): Observable<any> {
+    return this.http.post(
+      'https://countriesnow.space/api/v0.1/countries/states',
+      { country: 'India' }
+    );
+  }
+
+  // 🔹 Get cities by state
+  getCities(state: string): Observable<any> {
+    return this.http.post(
+      'https://countriesnow.space/api/v0.1/countries/state/cities',
+      {
+        country: 'India',
+        state: state
+      }
+    );
+  }
+
+
 addCloudKitchen(data: any) {
     return this.http.post(this.apiUrl + 'superAdmin/saveCloudKitchen', data, {responseType: 'text'});
    }
@@ -282,6 +304,23 @@ addCloudKitchen(data: any) {
   return this.http.post(this.apiUrl + 'superAdmin/saveOrUpdateCuisine', cuisineData, {
     responseType: 'text'});
  }
+
+
+
+  // 🔹 Get Indian States
+ getIndianStates(): Observable<string[]> {
+  return this.http
+    .post<any>('https://countriesnow.space/api/v0.1/countries/states', {
+      country: 'India'
+    })
+    .pipe(
+      map(res => res.data.states.map((s: any) => s.name))
+    );
+}
+
+
+
+
   getAllCuisines() {
     return this.http.get(this.apiUrl + 'superAdmin/getAllCuisines');
   }

@@ -20,13 +20,21 @@
   <div class="content ps-2">
     <nav class="navbar navbar shadow-lg mb-1 px-3">
       <span class="navbar-brand mx-auto fw-bold">Admin Dashboard</span>
-      <button class="btn btn-outline-light rounded-circle" (click)="logout()">
+      <!-- <button class="btn btn-outline-light rounded-circle" (click)="logout()">
         <i class="bi bi-box-arrow-right"></i>
-      </button>
+      </button> -->
+      <button class="btn btn-outline-light rounded-circle tooltip-btn" (click)="logout()">
+  <i class="bi bi-box-arrow-right"></i>
+  <span class="tooltip-text">Logout</span>
+</button>
+
     </nav>
      
     <div class="main main1 text-light rounded-3 p-4 me-2 ">
+
+     
       <router-outlet></router-outlet>
+     
     </div>
   </div>
 </div> 

@@ -67,3 +67,27 @@
 .overflow::-webkit-scrollbar {
   display: none; 
 }
+
+
+.tooltip-btn {
+  position: relative;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #000;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tooltip-btn:hover .tooltip-text {
+  visibility: visible;
+}
+
