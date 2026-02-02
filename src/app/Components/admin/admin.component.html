@@ -1,7 +1,16 @@
 
  <div class="d-flex overflow-auto vh-100">
   <div class="sidebar text-white p-3 ">
-    <h4 class="text-center mb-4 fw-bold">Admin</h4>
+    <!-- <h4 class="text-center mb-4 fw-bold">Admin</h4> -->
+     <h4 class="text-center mb-4 fw-bold sidebar-title">Admin</h4>
+
+     <!-- Mobile / Tablet Header -->
+    <div class="mobile-header">
+      <span class="mobile-title">Admin Dashboard</span>
+      <button class="btn btn-outline-light rounded-circle" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
      <div class="overflow">
     <a routerLink="/admin/searchFilter" routerLinkActive="active">Search Cloud Kitchen </a>
     <a routerLink="/admin/add_cloud_kitchen" routerLinkActive="active">Add Cloud Kitchen</a>
@@ -20,9 +29,7 @@
   <div class="content ps-2">
     <nav class="navbar navbar shadow-lg mb-1 px-3">
       <span class="navbar-brand mx-auto fw-bold">Admin Dashboard</span>
-      <!-- <button class="btn btn-outline-light rounded-circle" (click)="logout()">
-        <i class="bi bi-box-arrow-right"></i>
-      </button> -->
+     
       <button class="btn btn-outline-light rounded-circle tooltip-btn" (click)="logout()">
   <i class="bi bi-box-arrow-right"></i>
   <span class="tooltip-text">Logout</span>
@@ -39,4 +46,41 @@
   </div>
 </div> 
 
+ 
 
+ <!-- <div class="sidebar text-white p-3">
+
+  Sidebar Header
+  <div class="sidebar-header">
+    <h4 class="sidebar-title text-center fw-bold">Admin</h4>
+
+    Mobile / Tablet Header
+    <div class="mobile-header">
+      <span class="mobile-title">Admin Dashboard</span>
+      <button class="btn btn-outline-light rounded-circle" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="overflow">
+    <a routerLink="/admin/searchFilter" routerLinkActive="active">Search Cloud Kitchen</a>
+    <a routerLink="/admin/add_cloud_kitchen" routerLinkActive="active">Add Cloud Kitchen</a>
+    <a routerLink="/admin/add-manager" routerLinkActive="active">Add Manager</a>
+    <a routerLink="/admin/delivery_partner" routerLinkActive="active">Add Delivery Partner</a>
+    <a routerLink="/admin/add_cuisine" routerLinkActive="active">Add Cuisine</a>
+    <a routerLink="/admin/add_meals" routerLinkActive="active">Add Meals</a>
+    <a routerLink="/admin/reviews" routerLinkActive="active">Reviews & Rating</a>
+    <a routerLink="/admin/subscriber" routerLinkActive="active">Subscriber</a>
+    <a routerLink="/admin/manager_list" routerLinkActive="active">Our Manager</a>
+    <a routerLink="/admin/cloudKitchen_list" routerLinkActive="active">Our CloudKitchen</a>
+    <a routerLink="/admin/setting" routerLinkActive="active">Settings</a>
+  </div>
+
+</div>
+<div class="content ps-2">
+  
+  <div class="main main1 text-light rounded-3 p-4 me-2">
+    <router-outlet></router-outlet>
+  </div>
+</div> -->

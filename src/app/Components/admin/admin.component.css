@@ -91,3 +91,91 @@
   visibility: visible;
 }
 
+
+
+
+/* ========================= */
+/* MOBILE HEADER (DEFAULT) */
+/* ========================= */
+.mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #FF512F, #FF7043);
+  color: #fff;
+}
+
+.mobile-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ========================= */
+/* TABLET & MOBILE */
+/* ========================= */
+@media (max-width: 991px) {
+
+  /* Hide Admin text */
+  .sidebar-title {
+    display: none;
+  }
+
+  /* Show Admin Dashboard in sidebar */
+  .mobile-header {
+    display: flex;
+  }
+
+  /* Hide top navbar */
+  .content .navbar {
+    display: none;
+  }
+
+  /* Sidebar width */
+  .sidebar {
+    width: 220px;
+  }
+
+  .content {
+    width: calc(100% - 220px);
+  }
+}
+
+/* ========================= */
+/* MOBILE ONLY */
+/* ========================= */
+@media (max-width: 767px) {
+
+  /* Stack layout */
+  .d-flex.vh-100 {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Sidebar full width */
+  .sidebar {
+    width: 100%;
+  }
+
+  /* Horizontal menu */
+  .overflow {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: auto;
+  }
+
+  .sidebar a {
+    padding: 8px 14px;
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
