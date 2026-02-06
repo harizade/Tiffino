@@ -1,6 +1,56 @@
 .card-header{
     margin-left: 40%;
 }
-.table-responsive{
-    margin-left: 12%;
+/* ========================= */
+/* HEADER */
+/* ========================= */
+.card-header {
+  text-align: center;
+  margin: 0 0 16px 0;
+  font-weight: bold;
+}
+
+/* ========================= */
+/* TABLE LAYOUT */
+/* ========================= */
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Desktop */
+.table-responsive {
+  width: 75%;
+}
+
+/* ========================= */
+/* TABLET */
+/* ========================= */
+@media (max-width: 991px) {
+  .table-responsive {
+    width: 95%;
+  }
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+@media (max-width: 767px) {
+  .table-responsive {
+    width: 100%;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
 }

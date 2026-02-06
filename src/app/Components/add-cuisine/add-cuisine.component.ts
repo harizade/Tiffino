@@ -1,4 +1,89 @@
-import { Component,OnInit  } from '@angular/core';
+// import { Component,OnInit  } from '@angular/core';
+// import { ApiService } from '../api.service';
+// import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
+// import { RouterModule } from '@angular/router';
+// import { HttpClientModule } from '@angular/common/http';
+
+// @Component({
+//   selector: 'app-add-cuisine',
+//   standalone: true,
+//   imports: [ReactiveFormsModule,FormsModule,CommonModule,RouterModule,HttpClientModule],
+//   templateUrl: './add-cuisine.component.html',
+//   styleUrl: './add-cuisine.component.css'
+// })
+// export class AddCuisineComponent {
+// addCuisineForm : FormGroup;
+//  states: string[] = [];
+//   constructor(private api:ApiService){
+//     this.addCuisineForm = new FormGroup({
+//          cuisineId: new FormControl ('0'),
+//          name: new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
+//          description: new FormControl ('',[Validators.required, Validators.minLength(3)]),           
+//          state:new FormControl ('',[Validators.required, Validators.minLength(3) ]),
+//          cuisinePhoto: new FormControl(null,[Validators.required]),
+//     })
+//   }
+//     ngOnInit(): void {
+//     this.api.getIndianStates().subscribe({
+//       next: (data) => this.states = data,
+//       error: (err) => console.error('State API error', err)
+//     });
+//   }
+  
+
+
+//   get name() { return this.addCuisineForm.get('name')!; }
+//   get description() { return this.addCuisineForm.get('description')!; }
+//   get state() { return this.addCuisineForm.get('state')!; }
+   
+
+//    onFileSelect(event: any, controlName: string) {
+//   if (event.target.files && event.target.files.length > 0) {
+//     const file = event.target.files[0];
+//     this.addCuisineForm.get(controlName)?.setValue(file);
+//     this.addCuisineForm.get(controlName)?.markAsTouched();
+//   }
+// }
+
+
+// addCuisine() {
+//   if (this.addCuisineForm.invalid) {
+//       this.addCuisineForm.markAllAsTouched();
+//       return;
+//     }
+
+//   const formData = new FormData();
+//   formData.append('cuisineId', this.addCuisineForm.get('cuisineId')?.value);
+//   formData.append('name', this.addCuisineForm.get('name')?.value);
+//   formData.append('description', this.addCuisineForm.get('description')?.value);
+//   formData.append('state', this.addCuisineForm.get('state')?.value);
+
+//   const file = this.addCuisineForm.get('cuisinePhoto')?.value;
+//   if (file) {
+//     formData.append('cuisinePhoto', file);
+//   }
+
+//   this.api.addCuisine(formData).subscribe({
+//     next: (res) => {
+//       console.log('Cuisine Added successfully:', res);
+//       alert(res); 
+//       this.addCuisineForm.reset();
+
+//       const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
+//       fileInputs.forEach((input) => (input.value = ''));
+//     },
+//     error: (err) => {
+//       console.error('Error Adding Cuisine:', err);
+//       alert('Error Inserting Cuisine!');
+//     },
+//   });
+// }
+// }
+
+
+
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -8,78 +93,111 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-add-cuisine',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule,CommonModule,RouterModule,HttpClientModule],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    RouterModule,
+    HttpClientModule
+  ],
   templateUrl: './add-cuisine.component.html',
   styleUrl: './add-cuisine.component.css'
 })
-export class AddCuisineComponent {
-addCuisineForm : FormGroup;
- states: string[] = [];
-  constructor(private api:ApiService){
-    this.addCuisineForm = new FormGroup({
-         cuisineId: new FormControl ('0'),
-         name: new FormControl ('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z ]+$/)]),
-         description: new FormControl ('',[Validators.required, Validators.minLength(3)]),           
-         state:new FormControl ('',[Validators.required, Validators.minLength(3) ]),
-         cuisinePhoto: new FormControl(null,[Validators.required]),
+export class AddCuisineComponent implements OnInit {
 
-    })
+  addCuisineForm!: FormGroup;
+  states: string[] = [];
+
+  constructor(private api: ApiService) {
+    this.createForm();
   }
-    ngOnInit(): void {
+
+  ngOnInit(): void {
     this.api.getIndianStates().subscribe({
       next: (data) => this.states = data,
       error: (err) => console.error('State API error', err)
     });
   }
-  
 
+  // ---------------- FORM SETUP ----------------
+  createForm() {
+    this.addCuisineForm = new FormGroup({
+      cuisineId: new FormControl('0'),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^[A-Za-z ]+$/)
+      ]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      state: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      cuisinePhoto: new FormControl(null, Validators.required)
+    });
+  }
 
+  // ---------------- GETTERS ----------------
   get name() { return this.addCuisineForm.get('name')!; }
   get description() { return this.addCuisineForm.get('description')!; }
   get state() { return this.addCuisineForm.get('state')!; }
-   
+  get cuisinePhoto() { return this.addCuisineForm.get('cuisinePhoto')!; }
 
-   onFileSelect(event: any, controlName: string) {
-  if (event.target.files && event.target.files.length > 0) {
-    const file = event.target.files[0];
-    this.addCuisineForm.get(controlName)?.setValue(file);
-    this.addCuisineForm.get(controlName)?.markAsTouched();
+  // ---------------- FILE SELECT ----------------
+  onFileSelect(event: any, controlName: string) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.addCuisineForm.get(controlName)?.setValue(file);
+      this.addCuisineForm.get(controlName)?.markAsTouched();
+    }
   }
-}
 
-
-addCuisine() {
-  if (this.addCuisineForm.invalid) {
+  // ---------------- SUBMIT ----------------
+  addCuisine() {
+    if (this.addCuisineForm.invalid) {
       this.addCuisineForm.markAllAsTouched();
       return;
     }
 
-  const formData = new FormData();
-  formData.append('cuisineId', this.addCuisineForm.get('cuisineId')?.value);
-  formData.append('name', this.addCuisineForm.get('name')?.value);
-  formData.append('description', this.addCuisineForm.get('description')?.value);
-  formData.append('state', this.addCuisineForm.get('state')?.value);
+    const formData = new FormData();
+    formData.append('cuisineId', this.addCuisineForm.get('cuisineId')?.value);
+    formData.append('name', this.addCuisineForm.get('name')?.value);
+    formData.append('description', this.addCuisineForm.get('description')?.value);
+    formData.append('state', this.addCuisineForm.get('state')?.value);
 
-  const file = this.addCuisineForm.get('cuisinePhoto')?.value;
-  if (file) {
-    formData.append('cuisinePhoto', file);
+    const file = this.addCuisineForm.get('cuisinePhoto')?.value;
+    if (file) {
+      formData.append('cuisinePhoto', file);
+    }
+
+    this.api.addCuisine(formData).subscribe({
+      next: (res) => {
+        console.log('Cuisine Added successfully:', res);
+        alert(res);
+
+        // ✅ Proper reset (NO refresh needed)
+        this.addCuisineForm.reset({
+          cuisineId: '0',
+          name: '',
+          description: '',
+          state: '',
+          cuisinePhoto: null
+        });
+
+        this.addCuisineForm.markAsPristine();
+        this.addCuisineForm.markAsUntouched();
+
+        // Clear file input UI
+        const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
+        fileInputs.forEach(input => input.value = '');
+      },
+      error: (err) => {
+        console.error('Error Adding Cuisine:', err);
+        alert('Error Inserting Cuisine!');
+      }
+    });
   }
-
-  this.api.addCuisine(formData).subscribe({
-    next: (res) => {
-      console.log('Cuisine Added successfully:', res);
-      alert(res); 
-      this.addCuisineForm.reset();
-
-      const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
-      fileInputs.forEach((input) => (input.value = ''));
-    },
-    error: (err) => {
-      console.error('Error Adding Cuisine:', err);
-      alert('Error Inserting Cuisine!');
-    },
-  });
 }
-}
-
-

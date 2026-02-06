@@ -5,7 +5,7 @@
 .card{
   background-image: linear-gradient(to bottom right, rgb(246, 246, 213),rgb(248, 225, 225));
   border: 1px solid orange;
-  margin-top: -40px;
+  /* margin-top: -40px; */
 }
 h4{
   margin-left: 84px;
@@ -21,3 +21,101 @@ label{
 button{
  background-image: linear-gradient(90deg, #FF512F, #FF7043);
 }
+
+/* ========================= */
+/* BASE (DESKTOP) */
+/* ========================= */
+.container {
+  max-width: 500px;
+}
+
+.card {
+  background-image: linear-gradient(to bottom right, rgb(246, 246, 213), rgb(248, 225, 225));
+  border: 1px solid orange;
+  margin-top: 0;
+}
+
+h4 {
+  text-align: center;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+label {
+  font-weight: bold;
+}
+
+.custom-border {
+  border: 1px solid orange;
+}
+
+button {
+  background-image: linear-gradient(90deg, #FF512F, #FF7043);
+}
+
+/* ========================= */
+/* TABLET VIEW */
+/* ========================= */
+@media (max-width: 991px) {
+  .container {
+    max-width: 100%;
+    padding: 0 16px;
+    margin-top: 0;
+  }
+
+  .card {
+    margin-top: 10px;
+  }
+}
+
+/* ========================= */
+/* MOBILE VIEW */
+/* ========================= */
+@media (max-width: 767px) {
+  .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card {
+    border-radius: 0;
+    margin-top: 0;
+    padding: 16px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+
+/* ========================= */
+/* REMOVE TOP GAP - MOBILE */
+/* ========================= */
+@media (max-width: 767px) {
+
+  /* Remove main wrapper spacing */
+  .main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Remove container spacing */
+  .container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Remove card top gap */
+  .card {
+    margin-top: 0 !important;
+    border-radius: 0;
+  }
+}
+

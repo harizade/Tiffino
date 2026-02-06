@@ -1,5 +1,5 @@
 <!-- 🔍 Search Form -->
-<div class="container mt-2">
+<!-- <div class="container-fluid mt-2">
   <div class="card shadow-sm p-4">
     <h4 class="mb-3 text-dark">Search Cloud Kitchens</h4>
     <form (ngSubmit)="fetchKitchens()" class="row g-3">
@@ -20,7 +20,33 @@
       </div>
     </form>
   </div>
+</div> -->
+
+<!-- 🔍 Search Form -->
+<div class="container-fluid search-wrapper">
+  <div class="card shadow-sm p-4 search-card">
+    <h4 class="mb-3 text-dark">Search Cloud Kitchens</h4>
+
+    <form (ngSubmit)="fetchKitchens()" class="row g-3">
+      <div class="col-md-4">
+        <input class="form-control" type="text" [(ngModel)]="state" name="state" placeholder="Enter State" required />
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" type="text" [(ngModel)]="city" name="city" placeholder="Enter City" required />
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" type="text" [(ngModel)]="division" name="division" placeholder="Enter Division" required />
+      </div>
+
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary px-4">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
+
 
                
 <!-- 📊 Results -->
